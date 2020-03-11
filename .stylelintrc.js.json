@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-prettier",
+    "stylelint-config-styled-components"
+  ],
+  "plugins": [
+    "stylelint-a11y",
+    "stylelint-high-performance-animation",
+    "stylelint-no-unsupported-browser-features",
+    "stylelint-order"
+  ],
+  "processors": ["stylelint-processor-styled-components"],
+  "rules": {
+    "color-hex-length": "long"
+  }
+}

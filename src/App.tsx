@@ -1,20 +1,21 @@
-import React from "react";
-import { Router, RouteComponentProps } from "@reach/router";
-import { Header } from "components/header/header";
+import React from 'react';
+import { Router, RouteComponentProps } from '@reach/router';
 
-const Home = (props: RouteComponentProps) => <div>Home</div>;
-const Dash = (props: RouteComponentProps) => <div>Dash</div>;
+import { Header } from 'components/Header';
 
-function App() {
+const Home: React.FC<RouteComponentProps> = () => <div>Home</div>;
+const Dash: React.FC<RouteComponentProps> = () => <div>Dash</div>;
+
+const App: React.FC = () => {
   return (
-    <div className="App">
+    <>
       <Header test="5" />
       <Router>
         <Home path="/" />
         <Dash path="dashboard" />
       </Router>
-    </div>
+    </>
   );
-}
+};
 
-export default App;
+export { App };

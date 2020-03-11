@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component matches snapshot 1`] = `
+.c0 {
+  color: #000000;
+}
+
+<body>
+  <div>
+    <header
+      class="c0"
+    >
+      There will be header. 
+      <br />
+      Test params - 
+      test
+      ! 
+      <br />
+      Test store value - 
+      0
+       
+      <br />
+      <button
+        type="button"
+      >
+        Increment
+      </button>
+      <nav>
+        <a
+          aria-current="page"
+          href="/"
+        >
+          Home 
+        </a>
+        <a
+          href="/dashboard"
+        >
+          Dashboard 
+        </a>
+      </nav>
+    </header>
+  </div>
+</body>
+`;

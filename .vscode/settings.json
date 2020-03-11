@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    ".eslintrc": "jsonc",
+    ".prettierrc": "jsonc",
+    ".lintstagedrc": "jsonc"
+  }
+}

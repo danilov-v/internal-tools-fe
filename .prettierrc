@@ -1,0 +1,12 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": [".eslintrc", ".lintstagedrc", ".prettierrc"],
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
+}
