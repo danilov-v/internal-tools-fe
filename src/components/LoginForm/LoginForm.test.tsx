@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { SignIn } from './signIn';
+import { LoginForm } from './LoginForm';
 
-describe('pages/signIn', () => {
+describe('<LoginForm />', () => {
   it('should render and match snapshot', () => {
-    const component = render(<SignIn />);
+    const component = render(<LoginForm />);
 
     expect(component.baseElement).toMatchSnapshot();
   });
