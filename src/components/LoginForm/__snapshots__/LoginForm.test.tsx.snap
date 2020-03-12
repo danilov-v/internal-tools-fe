@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginForm /> should render and match snapshot 1`] = `
+<body>
+  <div>
+    <form>
+      <input
+        type="text"
+      />
+      <br />
+      <input
+        type="password"
+      />
+      <br />
+      <button
+        type="submit"
+      >
+        Войти в ИТ
+      </button>
+    </form>
+  </div>
+</body>
+`;

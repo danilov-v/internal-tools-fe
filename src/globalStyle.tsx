@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
   /* stylelint-disable value-keyword-case */
   ${normalize}
   /* stylelint-enable value-keyword-case */
-  
+
   body {
     font-family: Muller, sans-serif;
   }
