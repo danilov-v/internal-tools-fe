@@ -8,5 +8,5 @@ export const SignIn: React.FC<RouteComponentProps> = () => {
     <div>
       <LoginForm />
     </div>
-  )
-}
+  );
+};

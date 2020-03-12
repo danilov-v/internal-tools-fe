@@ -20,7 +20,7 @@ import MullerExtraBold from './MullerExtraBold.ttf';
 import MullerRegularItalic from './MullerRegularItalic.ttf';
 import MullerMediumItalic from './MullerMediumItalic.ttf';
 
-export default createGlobalStyle`
+export const MullerFont = createGlobalStyle`
   @font-face {
     font-family: 'Muller';
     src: url(${MullerUltraLight}) format('truetype');

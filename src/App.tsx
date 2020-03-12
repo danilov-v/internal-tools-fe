@@ -6,7 +6,7 @@ import { SignIn } from 'pages/signIn/signIn';
 
 const App: React.FC = () => {
   return (
-    <>      
+    <>
       <GlobalStyle />
       <Router>
         <SignIn path="/" />
