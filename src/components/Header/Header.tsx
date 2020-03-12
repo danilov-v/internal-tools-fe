@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocalStore, useObserver } from 'mobx-react-lite';
-import { Link } from '@reach/router';
 
 import * as S from './Header.style';
 
@@ -24,10 +23,6 @@ const Header: React.FC<HeaderProps> = ({ test }) => {
       <button type="button" onClick={counterStore.increment}>
         Increment
       </button>
-      <nav>
-        <Link to="/">Home </Link>
-        <Link to="dashboard">Dashboard </Link>
-      </nav>
     </S.Header>
   ));
 };
