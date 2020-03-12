@@ -1,8 +1,12 @@
 import React from 'react';
 import { RouteComponentProps } from '@reach/router';
 
+import { LoginForm } from 'components/LoginForm';
+
 export const SignIn: React.FC<RouteComponentProps> = () => {
   return (
-    <div>Here will be sign-in components</div>
+    <div>
+      <LoginForm />
+    </div>
   )
 }
