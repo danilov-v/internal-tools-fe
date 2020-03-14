@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages/main should render and match snapshot 1`] = `
+<body>
+  <div>
+    <div>
+      Here will be main page
+    </div>
+  </div>
+</body>
+`;

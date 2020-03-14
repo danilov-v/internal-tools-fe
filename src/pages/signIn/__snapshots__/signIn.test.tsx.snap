@@ -3,8 +3,19 @@
 exports[`pages/signIn should render and match snapshot 1`] = `
 <body>
   <div>
-    <div>
-      Here will be sign-in components
+    <div
+      class="sc-AxiKw fafQI"
+    >
+      <div
+        class="sc-AxjAm bPpwqo"
+      >
+        <img
+          alt="logo"
+          class="sc-AxirZ dbNCkZ"
+          src="logo.svg"
+        />
+      </div>
+      &lt;div&gt;LoginForm Component&lt;/div&gt;
     </div>
   </div>
 </body>
