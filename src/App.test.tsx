@@ -14,10 +14,10 @@ describe.skip('App component', () => {
     return render(<App {...parsedProps} />);
   };
 
-  it('renders header first', () => {
+  it('renders sign in page first', () => {
     const { container } = getComponent();
 
-    expect(container.firstChild).toHaveTextContent('There will be header');
+    expect(container.firstChild).toHaveTextContent('Войти в ИТ');
   });
 });
 // eslint-enable-next-line jest/no-disabled-tests
