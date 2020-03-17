@@ -1,11 +1,11 @@
-import { getLoginUrl } from 'helpers/url';
+import { LOGIN_URL } from 'helpers/url';
 import { fetchAPI } from 'services/fetch';
 
 const checkAuth = async (user: {
   login: string;
   password: string;
 }): Promise<object> => {
-  const response = await fetchAPI(getLoginUrl(), {
+  const response = await fetchAPI(LOGIN_URL, {
     method: 'POST',
     data: user,
   });
