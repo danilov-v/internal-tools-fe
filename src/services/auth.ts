@@ -1,12 +1,16 @@
-// TODO: move constants out from here.
-export const DEFAULT_ADMIN_NAME = 'admin';
-export const DEFAULT_ADMIN_PASSWORD = 'admin';
+import { getLoginUrl } from 'helpers/url';
+import { fetchAPI } from 'services/fetch';
 
-const checkAuth = (user: { login: string; password: string }): boolean => {
-  return (
-    user.login === DEFAULT_ADMIN_NAME &&
-    user.password === DEFAULT_ADMIN_PASSWORD
-  );
+const checkAuth = async (user: {
+  login: string;
+  password: string;
+}): Promise<object> => {
+  const response = await fetchAPI(getLoginUrl(), {
+    method: 'POST',
+    data: user,
+  });
+
+  return response;
 };
 
 export { checkAuth };

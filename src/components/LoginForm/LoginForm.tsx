@@ -41,17 +41,21 @@ export const LoginForm: React.FC<{}> = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    if (checkAuth(formData)) {
-      navigate('/main');
-    } else {
-      setValid(false);
-      resetForm();
-    }
+    checkAuth(formData)
+      .then(() => {
+        navigate('/main');
+
+        return null;
+      })
+      .catch(() => {
+        setValid(false);
+        resetForm();
+      });
   };
 
   return (
-    <S.Form onSubmit={handleSubmit} data-testid="loginForm">
-      <S.Input
+    <S.LoginForm onSubmit={handleSubmit} data-testid="loginForm">
+      <S.InputField
         type="text"
         value={formData.login}
         placeholder="Капитан"
@@ -59,7 +63,7 @@ export const LoginForm: React.FC<{}> = () => {
         isValid={isValid}
       />
       <br />
-      <S.Input
+      <S.InputField
         type="password"
         value={formData.password}
         placeholder="Пароль"
@@ -71,6 +75,6 @@ export const LoginForm: React.FC<{}> = () => {
       <S.SubmitButton type="submit" name="submit">
         Войти в ИТ
       </S.SubmitButton>
-    </S.Form>
+    </S.LoginForm>
   );
 };
