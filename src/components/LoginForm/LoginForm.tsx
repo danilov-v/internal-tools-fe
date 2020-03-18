@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from '@reach/router';
-import { checkAuth } from 'services/auth';
+import { signIn } from 'services/auth';
+import { LoginData } from 'types/auth';
 
 import * as S from './LoginForm.style';
-
-type FormData = {
-  login: string;
-  password: string;
-};
 
 const DEFAULT_FORM_DATA = {
   login: '',
@@ -16,7 +12,7 @@ const DEFAULT_FORM_DATA = {
 
 export const LoginForm: React.FC<{}> = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<FormData>(DEFAULT_FORM_DATA);
+  const [formData, setFormData] = useState<LoginData>(DEFAULT_FORM_DATA);
   const [isValid, setValid] = useState<boolean>(true);
 
   const handleInput = (field: string) => (
@@ -41,7 +37,7 @@ export const LoginForm: React.FC<{}> = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    checkAuth(formData)
+    signIn(formData)
       .then(() => {
         navigate('/main');
 

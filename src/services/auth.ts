@@ -1,11 +1,10 @@
 import { LOGIN_URL } from 'helpers/url';
 import { fetchAPI } from 'services/fetch';
+import { LoginData } from 'types/auth';
+import { User } from 'types/user';
 
-const checkAuth = async (user: {
-  login: string;
-  password: string;
-}): Promise<object> => {
-  const response = await fetchAPI(LOGIN_URL, {
+const signIn = async (user: LoginData): Promise<User> => {
+  const response = await fetchAPI<User>(LOGIN_URL, {
     method: 'POST',
     data: user,
   });
@@ -13,4 +12,4 @@ const checkAuth = async (user: {
   return response;
 };
 
-export { checkAuth };
+export { signIn };

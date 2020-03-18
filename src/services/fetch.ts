@@ -1,10 +1,10 @@
-export const fetchAPI = async (
+export const fetchAPI = async <T>(
   url: string,
   options: {
     method?: 'GET' | 'POST' | 'PUT';
     data?: object;
   } = {},
-): Promise<any> => {
+): Promise<T> => {
   const response = await fetch(url, {
     method: options.method || 'GET',
     headers: {
