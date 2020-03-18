@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from '@reach/router';
-import { checkAuth } from 'services/auth';
+import { signIn } from 'services/auth';
+import { LoginData } from 'types/auth';
 
 import * as S from './LoginForm.style';
-
-type FormData = {
-  login: string;
-  password: string;
-};
 
 const DEFAULT_FORM_DATA = {
   login: '',
@@ -16,7 +12,7 @@ const DEFAULT_FORM_DATA = {
 
 export const LoginForm: React.FC<{}> = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<FormData>(DEFAULT_FORM_DATA);
+  const [formData, setFormData] = useState<LoginData>(DEFAULT_FORM_DATA);
   const [isValid, setValid] = useState<boolean>(true);
 
   const handleInput = (field: string) => (
@@ -41,17 +37,21 @@ export const LoginForm: React.FC<{}> = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    if (checkAuth(formData)) {
-      navigate('/main');
-    } else {
-      setValid(false);
-      resetForm();
-    }
+    signIn(formData)
+      .then(() => {
+        navigate('/main');
+
+        return null;
+      })
+      .catch(() => {
+        setValid(false);
+        resetForm();
+      });
   };
 
   return (
-    <S.Form onSubmit={handleSubmit} data-testid="loginForm">
-      <S.Input
+    <S.LoginForm onSubmit={handleSubmit} data-testid="loginForm">
+      <S.InputField
         type="text"
         value={formData.login}
         placeholder="Капитан"
@@ -59,7 +59,7 @@ export const LoginForm: React.FC<{}> = () => {
         isValid={isValid}
       />
       <br />
-      <S.Input
+      <S.InputField
         type="password"
         value={formData.password}
         placeholder="Пароль"
@@ -71,6 +71,6 @@ export const LoginForm: React.FC<{}> = () => {
       <S.SubmitButton type="submit" name="submit">
         Войти в ИТ
       </S.SubmitButton>
-    </S.Form>
+    </S.LoginForm>
   );
 };

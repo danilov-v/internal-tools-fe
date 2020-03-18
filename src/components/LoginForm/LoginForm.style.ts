@@ -5,11 +5,11 @@ type InputProps = {
   marginBottom?: number;
 };
 
-export const Form = styled.form`
+export const LoginForm = styled.form`
   text-align: center;
 `;
 
-export const Input = styled.input`
+export const InputField = styled.input`
   background-color: transparent;
   border: 0;
   border-bottom: ${(props: InputProps) =>
