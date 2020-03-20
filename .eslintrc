@@ -42,6 +42,7 @@
     "import/no-default-export": "error",
     "import/prefer-default-export": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
     "unicorn/filename-case": [
       "error",
       {
