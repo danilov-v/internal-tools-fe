@@ -16,7 +16,7 @@ const SignInWrapper = styled.div`
 export const SignIn: React.FC<RouteComponentProps> = () => {
   return (
     <SignInWrapper>
-      <Logo />
+      <Logo size="large" marginBottom="104" captioned />
       <LoginForm />
     </SignInWrapper>
   );

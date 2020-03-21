@@ -3,9 +3,73 @@
 exports[`pages/main should render and match snapshot 1`] = `
 <body>
   <div>
-    <div>
-      Here will be main page
-    </div>
+    <header
+      class="sc-AxgMl gxzYZF"
+    >
+      <div
+        class="sc-AxjAm cbGFkU"
+      >
+        <img
+          alt="logo"
+          class="sc-AxirZ dbNCkZ"
+          src="logo.svg"
+        />
+      </div>
+      <ul
+        class="sc-AxheI fGHfXX"
+      >
+        <li
+          class="sc-Axmtr ijesAw"
+        >
+          <a
+            class="sc-AxmLO byZQTA"
+            href="/main"
+            state="not-active"
+          >
+            Рота
+          </a>
+        </li>
+        <li
+          class="sc-Axmtr ijesAw"
+        >
+          <a
+            class="sc-AxmLO byZQTA"
+            href="/#schedule"
+            state="not-active"
+          >
+            График
+          </a>
+        </li>
+      </ul>
+      <div
+        class="sc-fzoLsD ejQvyh"
+      >
+        <div
+          class="sc-AxiKw bsHBHU"
+        >
+          <img
+            alt="Avatar"
+            class="sc-AxhCb fVlVaN"
+            src="captain_rang.svg"
+          />
+          <div
+            class="sc-AxhUy dOLKgI"
+          >
+            <span>
+              Командир роты
+            </span>
+            Стороженко
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-fzozJi cbhuUS"
+      >
+        <div />
+        <div />
+        <div />
+      </div>
+    </header>
   </div>
 </body>
 `;

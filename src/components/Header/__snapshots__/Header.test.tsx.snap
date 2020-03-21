@@ -1,8 +1,224 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header component matches snapshot 1`] = `
+.c1 {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0px;
+  display: block;
+}
+
+.c2 {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: baseline;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: relative;
+}
+
+.c8 {
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.c9 {
+  font-size: 1.2rem;
+  color: #ccccccff;
+  margin-left: 5px;
+}
+
+.c9 span {
+  position: absolute;
+  bottom: 1.6rem;
+  font-size: 0.8rem;
+  color: #727374ff;
+}
+
 .c0 {
-  color: #000000;
+  font-size: 1.2rem;
+  position: fixed;
+  left: 4vw;
+  top: 0;
+  width: 92vw;
+  z-index: 100;
+  border-bottom: 2px solid #616262ff;
+  padding-top: 1em;
+  min-height: 65px;
+}
+
+.c3 {
+  list-style-type: none;
+  display: none;
+  margin-top: 3rem;
+  padding: 0;
+}
+
+.c4 {
+  text-align: center;
+  margin-left: 2.2rem;
+}
+
+.c5 {
+  color: #ccccccff;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  position: relative;
+}
+
+.c5:hover {
+  color: #ffdc6282;
+}
+
+.c5[state='active'] {
+  color: #ffdc62ff;
+}
+
+.c5[state='active']::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -1rem;
+  left: 40%;
+  width: 12px;
+  height: 12px;
+  background-color: #ffdc62ff;
+  -webkit-clip-path: polygon(50% 100%,0 0,100% 0);
+  clip-path: polygon(50% 100%,0 0,100% 0);
+}
+
+.c10 {
+  position: absolute;
+  top: 1em;
+  right: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+  width: 3rem;
+  height: 3rem;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.c10 div {
+  height: 0.25rem;
+  background: #ccccccff;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform-origin: left center;
+  -ms-transform-origin: left center;
+  transform-origin: left center;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+.c10 div:nth-child(1) {
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.c10 div:nth-child(2) {
+  opacity: 1;
+}
+
+.c10 div:nth-child(3) {
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.c6 {
+  position: absolute;
+  top: 1.6em;
+  right: calc(100vw - 260px);
+}
+
+@media screen and (min-width:768px) {
+  .c0 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding-bottom: 0;
+    padding-top: 0;
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+    padding-bottom: 1em;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .c3 {
+    margin: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-items: baseline;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .c4 {
+    margin: 0;
+  }
+
+  .c4:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .c10 {
+    display: none;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .c6 {
+    right: 0;
+  }
 }
 
 <body>
@@ -10,21 +226,69 @@ exports[`Header component matches snapshot 1`] = `
     <header
       class="c0"
     >
-      There will be header. 
-      <br />
-      Test params - 
-      test
-      ! 
-      <br />
-      Test store value - 
-      0
-       
-      <br />
-      <button
-        type="button"
+      <div
+        class="c1"
       >
-        Increment
-      </button>
+        <img
+          alt="logo"
+          class="c2"
+          src="logo.svg"
+        />
+      </div>
+      <ul
+        class="c3"
+      >
+        <li
+          class="c4"
+        >
+          <a
+            class="c5"
+            href="/main"
+            state="not-active"
+          >
+            Рота
+          </a>
+        </li>
+        <li
+          class="c4"
+        >
+          <a
+            class="c5"
+            href="/#schedule"
+            state="not-active"
+          >
+            График
+          </a>
+        </li>
+      </ul>
+      <div
+        class="c6"
+      >
+        <div
+          class="c7"
+        >
+          <img
+            alt="Avatar"
+            class="c8"
+            src="captain_rang.svg"
+          />
+          <div
+            class="c9"
+          >
+            <span>
+              Командир роты
+            </span>
+            Стороженко
+          </div>
+        </div>
+      </div>
+      <div
+        class="c10"
+      >
+        <div />
+        <div />
+        <div />
+      </div>
     </header>
   </div>
 </body>

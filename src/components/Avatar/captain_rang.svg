@@ -14,7 +14,7 @@
    version="1.1"
    viewBox="0 0 80 80"
    id="svg1741"
-   sodipodi:docname="logo.svg"
+   sodipodi:docname="captain_rang.svg"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
   <defs
      id="defs1745" />
@@ -32,12 +32,12 @@
      id="namedview1743"
      showgrid="false"
      inkscape:zoom="1.766117"
-     inkscape:cx="97.723534"
+     inkscape:cx="26.946796"
      inkscape:cy="198.58614"
      inkscape:window-x="0"
      inkscape:window-y="28"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g1737" />
+     inkscape:current-layer="g2210" />
   <metadata
      id="metadata1721">
     <rdf:RDF>
@@ -56,33 +56,30 @@
     <g
        transform="matrix(0.83575,0,0,0.83575,2.3763,197)"
        id="g1737">
-      <rect
-         x="-2.8433144"
-         y="23.930599"
-         width="95.722404"
-         height="95.722404"
-         id="rect1723"
-         style="fill:#cccccc;stroke-width:1.29988635" />
       <g
-         id="g1731"
-         transform="matrix(1.2998856,0,0,1.2998872,-29.054216,-18.14285)"
-         style="fill:#464646">
-        <rect
-           x="28.857"
-           y="42.719002"
-           width="5.1759"
-           height="55.287998"
-           id="rect1725" />
-        <rect
-           x="38.973"
-           y="42.719002"
-           width="5.1759"
-           height="55.287998"
-           id="rect1727" />
+         style="fill:#cccccc;stroke-width:0.26458001"
+         transform="matrix(5.8582665,0,0,6.6242055,-1002.3617,-68.029494)"
+         id="g2210">
         <path
-           d="m 67.206,85.31 -13.046,-7.5323 -10e-7,-15.065 13.046,-7.5323 13.046,7.5323 v 15.065 z"
-           id="path1729"
-           inkscape:connector-curvature="0" />
+           inkscape:connector-curvature="0"
+           d="m 179.95246,17.327995 -1.20775,-0.553696 -1.17356,0.614556 0.19108,-1.242967 -0.98896,-0.851565 1.32591,-0.214519 0.56231,-1.140898 0.62836,1.110408 1.33645,0.146492 -0.93754,0.900796 z"
+           id="path2202"
+           style="stroke-width:0.29931381" />
+        <path
+           inkscape:connector-curvature="0"
+           d="m 179.95246,23.141766 -1.20775,-0.553696 -1.17356,0.614544 0.19108,-1.242966 -0.98896,-0.851565 1.32591,-0.214519 0.56231,-1.140898 0.62836,1.110408 1.33645,0.146492 -0.93754,0.900796 z"
+           id="path2204"
+           style="stroke-width:0.29931381" />
+        <path
+           inkscape:connector-curvature="0"
+           d="m 184.62515,28.215702 -1.20776,-0.553696 -1.17356,0.614544 0.19109,-1.242967 -0.98897,-0.851564 1.32592,-0.214519 0.56229,-1.140898 0.62836,1.110408 1.33646,0.146492 -0.93755,0.900795 z"
+           id="path2206"
+           style="stroke-width:0.29931381" />
+        <path
+           inkscape:connector-curvature="0"
+           d="m 175.91217,28.215702 -1.20776,-0.553696 -1.17355,0.614544 0.19109,-1.242967 -0.98897,-0.851564 1.32592,-0.214519 0.5623,-1.140898 0.62836,1.110408 1.33646,0.146492 -0.93756,0.900795 z"
+           id="path2208"
+           style="stroke-width:0.29931381" />
       </g>
     </g>
   </g>
