@@ -17,12 +17,10 @@ const getLogoSize = (size?: 'small' | 'default' | 'large'): string => {
   return sizeMap[sizeName];
 };
 
-export const LogoWrapper = styled.div`
-  height: ${({ size }: LogoWrapperProps) => getLogoSize(size)};
-  width: ${({ size }: LogoWrapperProps) => getLogoSize(size)};
-  width: 3rem;
-  margin-bottom: ${(props: LogoWrapperProps) =>
-    `${props.marginBottom || '0'}px`};
+export const LogoWrapper = styled.div<LogoWrapperProps>`
+  height: ${({ size }) => getLogoSize(size)};
+  width: ${({ size }) => getLogoSize(size)};
+  margin-bottom: ${props => `${props.marginBottom || '0'}px`};
   display: block;
 `;
 

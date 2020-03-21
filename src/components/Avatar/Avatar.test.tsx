@@ -3,7 +3,11 @@ import { render } from '@testing-library/react';
 
 import { Avatar } from './Avatar';
 
-const testUser = { lastName: 'test', rank: 'captain', position: 'test' };
+const testUser = {
+  lastName: 'test',
+  rank: 'captain',
+  position: 'test position',
+};
 
 describe('<Avatar />', () => {
   it('should render and match snapshot', () => {

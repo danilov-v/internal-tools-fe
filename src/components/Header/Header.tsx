@@ -27,7 +27,7 @@ const Header: React.FC<{}> = () => {
           </S.NavLink>
         </S.NavItem>
         <S.NavItem>
-          <S.NavLink getProps={isActive} to="#schedule">
+          <S.NavLink getProps={isActive} to="#main">
             График
           </S.NavLink>
         </S.NavItem>

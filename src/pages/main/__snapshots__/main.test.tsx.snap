@@ -4,10 +4,10 @@ exports[`pages/main should render and match snapshot 1`] = `
 <body>
   <div>
     <header
-      class="sc-AxgMl gxzYZF"
+      class="sc-AxgMl kpiIcl"
     >
       <div
-        class="sc-AxjAm cbGFkU"
+        class="sc-AxjAm hKuUFK"
       >
         <img
           alt="logo"
@@ -16,10 +16,10 @@ exports[`pages/main should render and match snapshot 1`] = `
         />
       </div>
       <ul
-        class="sc-AxheI fGHfXX"
+        class="sc-AxheI cnwOaV"
       >
         <li
-          class="sc-Axmtr ijesAw"
+          class="sc-Axmtr cALnrE"
         >
           <a
             class="sc-AxmLO byZQTA"
@@ -30,11 +30,11 @@ exports[`pages/main should render and match snapshot 1`] = `
           </a>
         </li>
         <li
-          class="sc-Axmtr ijesAw"
+          class="sc-Axmtr cALnrE"
         >
           <a
             class="sc-AxmLO byZQTA"
-            href="/#schedule"
+            href="/#main"
             state="not-active"
           >
             График

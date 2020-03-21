@@ -5,13 +5,8 @@ import 'jest-styled-components';
 import { Header } from './Header';
 
 describe('Header component', () => {
-  const getComponent = (props = {}): RenderResult => {
-    const parsedProps = {
-      test: 'test',
-      ...props,
-    };
-
-    return render(<Header {...parsedProps} />);
+  const getComponent = (): RenderResult => {
+    return render(<Header />);
   };
 
   it('matches snapshot', () => {

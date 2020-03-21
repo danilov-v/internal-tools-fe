@@ -15,7 +15,7 @@ export const Logo: React.FC<LogoProps> = ({
   captioned,
 }) => {
   return (
-    <S.LogoWrapper size={size} marginBottom={marginBottom}>
+    <S.LogoWrapper size={size} marginBottom={marginBottom} title="logo">
       {captioned ? (
         <S.LogoImage src={logoCaptioned} alt="logo" />
       ) : (

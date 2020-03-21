@@ -2,8 +2,9 @@
 
 exports[`Header component matches snapshot 1`] = `
 .c1 {
-  width: 3rem;
   height: 3rem;
+  width: 3rem;
+  width: 3rem;
   margin-bottom: 0px;
   display: block;
 }
@@ -51,22 +52,22 @@ exports[`Header component matches snapshot 1`] = `
 }
 
 .c0 {
-  font-size: 1.2rem;
   position: fixed;
-  left: 4vw;
   top: 0;
-  width: 92vw;
+  left: 4vw;
   z-index: 100;
-  border-bottom: 2px solid #616262ff;
-  padding-top: 1em;
+  width: 92vw;
   min-height: 65px;
+  padding-top: 1em;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #616262ff;
 }
 
 .c3 {
   list-style-type: none;
+  padding: 0;
   display: none;
   margin-top: 3rem;
-  padding: 0;
 }
 
 .c4 {
@@ -168,7 +169,6 @@ exports[`Header component matches snapshot 1`] = `
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    padding-bottom: 0;
     padding-top: 0;
     -webkit-align-items: flex-end;
     -webkit-box-align: flex-end;
@@ -205,7 +205,7 @@ exports[`Header component matches snapshot 1`] = `
   }
 
   .c4:not(:first-child) {
-    margin-top: 1rem;
+    margin-top: 1.2rem;
   }
 }
 
@@ -254,7 +254,7 @@ exports[`Header component matches snapshot 1`] = `
         >
           <a
             class="c5"
-            href="/#schedule"
+            href="/#main"
             state="not-active"
           >
             График

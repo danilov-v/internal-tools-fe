@@ -6,15 +6,15 @@ type HumburgerProps = {
 };
 
 export const Header = styled.header`
-  font-size: 1.2rem;
   position: fixed;
-  left: 4vw;
   top: 0;
-  width: 92vw;
+  left: 4vw;
   z-index: 100;
-  border-bottom: 2px solid #616262ff;
-  padding-top: 1em;
+  width: 92vw;
   min-height: 65px;
+  padding-top: 1em;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #616262ff;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -24,11 +24,11 @@ export const Header = styled.header`
   }
 `;
 
-export const NavBar = styled.ul`
+export const NavBar = styled.ul<HumburgerProps>`
   list-style-type: none;
-  display: ${({ expanded }: HumburgerProps) => (expanded ? 'block' : 'none')};
-  margin-top: 3rem;
   padding: 0;
+  display: ${({ expanded }) => (expanded ? 'block' : 'none')};
+  margin-top: 3rem;
 
   @media screen and (min-width: 768px) {
     margin: 0;
@@ -47,7 +47,7 @@ export const NavItem = styled.li`
     margin: 0;
 
     &:not(:first-child) {
-      margin-top: 1rem;
+      margin-top: 1.2rem;
     }
   }
 `;
@@ -77,7 +77,7 @@ export const NavLink = styled(Link)`
   }
 `;
 
-export const Humburger = styled.div`
+export const Humburger = styled.div<HumburgerProps>`
   position: absolute;
   top: 1em;
   right: 0;
@@ -105,14 +105,14 @@ export const Humburger = styled.div`
   }
 
   & div:nth-child(1) {
-    transform: ${({ expanded }: HumburgerProps) =>
+    transform: ${({ expanded }) =>
       expanded ? 'rotate(45deg)' : 'rotate(0deg)'};
   }
   & div:nth-child(2) {
-    opacity: ${({ expanded }: HumburgerProps) => (expanded ? 0 : 1)};
+    opacity: ${({ expanded }) => (expanded ? 0 : 1)};
   }
   & div:nth-child(3) {
-    transform: ${({ expanded }: HumburgerProps) =>
+    transform: ${({ expanded }) =>
       expanded ? 'rotate(-45deg)' : 'rotate(0deg)'};
   }
 `;
