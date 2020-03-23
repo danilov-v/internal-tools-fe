@@ -16,7 +16,7 @@ export const AvatarImage = styled.img`
 
 export const AvatarCaption = styled.div`
   font-size: 1.2rem;
-  color: #ccccccff;
+  color: #cccccc;
   margin-left: 5px;
 
   span {

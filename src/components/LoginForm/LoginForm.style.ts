@@ -13,8 +13,8 @@ export const InputField = styled.input<InputProps>`
   background-color: transparent;
   border: 0;
   border-bottom: ${props =>
-    `2px solid ${props.isValid ? '#ccccccff' : '#ff0000'}`};
-  color: #ccccccff;
+    `2px solid ${props.isValid ? '#cccccc' : '#ff0000'}`};
+  color: #cccccc;
   font-size: 22px;
   margin-bottom: ${props => `${props.marginBottom || 48}px`};
   outline: none;
@@ -24,11 +24,11 @@ export const InputField = styled.input<InputProps>`
 `;
 
 export const SubmitButton = styled.button`
-  color: #ccccccff;
+  color: #cccccc;
   background-color: transparent;
   padding: 12px;
   border-radius: 4px;
-  border: 1px solid #ccccccff;
+  border: 1px solid #cccccc;
   text-transform: uppercase;
   font-weight: 300;
   font-size: 18px;

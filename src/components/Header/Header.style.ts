@@ -53,7 +53,7 @@ export const NavItem = styled.li`
 `;
 
 export const NavLink = styled(Link)`
-  color: #ccccccff;
+  color: #cccccc;
   text-decoration: none;
   position: relative;
 
@@ -96,7 +96,7 @@ export const Humburger = styled.div<HumburgerProps>`
 
   div {
     height: 0.25rem;
-    background: #ccccccff;
+    background: #cccccc;
     border-radius: 9px;
     opacity: 1;
     left: 0;

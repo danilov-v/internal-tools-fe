@@ -4,7 +4,6 @@ exports[`Header component matches snapshot 1`] = `
 .c1 {
   height: 3rem;
   width: 3rem;
-  width: 3rem;
   margin-bottom: 0px;
   display: block;
 }
@@ -40,7 +39,7 @@ exports[`Header component matches snapshot 1`] = `
 
 .c9 {
   font-size: 1.2rem;
-  color: #ccccccff;
+  color: #cccccc;
   margin-left: 5px;
 }
 
@@ -76,7 +75,7 @@ exports[`Header component matches snapshot 1`] = `
 }
 
 .c5 {
-  color: #ccccccff;
+  color: #cccccc;
   -webkit-text-decoration: none;
   text-decoration: none;
   position: relative;
@@ -130,7 +129,7 @@ exports[`Header component matches snapshot 1`] = `
 
 .c10 div {
   height: 0.25rem;
-  background: #ccccccff;
+  background: #cccccc;
   border-radius: 9px;
   opacity: 1;
   left: 0;
@@ -228,6 +227,7 @@ exports[`Header component matches snapshot 1`] = `
     >
       <div
         class="c1"
+        title="logo"
       >
         <img
           alt="logo"
