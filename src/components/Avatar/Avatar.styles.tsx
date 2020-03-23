@@ -1,28 +1,26 @@
 import styled from 'styled-components';
 
 export const AvatarWrapper = styled.div`
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
   position: relative;
 `;
 
 export const AvatarImage = styled.img`
-  width: 2rem;
-  height: 2rem;
+  width: 35px;
+  height: 35px;
   display: inline-block;
   max-width: 100%;
 `;
 
 export const AvatarCaption = styled.div`
-  font-size: 1.2rem;
+  display: inline-block;
+  font-size: 20px;
   color: #cccccc;
   margin-left: 5px;
 
   span {
     position: absolute;
-    bottom: 1.6rem;
-    font-size: 0.8rem;
+    bottom: 25px;
+    font-size: 12px;
     color: #727374ff;
   }
 `;

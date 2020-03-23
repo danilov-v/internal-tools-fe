@@ -19,7 +19,9 @@ const Header: React.FC<{}> = () => {
 
   return (
     <S.Header>
-      <Logo />
+      <S.UserLogo>
+        <Logo />
+      </S.UserLogo>
       <S.NavBar expanded={isExpanded}>
         <S.NavItem>
           <S.NavLink getProps={isActive} to="/main">

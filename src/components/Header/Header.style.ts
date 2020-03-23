@@ -8,19 +8,25 @@ type HumburgerProps = {
 export const Header = styled.header`
   position: fixed;
   top: 0;
-  left: 4vw;
+  left: 4%;
   z-index: 100;
-  width: 92vw;
+  width: 92%;
   min-height: 65px;
-  padding-top: 1em;
-  font-size: 1.2rem;
+  font-size: 20px;
   border-bottom: 2px solid #616262ff;
+  padding-bottom: 10px;
 
   @media screen and (min-width: 768px) {
     display: flex;
-    padding-top: 0;
     align-items: flex-end;
-    padding-bottom: 1em;
+  }
+`;
+
+export const UserLogo = styled.div`
+  cursor: pointer;
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    top: 20px;
   }
 `;
 
@@ -28,26 +34,26 @@ export const NavBar = styled.ul<HumburgerProps>`
   list-style-type: none;
   padding: 0;
   display: ${({ expanded }) => (expanded ? 'block' : 'none')};
-  margin-top: 3rem;
+  margin-top: 75px;
+  margin-bottom: 0;
 
   @media screen and (min-width: 768px) {
     margin: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: baseline;
+    display: block;
   }
 `;
 
 export const NavItem = styled.li`
   text-align: center;
-  margin-left: 2.2rem;
+  margin-left: 40px;
+  display: inline-block;
 
   @media screen and (max-width: 768px) {
+    display: block;
     margin: 0;
 
     &:not(:first-child) {
-      margin-top: 1.2rem;
+      margin-top: 20px;
     }
   }
 `;
@@ -67,7 +73,7 @@ export const NavLink = styled(Link)`
       content: '';
       display: block;
       position: absolute;
-      top: -1rem;
+      top: -15px;
       left: 40%;
       width: 12px;
       height: 12px;
@@ -79,13 +85,13 @@ export const NavLink = styled(Link)`
 
 export const Humburger = styled.div<HumburgerProps>`
   position: absolute;
-  top: 1em;
+  top: 20px;
   right: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  width: 3rem;
-  height: 3rem;
+  justify-content: space-between;
+  width: 45px;
+  height: 38px;
   transform: rotate(0deg);
   transition: 0.5s ease-in-out;
   cursor: pointer;
@@ -95,9 +101,9 @@ export const Humburger = styled.div<HumburgerProps>`
   }
 
   div {
-    height: 0.25rem;
+    height: 4px;
     background: #cccccc;
-    border-radius: 9px;
+    border-radius: 2px;
     opacity: 1;
     left: 0;
     transform-origin: left center;
@@ -119,10 +125,11 @@ export const Humburger = styled.div<HumburgerProps>`
 
 export const UserAvatar = styled.div`
   position: absolute;
-  top: 1.6em;
-  right: calc(100vw - 260px);
+  right: 70px;
+  top: 20px;
 
   @media screen and (min-width: 768px) {
     right: 0;
+    top: 25px;
   }
 `;
