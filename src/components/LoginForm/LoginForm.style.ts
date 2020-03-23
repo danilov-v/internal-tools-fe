@@ -9,14 +9,14 @@ export const LoginForm = styled.form`
   text-align: center;
 `;
 
-export const InputField = styled.input`
+export const InputField = styled.input<InputProps>`
   background-color: transparent;
   border: 0;
-  border-bottom: ${(props: InputProps) =>
+  border-bottom: ${props =>
     `2px solid ${props.isValid ? '#ccccccff' : '#ff0000'}`};
   color: #ccccccff;
   font-size: 22px;
-  margin-bottom: ${(props: InputProps) => `${props.marginBottom || 48}px`};
+  margin-bottom: ${props => `${props.marginBottom || 48}px`};
   outline: none;
   text-align: center;
   font-weight: 300;
