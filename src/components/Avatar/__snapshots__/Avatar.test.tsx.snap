@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Avatar /> should render and match snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-AxjAm iFRHBp"
+    >
+      <img
+        alt="Avatar"
+        class="sc-AxirZ jDlBVd"
+        src="captain_rang.svg"
+      />
+      <div
+        class="sc-AxiKw jwiktL"
+      >
+        <span>
+          test position
+        </span>
+        test
+      </div>
+    </div>
+  </div>
+</body>
+`;

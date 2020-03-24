@@ -8,6 +8,14 @@ import { Main } from 'pages/main/main';
 
 const StyledMain = styled.main`
   min-height: 100vh;
+  padding-left: 4%;
+  padding-right: 4%;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 65px;
+  }
 `;
 const FullScreenRouter = styled(Router)`
   min-height: 100vh;
@@ -19,7 +27,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <FullScreenRouter>
         <SignIn path="/" />
-        <Main path="/main" />
+        <Main path="/main/*" />
       </FullScreenRouter>
     </StyledMain>
   );

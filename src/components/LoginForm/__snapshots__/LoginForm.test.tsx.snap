@@ -8,21 +8,21 @@ exports[`<LoginForm /> should render and match snapshot 1`] = `
       data-testid="loginForm"
     >
       <input
-        class="sc-AxirZ dnXwET"
+        class="sc-AxirZ gQaiPr"
         placeholder="Капитан"
         type="text"
         value=""
       />
       <br />
       <input
-        class="sc-AxirZ lfNmgP"
+        class="sc-AxirZ dsuoSr"
         placeholder="Пароль"
         type="password"
         value=""
       />
       <br />
       <button
-        class="sc-AxiKw bgDdzp"
+        class="sc-AxiKw fFlbgl"
         name="submit"
         type="submit"
       >
