@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { DropDownButton } from 'components/Button';
 
-export const SoldersList = styled.section`
+export const SoldiersList = styled.section`
   margin-top: 45px;
   padding-left: 15px;
   padding-right: 15px;
   color: #f2f2f2;
 `;
 
-export const SoldersHeader = styled.h1`
+export const SoldiersHeader = styled.h1`
   font-size: 20px;
   color: #f2f2f2;
   margin-bottom: 50px;
@@ -37,4 +37,45 @@ export const DivisionButton = styled(PlatButton)`
     margin-right: 5px;
     font-size: 16px;
   }
+`;
+
+export const SoldiersTable = styled.div``;
+
+export const SoldiersTableItem = styled.div`
+  display: grid;
+  grid-template-columns: 30px 250px 80px 80px;
+  margin-bottom: 20px;
+`;
+
+export const SoldierNumber = styled.span`
+  opacity: 0.3;
+`;
+
+export const SoldierName = styled.div``;
+
+export const SoldierProms = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & span {
+    &:hover {
+      color: #52b513;
+      cursor: pointer;
+    }
+  }
+`;
+
+export const SoldierPenalties = styled(SoldierProms)`
+  margin-left: 30px;
+  & span {
+    &:hover {
+      color: #ffd860;
+    }
+  }
+`;
+
+export const NoSoldiers = styled.div`
+  font-size: 18px;
+  color: #b1b1b1;
 `;
