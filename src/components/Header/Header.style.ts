@@ -8,13 +8,13 @@ type HumburgerProps = {
 export const Header = styled.header`
   position: fixed;
   top: 0;
-  left: 4%;
   z-index: 100;
   width: 92%;
   min-height: 65px;
-  font-size: 20px;
+  font-size: 16px;
   border-bottom: 2px solid #616262ff;
   padding-bottom: 10px;
+  background: linear-gradient(90deg, #44494b 0%, #4c5153 25%, #4c5153 100%);
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -73,10 +73,10 @@ export const NavLink = styled(Link)`
       content: '';
       display: block;
       position: absolute;
-      top: -15px;
+      top: -12px;
       left: 40%;
-      width: 12px;
-      height: 12px;
+      width: 9px;
+      height: 8px;
       background-color: #ffdc62ff;
       clip-path: polygon(50% 100%, 0 0, 100% 0);
     }
@@ -91,7 +91,7 @@ export const Humburger = styled.div<HumburgerProps>`
   flex-direction: column;
   justify-content: space-between;
   width: 45px;
-  height: 38px;
+  height: 35px;
   transform: rotate(0deg);
   transition: 0.5s ease-in-out;
   cursor: pointer;
@@ -101,7 +101,7 @@ export const Humburger = styled.div<HumburgerProps>`
   }
 
   div {
-    height: 4px;
+    height: 3px;
     background: #cccccc;
     border-radius: 2px;
     opacity: 1;

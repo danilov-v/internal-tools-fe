@@ -24,12 +24,12 @@ const Header: React.FC<{}> = () => {
       </S.UserLogo>
       <S.NavBar expanded={isExpanded}>
         <S.NavItem>
-          <S.NavLink getProps={isActive} to="/main">
+          <S.NavLink getProps={isActive} to="solders">
             Рота
           </S.NavLink>
         </S.NavItem>
         <S.NavItem>
-          <S.NavLink getProps={isActive} to="#main">
+          <S.NavLink getProps={isActive} to="schedule">
             График
           </S.NavLink>
         </S.NavItem>

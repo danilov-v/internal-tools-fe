@@ -13,14 +13,13 @@ export const AvatarImage = styled.img`
 
 export const AvatarCaption = styled.div`
   display: inline-block;
-  font-size: 20px;
   color: #cccccc;
   margin-left: 5px;
 
   span {
     position: absolute;
-    bottom: 25px;
-    font-size: 12px;
+    bottom: 20px;
+    font-size: 10px;
     color: #727374ff;
   }
 `;
