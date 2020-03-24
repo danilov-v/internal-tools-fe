@@ -24,33 +24,33 @@ describe('<Logo />', () => {
     expect(logoFileName).toEqual('logo.svg');
   });
 
-  it('should have widht and height 3rem', () => {
+  it('should have widht and height 40px', () => {
     expect.assertions(2);
 
     const component = render(<Logo />);
     const logo = component.getByTitle('logo');
 
-    expect(logo).toHaveStyle('height: 3rem');
-    expect(logo).toHaveStyle('width: 3rem');
+    expect(logo).toHaveStyle('height: 40px');
+    expect(logo).toHaveStyle('width: 40px');
   });
 
-  it('should have widht and height 1.5rem with small size prop', () => {
+  it('should have widht and height 20px with small size prop', () => {
     expect.assertions(2);
 
     const component = render(<Logo size="small" />);
     const logo = component.getByTitle('logo');
 
-    expect(logo).toHaveStyle('height: 1.5rem');
-    expect(logo).toHaveStyle('width: 1.5rem');
+    expect(logo).toHaveStyle('height: 20px');
+    expect(logo).toHaveStyle('width: 20px');
   });
 
-  it('should have widht and height 8.5rem with large size prop', () => {
+  it('should have widht and height 135px with large size prop', () => {
     expect.assertions(2);
 
     const component = render(<Logo size="large" />);
     const logo = component.getByTitle('logo');
 
-    expect(logo).toHaveStyle('height: 8.5rem');
-    expect(logo).toHaveStyle('width: 8.5rem');
+    expect(logo).toHaveStyle('height: 135px');
+    expect(logo).toHaveStyle('width: 135px');
   });
 });

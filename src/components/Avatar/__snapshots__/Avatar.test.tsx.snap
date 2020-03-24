@@ -4,15 +4,15 @@ exports[`<Avatar /> should render and match snapshot 1`] = `
 <body>
   <div>
     <div
-      class="sc-AxjAm jfEBQj"
+      class="sc-AxjAm iFRHBp"
     >
       <img
         alt="Avatar"
-        class="sc-AxirZ hmcxZZ"
+        class="sc-AxirZ jDlBVd"
         src="captain_rang.svg"
       />
       <div
-        class="sc-AxiKw kjOVYt"
+        class="sc-AxiKw jwiktL"
       >
         <span>
           test position

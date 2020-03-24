@@ -34,7 +34,7 @@ export const NavBar = styled.ul<HumburgerProps>`
   list-style-type: none;
   padding: 0;
   display: ${({ expanded }) => (expanded ? 'block' : 'none')};
-  margin-top: 75px;
+  margin-top: 80px;
   margin-bottom: 0;
 
   @media screen and (min-width: 768px) {

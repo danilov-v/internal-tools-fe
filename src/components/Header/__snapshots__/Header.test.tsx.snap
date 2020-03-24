@@ -1,99 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header component matches snapshot 1`] = `
-.c1 {
-  height: 3rem;
-  width: 3rem;
+.c2 {
+  height: 40px;
+  width: 40px;
   margin-bottom: 0px;
   display: block;
 }
 
-.c2 {
+.c3 {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.c7 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: baseline;
-  -webkit-box-align: baseline;
-  -ms-flex-align: baseline;
-  align-items: baseline;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+.c8 {
   position: relative;
 }
 
-.c8 {
-  width: 2rem;
-  height: 2rem;
+.c9 {
+  width: 35px;
+  height: 35px;
   display: inline-block;
   max-width: 100%;
 }
 
-.c9 {
-  font-size: 1.2rem;
+.c10 {
+  display: inline-block;
+  font-size: 20px;
   color: #cccccc;
   margin-left: 5px;
 }
 
-.c9 span {
+.c10 span {
   position: absolute;
-  bottom: 1.6rem;
-  font-size: 0.8rem;
+  bottom: 25px;
+  font-size: 12px;
   color: #727374ff;
 }
 
 .c0 {
   position: fixed;
   top: 0;
-  left: 4vw;
+  left: 4%;
   z-index: 100;
-  width: 92vw;
+  width: 92%;
   min-height: 65px;
-  padding-top: 1em;
-  font-size: 1.2rem;
+  font-size: 20px;
   border-bottom: 2px solid #616262ff;
+  padding-bottom: 10px;
 }
 
-.c3 {
-  list-style-type: none;
-  padding: 0;
-  display: none;
-  margin-top: 3rem;
+.c1 {
+  cursor: pointer;
 }
 
 .c4 {
-  text-align: center;
-  margin-left: 2.2rem;
+  list-style-type: none;
+  padding: 0;
+  display: none;
+  margin-top: 80px;
+  margin-bottom: 0;
 }
 
 .c5 {
+  text-align: center;
+  margin-left: 40px;
+  display: inline-block;
+}
+
+.c6 {
   color: #cccccc;
   -webkit-text-decoration: none;
   text-decoration: none;
   position: relative;
 }
 
-.c5:hover {
+.c6:hover {
   color: #ffdc6282;
 }
 
-.c5[state='active'] {
+.c6[state='active'] {
   color: #ffdc62ff;
 }
 
-.c5[state='active']::before {
+.c6[state='active']::before {
   content: '';
   display: block;
   position: absolute;
-  top: -1rem;
+  top: -15px;
   left: 40%;
   width: 12px;
   height: 12px;
@@ -102,9 +97,9 @@ exports[`Header component matches snapshot 1`] = `
   clip-path: polygon(50% 100%,0 0,100% 0);
 }
 
-.c10 {
+.c11 {
   position: absolute;
-  top: 1em;
+  top: 20px;
   right: 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -113,12 +108,12 @@ exports[`Header component matches snapshot 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-  width: 3rem;
-  height: 3rem;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 45px;
+  height: 38px;
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
@@ -127,10 +122,10 @@ exports[`Header component matches snapshot 1`] = `
   cursor: pointer;
 }
 
-.c10 div {
-  height: 0.25rem;
+.c11 div {
+  height: 4px;
   background: #cccccc;
-  border-radius: 9px;
+  border-radius: 2px;
   opacity: 1;
   left: 0;
   -webkit-transform-origin: left center;
@@ -140,26 +135,26 @@ exports[`Header component matches snapshot 1`] = `
   transition: 0.25s ease-in-out;
 }
 
-.c10 div:nth-child(1) {
+.c11 div:nth-child(1) {
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
 }
 
-.c10 div:nth-child(2) {
+.c11 div:nth-child(2) {
   opacity: 1;
 }
 
-.c10 div:nth-child(3) {
+.c11 div:nth-child(3) {
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
 }
 
-.c6 {
+.c7 {
   position: absolute;
-  top: 1.6em;
-  right: calc(100vw - 260px);
+  right: 70px;
+  top: 20px;
 }
 
 @media screen and (min-width:768px) {
@@ -168,55 +163,48 @@ exports[`Header component matches snapshot 1`] = `
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    padding-top: 0;
     -webkit-align-items: flex-end;
     -webkit-box-align: flex-end;
     -ms-flex-align: flex-end;
     align-items: flex-end;
-    padding-bottom: 1em;
-  }
-}
-
-@media screen and (min-width:768px) {
-  .c3 {
-    margin: 0;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-align-items: baseline;
-    -webkit-box-align: baseline;
-    -ms-flex-align: baseline;
-    align-items: baseline;
   }
 }
 
 @media screen and (max-width:768px) {
-  .c4 {
-    margin: 0;
-  }
-
-  .c4:not(:first-child) {
-    margin-top: 1.2rem;
+  .c1 {
+    position: absolute;
+    top: 20px;
   }
 }
 
 @media screen and (min-width:768px) {
-  .c10 {
+  .c4 {
+    margin: 0;
+    display: block;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .c5 {
+    display: block;
+    margin: 0;
+  }
+
+  .c5:not(:first-child) {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .c11 {
     display: none;
   }
 }
 
 @media screen and (min-width:768px) {
-  .c6 {
+  .c7 {
     right: 0;
+    top: 25px;
   }
 }
 
@@ -227,22 +215,26 @@ exports[`Header component matches snapshot 1`] = `
     >
       <div
         class="c1"
-        title="logo"
       >
-        <img
-          alt="logo"
+        <div
           class="c2"
-          src="logo.svg"
-        />
+          title="logo"
+        >
+          <img
+            alt="logo"
+            class="c3"
+            src="logo.svg"
+          />
+        </div>
       </div>
       <ul
-        class="c3"
+        class="c4"
       >
         <li
-          class="c4"
+          class="c5"
         >
           <a
-            class="c5"
+            class="c6"
             href="/main"
             state="not-active"
           >
@@ -250,10 +242,10 @@ exports[`Header component matches snapshot 1`] = `
           </a>
         </li>
         <li
-          class="c4"
+          class="c5"
         >
           <a
-            class="c5"
+            class="c6"
             href="/#main"
             state="not-active"
           >
@@ -262,18 +254,18 @@ exports[`Header component matches snapshot 1`] = `
         </li>
       </ul>
       <div
-        class="c6"
+        class="c7"
       >
         <div
-          class="c7"
+          class="c8"
         >
           <img
             alt="Avatar"
-            class="c8"
+            class="c9"
             src="captain_rang.svg"
           />
           <div
-            class="c9"
+            class="c10"
           >
             <span>
               Командир роты
@@ -283,7 +275,7 @@ exports[`Header component matches snapshot 1`] = `
         </div>
       </div>
       <div
-        class="c10"
+        class="c11"
       >
         <div />
         <div />
