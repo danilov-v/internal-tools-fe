@@ -22,10 +22,10 @@ export const DropDownButton = styled(Button)<DropDownButtonProps>`
     content: '';
     display: block;
     position: absolute;
-    top: 3px;
+    top: 5px;
     right: 2px;
-    width: 9px;
-    height: 8px;
+    width: 8px;
+    height: 7px;
     background-color: #b3b3b3;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
     transform: ${({ expanded }) =>
