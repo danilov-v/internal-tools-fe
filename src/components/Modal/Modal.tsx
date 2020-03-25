@@ -8,9 +8,9 @@ type ModalProps = {
 };
 
 export const Modal: React.FC<ModalProps> = ({ isOpened }) => {
-  return isOpened ? null : (
+  return isOpened ? (
     <S.ModalBackground>
       <S.ModalWrapper>{1}</S.ModalWrapper>
     </S.ModalBackground>
-  );
+  ) : null;
 };
