@@ -6,14 +6,18 @@ export const ModalBackground = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 101;
   background-color: rgba(0, 0, 0, 0.3);
 `;
 
 export const ModalWrapper = styled.div`
+  position: absolute;
+  top: calc(50% - 250px);
+  left: calc(50% - 200px);
   background-color: #ffffff;
   border-radius: 15px;
-  max-width: 500px;
-  min-height: 200px;
+  width: 450px;
+  height: 500px;
   margin: 0 auto;
   padding: 15px;
 `;

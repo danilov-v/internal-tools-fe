@@ -16,20 +16,23 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
   const [itemModalOpen, setItemModalOpen, toggleModal] = useModal();
 
   const noSoldiers = (
-    <>
-      <S.NoSoldiersText>В роте нет военнослужащих.</S.NoSoldiersText>
-      <S.AddSoldierContainer>
-        <S.AddSoldierButton onClick={toggleModal}>
-          <S.PlusIcon />
-        </S.AddSoldierButton>
-        <S.AddSoldierText>Добавить военнослужащего</S.AddSoldierText>
-      </S.AddSoldierContainer>
-    </>
+    <S.NoSoldiersText>В роте нет военнослужащих.</S.NoSoldiersText>
   );
+
+  const onAddSoldierButtonClick = () => {
+    toggleModal();
+    document.body.style.overflow = 'hidden';
+  };
 
   return (
     <S.SoldiersList>
       <S.SoldiersHeader>Рота информационных технологий</S.SoldiersHeader>
+      <S.AddSoldierContainer>
+        <S.AddSoldierButton onClick={onAddSoldierButtonClick}>
+          <S.PlusIcon />
+        </S.AddSoldierButton>
+        <S.AddSoldierText>Добавить военнослужащего</S.AddSoldierText>
+      </S.AddSoldierContainer>
       {Object.entries(mockSoldier).length === 0 ? (
         noSoldiers
       ) : (

@@ -7,10 +7,17 @@ type ModalProps = {
   handleClose: Function;
 };
 
-export const Modal: React.FC<ModalProps> = ({ isOpened }) => {
+export const Modal: React.FC<ModalProps> = ({
+  isOpened,
+  children,
+  handleClose,
+}) => {
+  const handleClickOutside = (): void => {
+
+  };
   return isOpened ? (
-    <S.ModalBackground>
-      <S.ModalWrapper>{1}</S.ModalWrapper>
+    <S.ModalBackground onClick={(): any => handleClose()}>
+      <S.ModalWrapper>{children}</S.ModalWrapper>
     </S.ModalBackground>
   ) : null;
 };
