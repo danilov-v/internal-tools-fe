@@ -3,6 +3,8 @@ import { RouteComponentProps } from '@reach/router';
 import { Accordion } from 'components/Accordion';
 
 import * as S from './SoldersList.style';
+import { Modal } from '../Modal/Modal';
+import { useModal } from '../../helpers/hooks';
 
 const mockSoldier = {
   firstName: 'Имя',
@@ -11,11 +13,13 @@ const mockSoldier = {
 };
 
 export const SoldersList: React.FC<RouteComponentProps> = () => {
+  const [itemModalOpen, setItemModalOpen, toggleModal] = useModal();
+
   const noSoldiers = (
     <>
       <S.NoSoldiersText>В роте нет военнослужащих.</S.NoSoldiersText>
       <S.AddSoldierContainer>
-        <S.AddSoldierButton>
+        <S.AddSoldierButton onClick={toggleModal}>
           <S.PlusIcon />
         </S.AddSoldierButton>
         <S.AddSoldierText>Добавить военнослужащего</S.AddSoldierText>
@@ -72,6 +76,10 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
           </Accordion>
         </Accordion>
       )}
+      <Modal
+        isOpened={itemModalOpen}
+        handleClose={() => setItemModalOpen(false)}
+      />
     </S.SoldiersList>
   );
 };
