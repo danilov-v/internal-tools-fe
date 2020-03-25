@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { DropDownButton } from 'components/Button';
+import {Link} from '@reach/router';
 
 export const SoldiersList = styled.section`
   margin-top: 45px;
@@ -51,7 +52,13 @@ export const SoldierNumber = styled.span`
   opacity: 0.3;
 `;
 
-export const SoldierName = styled.div``;
+export const SoldierName = styled(Link)`
+  text-decoration: none;
+
+  &:visited {
+    color: #ffffff;
+  }
+`;
 
 export const SoldierProms = styled.div`
   display: flex;
@@ -83,7 +90,7 @@ export const NoSoldiersText = styled.div`
 export const AddSoldierContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 20px;
 `;
 
 export const AddSoldierText = styled.p`
