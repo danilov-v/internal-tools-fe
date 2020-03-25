@@ -3,8 +3,8 @@ import { Logo } from 'components/Logo';
 import { Avatar } from 'components/Avatar';
 import * as S from './Header.style';
 
-const isActive = ({ isCurrent }: any): object => {
-  return { state: isCurrent ? 'active' : 'not-active' };
+const isActive = ({ isPartiallyCurrent }: any): object => {
+  return { state: isPartiallyCurrent ? 'active' : 'not-active' };
 };
 
 const testUser = {
@@ -24,7 +24,7 @@ const Header: React.FC<{}> = () => {
       </S.UserLogo>
       <S.NavBar expanded={isExpanded}>
         <S.NavItem>
-          <S.NavLink getProps={isActive} to="solders">
+          <S.NavLink getProps={isActive} to="soldiers">
             Рота
           </S.NavLink>
         </S.NavItem>
