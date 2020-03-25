@@ -5,9 +5,9 @@ import { Accordion } from 'components/Accordion';
 import * as S from './SoldersList.style';
 
 const mockSoldier = {
-  // firstName: 'Имя',
-  // lastName: 'Фамилия',
-  // middleName: 'Отчество',
+  firstName: 'Имя',
+  lastName: 'Фамилия',
+  middleName: 'Отчество',
 };
 
 export const SoldersList: React.FC<RouteComponentProps> = () => {
@@ -54,7 +54,7 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
               {new Array(10).fill(mockSoldier).map((soldier, i) => (
                 <S.SoldiersTableItem key={soldier.lastName + i}>
                   <S.SoldierNumber>{i + 1}</S.SoldierNumber>
-                  <S.SoldierName>{`${soldier.lastName} ${soldier.firstName} ${soldier.middleName}`}</S.SoldierName>
+                  <S.SoldierName to="/soldiers/:soldierId">{`${soldier.lastName} ${soldier.firstName} ${soldier.middleName}`}</S.SoldierName>
                   <S.SoldierProms>
                     <span>1</span>
                     <span>2</span>
