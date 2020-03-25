@@ -4,7 +4,7 @@ exports[`pages/main should render and match snapshot 1`] = `
 <body>
   <div>
     <header
-      class="sc-AxgMl dQrmmh"
+      class="sc-AxgMl kdALmz"
     >
       <div
         class="sc-AxheI cwdSXM"
@@ -27,8 +27,8 @@ exports[`pages/main should render and match snapshot 1`] = `
           class="sc-AxmLO jLrmmw"
         >
           <a
-            class="sc-fzozJi fRNVdy"
-            href="/main"
+            class="sc-fzozJi cMGBrE"
+            href="/solders"
             state="not-active"
           >
             Рота
@@ -38,8 +38,8 @@ exports[`pages/main should render and match snapshot 1`] = `
           class="sc-AxmLO jLrmmw"
         >
           <a
-            class="sc-fzozJi fRNVdy"
-            href="/#main"
+            class="sc-fzozJi cMGBrE"
+            href="/schedule"
             state="not-active"
           >
             График
@@ -58,7 +58,7 @@ exports[`pages/main should render and match snapshot 1`] = `
             src="captain_rang.svg"
           />
           <div
-            class="sc-AxhUy fYvupK"
+            class="sc-AxhUy OqgFb"
           >
             <span>
               Командир роты
@@ -68,7 +68,7 @@ exports[`pages/main should render and match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="sc-fzoLsD kfUaaI"
+        class="sc-fzoLsD imIPjK"
       >
         <div />
         <div />
