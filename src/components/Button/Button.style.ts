@@ -11,6 +11,7 @@ export const Button = styled.button`
   background-color: transparent;
   color: #b3b3b3;
   cursor: pointer;
+  outline: none;
 `;
 
 export const DropDownButton = styled(Button)<DropDownButtonProps>`
