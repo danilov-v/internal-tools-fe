@@ -11,7 +11,18 @@ const mockSoldier = {
 };
 
 export const SoldersList: React.FC<RouteComponentProps> = () => {
-  const noSoldiers = <S.NoSoldiers>В роте нет военнослужащих.</S.NoSoldiers>;
+  const noSoldiers = (
+    <>
+      <S.NoSoldiersText>В роте нет военнослужащих.</S.NoSoldiersText>
+      <S.AddSoldierContainer>
+        <S.AddSoldierButton>
+          <S.PlusIcon />
+        </S.AddSoldierButton>
+        <S.AddSoldierText>Добавить военнослужащего</S.AddSoldierText>
+      </S.AddSoldierContainer>
+    </>
+  );
+
   return (
     <S.SoldiersList>
       <S.SoldiersHeader>Рота информационных технологий</S.SoldiersHeader>
@@ -19,7 +30,7 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
         noSoldiers
       ) : (
         <Accordion
-          isExpanded={false}
+          isExpanded
           render={(toggle: Function, isExpanded: boolean): ReactElement => (
             <S.PlatButton expanded={isExpanded} onClick={(): void => toggle()}>
               <span>{1}</span>
@@ -28,7 +39,7 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
           )}
         >
           <Accordion
-            isExpanded={false}
+            isExpanded
             render={(toggle: Function, isExpanded: boolean): ReactElement => (
               <S.DivisionButton
                 expanded={isExpanded}
@@ -40,9 +51,9 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
             )}
           >
             <S.SoldiersTable>
-              {new Array(10).fill(mockSoldier).map((soldier, id) => (
-                <S.SoldiersTableItem key={id}>
-                  <S.SoldierNumber>{id + 1}</S.SoldierNumber>
+              {new Array(10).fill(mockSoldier).map((soldier, i) => (
+                <S.SoldiersTableItem key={soldier.lastName + i}>
+                  <S.SoldierNumber>{i + 1}</S.SoldierNumber>
                   <S.SoldierName>{`${soldier.lastName} ${soldier.firstName} ${soldier.middleName}`}</S.SoldierName>
                   <S.SoldierProms>
                     <span>1</span>

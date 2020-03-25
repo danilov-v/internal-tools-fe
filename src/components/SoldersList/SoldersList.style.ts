@@ -75,7 +75,40 @@ export const SoldierPenalties = styled(SoldierProms)`
   }
 `;
 
-export const NoSoldiers = styled.div`
+export const NoSoldiersText = styled.div`
   font-size: 18px;
   color: #b1b1b1;
+`;
+
+export const AddSoldierContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const AddSoldierText = styled.p`
+  font-size: 18px;
+  color: #7c7c7c;
+`;
+
+export const AddSoldierButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 1px solid #808080;
+  outline: none;
+  cursor: pointer;
+`;
+
+export const PlusIcon = styled.span`
+  color: #808080;
+
+  &:before {
+    content: '\\FF0B';
+  }
 `;
