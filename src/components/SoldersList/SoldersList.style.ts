@@ -83,6 +83,7 @@ export const NoSoldiersText = styled.div`
 export const AddSoldierContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 15px;
 `;
 
 export const AddSoldierText = styled.p`
