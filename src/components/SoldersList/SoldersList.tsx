@@ -1,15 +1,15 @@
 import React, { ReactElement } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import { Accordion } from 'components/Accordion';
-import { Modal } from 'components/Modal/Modal';
-import { useModal } from 'helpers/hooks';
+import { Modal } from 'components/Modal';
+import { useModal } from 'hooks/uiHooks';
 import { useSoldiers } from 'hooks/apiHooks';
 import { Soldier } from 'types/soldier';
 
 import * as S from './SoldersList.style';
 
 export const SoldersList: React.FC<RouteComponentProps> = () => {
-  const [itemModalOpen, setItemModalOpen, toggleModal] = useModal();
+  const [itemModalOpen, toggleModal] = useModal();
   const [soldiers] = useSoldiers();
 
   const noSoldiers = (
@@ -24,9 +24,7 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
     <S.SoldiersList>
       <S.SoldiersHeader>Рота информационных технологий</S.SoldiersHeader>
       <S.AddSoldierContainer>
-        <S.AddSoldierButton onClick={onAddSoldierButtonClick}>
-          <S.PlusIcon />
-        </S.AddSoldierButton>
+        <S.AddSoldierButton onClick={onAddSoldierButtonClick} />
         <S.AddSoldierText>Добавить военнослужащего</S.AddSoldierText>
       </S.AddSoldierContainer>
       {Object.entries(soldiers).length === 0 ? (
@@ -77,10 +75,7 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
           </Accordion>
         </Accordion>
       )}
-      <Modal
-        isOpened={itemModalOpen}
-        handleClose={() => setItemModalOpen(false)}
-      />
+      <Modal isOpened={itemModalOpen} handleClose={() => toggleModal()} />
     </S.SoldiersList>
   );
 };

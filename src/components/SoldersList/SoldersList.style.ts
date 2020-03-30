@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DropDownButton } from 'components/Button';
+import { DropDownButton, PlusButton } from 'components/Button';
 import { Link } from '@reach/router';
 
 export const SoldiersList = styled.section`
@@ -65,20 +65,16 @@ export const SoldierProms = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  & span {
-    &:hover {
-      color: #52b513;
-      cursor: pointer;
-    }
+  & span:hover {
+    color: #52b513;
+    cursor: pointer;
   }
 `;
 
 export const SoldierPenalties = styled(SoldierProms)`
   margin-left: 30px;
-  & span {
-    &:hover {
-      color: #ffd860;
-    }
+  & span:hover {
+    color: #ffd860;
   }
 `;
 
@@ -98,25 +94,6 @@ export const AddSoldierText = styled.p`
   color: #7c7c7c;
 `;
 
-export const AddSoldierButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
-  padding: 0;
-  background-color: transparent;
-  border-radius: 50%;
-  border: 1px solid #808080;
-  outline: none;
-  cursor: pointer;
-`;
-
-export const PlusIcon = styled.span`
-  color: #808080;
-
-  &:before {
-    content: '\\FF0B';
-  }
-`;
+export const AddSoldierButton = styled(PlusButton).attrs(props => ({
+  color: props.color || '#808080',
+}))``;

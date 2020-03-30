@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-export const useModal = (): any[] => {
+export const useModal = (): [boolean, Function] => {
   const [modalOpen, setModalOpen] = useState(false);
   const toggle = (): void => setModalOpen(!modalOpen);
-  return [modalOpen, setModalOpen, toggle];
+  return [modalOpen, toggle];
 };

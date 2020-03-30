@@ -47,31 +47,18 @@ export const DropDownButton = styled(Button)<DropDownButtonProps>`
 export const PlusButton = styled.button<PlusButtonProps>`
   border: 2px solid ${({ color }) => color || '#b3b3b3'};
   border-radius: 50%;
-  height: 25px;
-  width: 25px;
+  height: 18px;
+  width: 18px;
   position: relative;
   background: transparent;
   cursor: pointer;
   margin-right: 5px;
 
-  &::after,
   &::before {
-    content: '';
-    display: block;
-    background-color: ${({ color }) => color || '#b3b3b3'};
+    content: '\\FF0B';
+    color: ${({ color }) => color || '#b3b3b3'};
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  &::before {
-    height: 14px;
-    width: 2px;
-  }
-
-  &::after {
-    height: 2px;
-    width: 14px;
+    top: -1px;
+    left: -1px;
   }
 `;
