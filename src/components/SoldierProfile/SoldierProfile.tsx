@@ -63,19 +63,19 @@ export const SoldierProfile: React.FC<RouteComponentProps> = props => {
 
         <S.EditButton>Редактировать</S.EditButton>
       </S.Section>
-      <S.SoldierColoredSection color="#ffdc62">
+      <S.SoldierColoredSection color="#b3ff80">
         <h3>Поощрения:</h3>
         <S.SubText>Нет активных поощрений</S.SubText>
         <div>
-          <PlusButton color="#ffdc62" />
+          <PlusButton color="#b3ff80" />
           <S.SubText>Добавить поощрение</S.SubText>
         </div>
       </S.SoldierColoredSection>
-      <S.SoldierColoredSection color="#b3ff80">
+      <S.SoldierColoredSection color="#ffdc62">
         <h3>Взыскания:</h3>
         <S.SubText>Нет активных взысканий</S.SubText>
         <div>
-          <PlusButton color="#b3ff80" />
+          <PlusButton color="#ffdc62" />
           <S.SubText>Добавить взыскание</S.SubText>
         </div>
       </S.SoldierColoredSection>
