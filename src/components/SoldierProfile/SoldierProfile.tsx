@@ -2,53 +2,45 @@ import React from 'react';
 import { RouteComponentProps } from '@reach/router';
 import { Accordion } from 'components/Accordion';
 import { PlusButton } from 'components/Button';
+import { useSoldier } from 'hooks/apiHooks';
 
 import * as S from './SoldierProfile.style';
 
-const today = new Date();
+interface SoldierProfileProps extends RouteComponentProps {
+  soldierId?: string;
+}
 
-const mockSoldier = {
-  firstName: 'Имя',
-  lastName: 'Фамилия',
-  middleName: 'Отчество',
-  rank: 'рядовой',
-  proms: [],
-  penalties: [],
-  married: false,
-  callDate: today.toLocaleString(),
-  endDate: today.toLocaleString(),
-  birhDate: today.toLocaleString(),
-};
+export const SoldierProfile: React.FC<SoldierProfileProps> = ({
+  soldierId,
+}) => {
+  const [solidier] = useSoldier(soldierId || '');
 
-export const SoldierProfile: React.FC<RouteComponentProps> = props => {
-  return (
+  return solidier ? (
     <S.SoldierProfile>
       <S.Section>
         <S.SoldierPhoto>
           <img src={`${process.env.PUBLIC_URL}/example_photo.png`} alt="" />{' '}
         </S.SoldierPhoto>
-        <S.SoldierLastName>{mockSoldier.lastName}</S.SoldierLastName>
-        <S.SoldierFirstName>{`${mockSoldier.firstName} ${mockSoldier.middleName}`}</S.SoldierFirstName>
-        <S.SoldierRang>{mockSoldier.rank}</S.SoldierRang>
+        <S.SoldierLastName>{solidier.lastName}</S.SoldierLastName>
+        <S.SoldierFirstName>{`${solidier.firstName} ${solidier.middleName}`}</S.SoldierFirstName>
+        <S.SoldierRang>{solidier.rankId}</S.SoldierRang>
       </S.Section>
       <S.Section>
         <S.SoldierInfoItem>
           <S.FieldName>Дата призыва</S.FieldName>
-          <S.FieldValue>{mockSoldier.callDate}</S.FieldValue>
+          <S.FieldValue>{solidier.calledAt}</S.FieldValue>
         </S.SoldierInfoItem>
         <S.SoldierInfoItem>
           <S.FieldName>Дата дембеля</S.FieldName>
-          <S.FieldValue>{mockSoldier.endDate}</S.FieldValue>
+          <S.FieldValue>{solidier.demobilizationAt}</S.FieldValue>
         </S.SoldierInfoItem>
         <S.SoldierInfoItem>
           <S.FieldName>Дата рождения</S.FieldName>
-          <S.FieldValue>{mockSoldier.birhDate}</S.FieldValue>
+          <S.FieldValue>{solidier.birthday}</S.FieldValue>
         </S.SoldierInfoItem>
         <S.SoldierInfoItem>
           <S.FieldName>Семейное положение</S.FieldName>
-          <S.FieldValue>
-            {mockSoldier.married ? 'женат' : 'холост'}
-          </S.FieldValue>
+          <S.FieldValue>холост</S.FieldValue>
         </S.SoldierInfoItem>
 
         <S.SoldierInfoItem marginTop="40">
@@ -94,5 +86,7 @@ export const SoldierProfile: React.FC<RouteComponentProps> = props => {
         </S.SubText>
       </Accordion>
     </S.SoldierProfile>
+  ) : (
+    <span>waiting for soldier...</span>
   );
 };

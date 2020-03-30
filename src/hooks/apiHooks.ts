@@ -1,8 +1,8 @@
 import { useEffect, useState, useCallback } from 'react';
-import { getAllSoldiers } from 'services/soldier';
+import { getAllSoldiers, getSoldier } from 'services/soldier';
 import { Soldier } from 'types/soldier';
 
-export const useSoldiers = (): any => {
+const useSoldiers = (): [Array<Soldier>, Function] => {
   const [soldiers, setSoldiers] = useState<Soldier[]>([]);
 
   const fetchSoldiers = useCallback(async () => {
@@ -21,3 +21,25 @@ export const useSoldiers = (): any => {
 
   return [soldiers, fetchSoldiers];
 };
+
+const useSoldier = (soliderId: string): [Soldier | undefined, Function] => {
+  const [soldier, setSoldier] = useState<Soldier>();
+
+  const fetchSoldier = useCallback(async () => {
+    try {
+      const data = await getSoldier(soliderId);
+
+      setSoldier(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [soliderId]);
+
+  useEffect(() => {
+    fetchSoldier();
+  }, [fetchSoldier]);
+
+  return [soldier, fetchSoldier];
+};
+
+export { useSoldiers, useSoldier };

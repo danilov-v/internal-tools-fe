@@ -14,4 +14,12 @@ const getAllSoldiers = async (): Promise<Soldier[]> => {
   return response;
 };
 
-export { getAllSoldiers };
+const getSoldier = async (soldierId: string): Promise<Soldier> => {
+  const response = await fetchAPI<Soldier>(`${SOLDIER_URL}/${soldierId}`, {
+    method: 'GET',
+  });
+
+  return response;
+};
+
+export { getAllSoldiers, getSoldier };

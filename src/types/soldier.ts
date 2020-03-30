@@ -5,5 +5,7 @@ export type Soldier = {
   middleName: string;
   calledAt: string;
   demobilizationAt: string;
+  birthday: string;
   unitId: number;
+  rankId: number;
 };

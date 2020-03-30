@@ -1,27 +1,23 @@
 import React, { ReactElement } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import { Accordion } from 'components/Accordion';
+import { Modal } from 'components/Modal/Modal';
+import { useModal } from 'helpers/hooks';
+import { useSoldiers } from 'hooks/apiHooks';
+import { Soldier } from 'types/soldier';
 
 import * as S from './SoldersList.style';
-import { Modal } from '../Modal/Modal';
-import { useModal } from '../../helpers/hooks';
-
-const mockSoldier = {
-  firstName: 'Имя',
-  lastName: 'Фамилия',
-  middleName: 'Отчество',
-};
 
 export const SoldersList: React.FC<RouteComponentProps> = () => {
   const [itemModalOpen, setItemModalOpen, toggleModal] = useModal();
+  const [soldiers] = useSoldiers();
 
   const noSoldiers = (
     <S.NoSoldiersText>В роте нет военнослужащих.</S.NoSoldiersText>
   );
 
-  const onAddSoldierButtonClick = () => {
+  const onAddSoldierButtonClick = (): void => {
     toggleModal();
-    document.body.style.overflow = 'hidden';
   };
 
   return (
@@ -33,7 +29,7 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
         </S.AddSoldierButton>
         <S.AddSoldierText>Добавить военнослужащего</S.AddSoldierText>
       </S.AddSoldierContainer>
-      {Object.entries(mockSoldier).length === 0 ? (
+      {Object.entries(soldiers).length === 0 ? (
         noSoldiers
       ) : (
         <Accordion
@@ -58,10 +54,12 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
             )}
           >
             <S.SoldiersTable>
-              {new Array(10).fill(mockSoldier).map((soldier, i) => (
-                <S.SoldiersTableItem key={soldier.lastName + i}>
-                  <S.SoldierNumber>{i + 1}</S.SoldierNumber>
-                  <S.SoldierName to="1">{`${soldier.lastName} ${soldier.firstName} ${soldier.middleName}`}</S.SoldierName>
+              {soldiers.map((soldier: Soldier) => (
+                <S.SoldiersTableItem key={soldier.id}>
+                  <S.SoldierNumber>{soldier.id}</S.SoldierNumber>
+                  <S.SoldierName
+                    to={`${soldier.id}`}
+                  >{`${soldier.lastName} ${soldier.firstName} ${soldier.middleName}`}</S.SoldierName>
                   <S.SoldierProms>
                     <span>1</span>
                     <span>2</span>
