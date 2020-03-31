@@ -17,11 +17,13 @@ export const SoldiersHeader = styled.h1`
 
 export const PlatButton = styled(DropDownButton)`
   display: block;
-  margin: 20px 20px;
   border: none;
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
   & span {
     margin-right: 7px;
@@ -33,6 +35,7 @@ export const DivisionButton = styled(PlatButton)`
   color: #8f8f8f;
   text-transform: lowercase;
   letter-spacing: normal;
+  margin-left: 30px;
 
   & span {
     margin-right: 5px;
@@ -44,8 +47,8 @@ export const SoldiersTable = styled.div``;
 
 export const SoldiersTableItem = styled.div`
   display: grid;
-  grid-template-columns: 30px 250px 80px 80px;
-  margin-bottom: 20px;
+  grid-template-columns: 30px 320px 80px 80px;
+  margin-bottom: 12px;
 `;
 
 export const SoldierNumber = styled.span`
@@ -54,9 +57,10 @@ export const SoldierNumber = styled.span`
 
 export const SoldierName = styled(Link)`
   text-decoration: none;
+  color: #f3f3f3;
 
   &:visited {
-    color: #ffffff;
+    color: #f3f3f3;
   }
 `;
 
@@ -87,6 +91,7 @@ export const AddSoldierContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export const AddSoldierText = styled.p`
