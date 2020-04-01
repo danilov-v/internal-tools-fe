@@ -1,10 +1,10 @@
 import React from 'react';
 import { RouteComponentProps } from '@reach/router';
-import { Modal } from 'components/Modal';
 import { useModal } from 'hooks/uiHooks';
 import { useSoldiers, useUnits } from 'hooks/apiHooks';
 import { Unit } from 'types/unit';
 import { UNIT_ID } from 'helpers/constants';
+import { Modal } from 'components/Modal';
 import { Soldier } from 'types/soldier';
 import { Plat } from './Plat';
 

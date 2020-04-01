@@ -20,6 +20,6 @@ export const AvatarCaption = styled.div`
     position: absolute;
     bottom: 20px;
     font-size: 10px;
-    color: #727374ff;
+    color: #727374;
   }
 `;

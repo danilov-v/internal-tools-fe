@@ -1,0 +1,293 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component matches snapshot with only required props 1`] = `
+.c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 4px;
+  border: solid 1px undefined;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 18px;
+  font-weight: 300;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  opacity: 1;
+  padding: 6px 12px;
+  width: auto;
+}
+
+.c0:hover {
+  opacity: 0.8;
+}
+
+.c1 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+<body>
+  <div>
+    <button
+      class="c0"
+      color="default"
+      name=""
+      type="button"
+    >
+      <span
+        class="c1"
+      />
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Button component matches snapshots with additional props 1`] = `
+<body>
+  .c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 4px;
+  border: solid 1px undefined;
+  cursor: default;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 18px;
+  font-weight: 400;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  opacity: 0.6;
+  padding: 6px 12px;
+  width: auto;
+}
+
+.c0:hover {
+  opacity: 0.6;
+}
+
+.c1 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+<div>
+    <button
+      class="c0"
+      color="primary"
+      disabled=""
+      name=""
+      type="button"
+    >
+      <span
+        class="c1"
+      >
+        children
+      </span>
+    </button>
+  </div>
+  .c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 4px;
+  border: solid 1px undefined;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 18px;
+  font-weight: 300;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  opacity: 1;
+  padding: 6px 12px;
+  width: 100%;
+}
+
+.c0:hover {
+  opacity: 0.8;
+}
+
+.c1 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+<div>
+    <button
+      class="c0"
+      color="secondary"
+      name="name"
+      type="submit"
+    >
+      <span
+        class="c1"
+      />
+    </button>
+  </div>
+  .c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 18px;
+  font-weight: 400;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  opacity: 1;
+  padding: 6px 12px;
+  width: auto;
+}
+
+.c0:hover {
+  opacity: 0.8;
+}
+
+.c1 {
+  margin-left: 8px;
+  margin-right: 0px;
+}
+
+<div>
+    <button
+      class="c0"
+      color="yellow"
+      name=""
+      type="reset"
+    >
+      <svg>
+        plus.svg
+      </svg>
+      <span
+        class="c1"
+      >
+        children
+      </span>
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Button component matches snapshots with additional props 2`] = `
+<body>
+  <div>
+    <button
+      class="sc-AxjAm hJZLSv"
+      color="primary"
+      disabled=""
+      name=""
+      type="button"
+    >
+      <span
+        class="sc-AxirZ dOafwD"
+      >
+        children
+      </span>
+    </button>
+  </div>
+  <div>
+    <button
+      class="sc-AxjAm eRuwuL"
+      color="secondary"
+      name="name"
+      type="submit"
+    >
+      <span
+        class="sc-AxirZ dOafwD"
+      />
+    </button>
+  </div>
+  <div>
+    <button
+      class="sc-AxjAm iNKxSg"
+      color="yellow"
+      name=""
+      type="reset"
+    >
+      <svg>
+        plus.svg
+      </svg>
+      <span
+        class="sc-AxirZ gBmPvz"
+      >
+        children
+      </span>
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Button component matches snapshots with additional props 3`] = `
+<body>
+  <div>
+    <button
+      class="sc-AxjAm hJZLSv"
+      color="primary"
+      disabled=""
+      name=""
+      type="button"
+    >
+      <span
+        class="sc-AxirZ dOafwD"
+      >
+        children
+      </span>
+    </button>
+  </div>
+  <div>
+    <button
+      class="sc-AxjAm eRuwuL"
+      color="secondary"
+      name="name"
+      type="submit"
+    >
+      <span
+        class="sc-AxirZ dOafwD"
+      />
+    </button>
+  </div>
+  <div>
+    <button
+      class="sc-AxjAm iNKxSg"
+      color="yellow"
+      name=""
+      type="reset"
+    >
+      <svg>
+        plus.svg
+      </svg>
+      <span
+        class="sc-AxirZ gBmPvz"
+      >
+        children
+      </span>
+    </button>
+  </div>
+</body>
+`;

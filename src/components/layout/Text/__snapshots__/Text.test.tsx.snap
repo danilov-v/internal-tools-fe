@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text component matches snapshot with additional props 1`] = `
+<body>
+  .c0 {
+  font-size: 18px;
+  margin-bottom: 100px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+<div>
+    <p
+      class="c0"
+    >
+      children
+    </p>
+  </div>
+</body>
+`;
+
+exports[`Text component matches snapshot with only required props 1`] = `
+.c0 {
+  font-size: 18px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  text-align: left;
+}
+
+<body>
+  <div>
+    <p
+      class="c0"
+    />
+  </div>
+</body>
+`;

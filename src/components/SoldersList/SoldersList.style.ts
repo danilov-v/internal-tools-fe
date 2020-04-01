@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { DropDownButton, PlusButton } from 'components/Button';
 import { Link } from '@reach/router';
+
+import { DropDownButton, PlusButton } from 'components/Button';
 
 export const SoldiersList = styled.section`
   margin-top: 45px;

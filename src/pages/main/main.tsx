@@ -1,17 +1,20 @@
 import React from 'react';
 import { RouteComponentProps, Router } from '@reach/router';
+
 import { Header } from 'components/Header';
 import { SoldersList } from 'components/SoldersList';
-import { SoldierProfile } from 'components/SoldierProfile';
+import { PersonnelDetails } from 'pages/personnelDetails/personnelDetails';
 
-export const Main: React.FC<RouteComponentProps> = () => {
+const Main: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <Header />
       <Router>
-        <SoldersList path="soldiers" />
-        <SoldierProfile path="soldiers/:soldierId" />
+        <SoldersList path="personnel" />
+        <PersonnelDetails path="personnel-details/:id" />
       </Router>
     </>
   );
 };
+
+export { Main };

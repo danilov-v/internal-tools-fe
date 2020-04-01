@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton component matches snapshot with only required props 1`] = `
+.c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 24px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 4px;
+  padding: 4px;
+  width: 24px;
+}
+
+.c0 svg {
+  height: 100%;
+  width: 100%;
+}
+
+.c0:hover {
+  opacity: 0.8;
+}
+
+<body>
+  <div>
+    <button
+      class="c0"
+      color="default"
+      name=""
+      type="button"
+    >
+      <svg>
+        close.svg
+      </svg>
+    </button>
+  </div>
+</body>
+`;
+
+exports[`IconButton component matches snapshots with additional props 1`] = `
+<body>
+  .c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 100%;
+  border: none;
+  cursor: default;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 24px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 4px;
+  padding: 4px;
+  width: 24px;
+}
+
+.c0 svg {
+  height: 100%;
+  width: 100%;
+}
+
+.c0:hover {
+  opacity: 0.6;
+}
+
+<div>
+    <button
+      class="c0"
+      color="primary"
+      disabled=""
+      name=""
+      type="button"
+    >
+      <svg>
+        close.svg
+      </svg>
+    </button>
+  </div>
+  .c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 100%;
+  border: solid 1px undefined;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 24px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 4px;
+  padding: 4px;
+  width: 24px;
+}
+
+.c0 svg {
+  height: 100%;
+  width: 100%;
+}
+
+.c0:hover {
+  opacity: 0.8;
+}
+
+<div>
+    <button
+      class="c0"
+      color="secondary"
+      name="name"
+      type="submit"
+    >
+      <svg>
+        close.svg
+      </svg>
+    </button>
+  </div>
+</body>
+`;
+
+exports[`IconButton component matches snapshots with additional props 2`] = `
+<body>
+  <div>
+    <button
+      class="sc-AxjAm DdLgh"
+      color="primary"
+      disabled=""
+      name=""
+      type="button"
+    >
+      <svg>
+        close.svg
+      </svg>
+    </button>
+  </div>
+  <div>
+    <button
+      class="sc-AxjAm gvtLkn"
+      color="secondary"
+      name="name"
+      type="submit"
+    >
+      <svg>
+        close.svg
+      </svg>
+    </button>
+  </div>
+</body>
+`;

@@ -12,7 +12,7 @@ export const Header = styled.header`
   width: 92%;
   min-height: 65px;
   font-size: 16px;
-  border-bottom: 2px solid #616262ff;
+  border-bottom: 2px solid #616262;
   padding-bottom: 10px;
   background: linear-gradient(90deg, #44494b 0%, #4c5153 25%, #4c5153 100%);
 
@@ -67,7 +67,7 @@ export const NavLink = styled(Link)`
     color: #ffdc6282;
   }
   &[state='active'] {
-    color: #ffdc62ff;
+    color: #ffdc62;
 
     &::before {
       content: '';
@@ -77,7 +77,7 @@ export const NavLink = styled(Link)`
       left: 40%;
       width: 9px;
       height: 8px;
-      background-color: #ffdc62ff;
+      background-color: #ffdc62;
       clip-path: polygon(50% 100%, 0 0, 100% 0);
     }
   }
