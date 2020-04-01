@@ -1,6 +1,12 @@
 type CompareFunction<T> = (a: T, b: T) => number;
 type FilterFunction<T> = (a: T) => boolean;
 
+export const compose = <R>(
+  fn1: (a: R) => R,
+  ...fns: Array<(a: R) => R>
+): Function =>
+  fns.reduce((prevFn, nextFn) => value => prevFn(nextFn(value)), fn1);
+
 export const sortBy = <T>(
   fieldName: keyof T,
   inverse = false,
