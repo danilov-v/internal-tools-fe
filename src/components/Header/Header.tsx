@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+
 import { Logo } from 'components/Logo';
 import { Avatar } from 'components/Avatar';
 import * as S from './Header.style';
 
-const isActive = ({ isPartiallyCurrent }: any): object => {
+type IsActivePropsType = {
+  isPartiallyCurrent: boolean;
+};
+
+const isActive = ({ isPartiallyCurrent }: IsActivePropsType): object => {
   return { state: isPartiallyCurrent ? 'active' : 'not-active' };
 };
 
@@ -24,12 +29,12 @@ const Header: React.FC<{}> = () => {
       </S.UserLogo>
       <S.NavBar expanded={isExpanded}>
         <S.NavItem>
-          <S.NavLink getProps={isActive} to="soldiers">
+          <S.NavLink getProps={isActive} to="/personnel">
             Рота
           </S.NavLink>
         </S.NavItem>
         <S.NavItem>
-          <S.NavLink getProps={isActive} to="schedule">
+          <S.NavLink getProps={isActive} to="/schedule">
             График
           </S.NavLink>
         </S.NavItem>

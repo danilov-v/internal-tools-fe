@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 type AccordionProps = {
-  expanded: boolean;
+  isExpanded: boolean;
 };
 
 export const Accordion = styled.div<AccordionProps>`
+  max-height: ${({ isExpanded }) => (isExpanded ? 1500 : 0)}px;
+  opacity: ${({ isExpanded }) => (isExpanded ? 1 : 0)};
   overflow: hidden;
-  max-height: ${({ expanded }) => (expanded ? '1500' : '0')}px;
-  opacity: ${({ expanded }) => (expanded ? '1' : '0')};
   transition: max-height 0.2s ease, opacity 0.3s ease;
-  margin: 0;
 `;

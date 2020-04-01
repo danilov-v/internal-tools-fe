@@ -1,6 +1,7 @@
 import React from 'react';
-import logoCaptioned from './logo_captioned.svg';
-import logo from './logo.svg';
+
+import logoCaptioned from 'assets/logo_captioned.svg';
+import logo from 'assets/logo.svg';
 import * as S from './Logo.styles';
 
 type LogoProps = {

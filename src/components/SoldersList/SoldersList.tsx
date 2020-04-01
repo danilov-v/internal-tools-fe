@@ -1,11 +1,12 @@
 import React, { ReactElement } from 'react';
 import { RouteComponentProps } from '@reach/router';
-import { Accordion } from 'components/Accordion';
-import { Modal } from 'components/Modal';
+
 import { useModal } from 'hooks/uiHooks';
 import { useSoldiers } from 'hooks/apiHooks';
 import { Soldier } from 'types/soldier';
 
+import { Accordion } from 'components/Accordion';
+import { Modal } from 'components/Modal';
 import * as S from './SoldersList.style';
 
 export const SoldersList: React.FC<RouteComponentProps> = () => {

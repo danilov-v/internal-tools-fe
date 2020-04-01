@@ -1,15 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Accordion /> should render and match snapshot 1`] = `
+exports[`Accordion component matches snapshot with additional props 1`] = `
 <body>
   <div>
     <button
-      class="sc-AxjAm sc-AxirZ dVtPCz"
+      class="sc-AxjAm sc-AxirZ jwJGcr"
     >
       title
     </button>
     <div
-      class="sc-AxiKw jDacgU"
+      class="sc-AxhCb dwhDyV"
+    />
+  </div>
+</body>
+`;
+
+exports[`Accordion component matches snapshots with required props only 1`] = `
+<body>
+  <div>
+    <button
+      class="sc-AxjAm sc-AxirZ jwJGcr"
+    />
+    <div
+      class="sc-AxhCb dwhDyV"
     />
   </div>
 </body>

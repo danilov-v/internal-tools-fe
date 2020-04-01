@@ -1,28 +1,43 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render, RenderResult } from '@testing-library/react';
 
 import { Accordion } from './Accordion';
 
-describe('<Accordion />', () => {
-  it('should render and match snapshot', () => {
-    const component = render(<Accordion title="title" isExpanded />);
+const getComponent = (props = {}, content = ''): RenderResult => {
+  const parsedProps = {
+    isExpanded: true,
+    ...props,
+  };
+
+  return render(<Accordion {...parsedProps}>{content}</Accordion>);
+};
+
+describe('Accordion component', () => {
+  it('matches snapshots with required props only', () => {
+    expect(getComponent().baseElement).toMatchSnapshot();
+  });
+
+  it('matches snapshot with additional props', () => {
+    const component = getComponent({ title: 'title' });
 
     expect(component.baseElement).toMatchSnapshot();
   });
 
-  it('should expand on expand btn click', () => {
+  it('expands by expand button click', () => {
     expect.assertions(2);
 
-    const component = render(
-      <Accordion title="title" isExpanded={false}>
-        content
-      </Accordion>,
+    const component = getComponent(
+      { isExpanded: false, title: 'title' },
+      'content',
     );
+
     const content = component.getByText('content');
-    const btn = component.getByText('title');
+    const button = component.getByText('title');
 
     expect(content).toHaveStyle('opacity: 0');
-    fireEvent.click(btn);
+
+    fireEvent.click(button);
+
     expect(content).toHaveStyle('opacity: 1');
   });
 });

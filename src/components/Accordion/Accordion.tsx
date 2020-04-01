@@ -1,18 +1,18 @@
 import React, { useState, ReactElement } from 'react';
-import { DropDownButton } from 'components/Button';
 
+import { DropDownButton } from 'components/Button';
 import * as S from './Accordion.style';
 
 type AccordionProps = {
-  render?: (toogle: Function, isExpanded: boolean) => ReactElement;
-  title?: string;
   isExpanded: boolean;
+  render?: (toggle: () => void, isExpanded: boolean) => ReactElement;
+  title?: string;
 };
 
 export const Accordion: React.FC<AccordionProps> = ({
   children,
-  render,
   isExpanded,
+  render,
   title,
 }) => {
   const [expanded, setExpanded] = useState(isExpanded);
@@ -27,7 +27,7 @@ export const Accordion: React.FC<AccordionProps> = ({
           {title}
         </DropDownButton>
       )}
-      <S.Accordion expanded={expanded}>{children}</S.Accordion>
+      <S.Accordion isExpanded={expanded}>{children}</S.Accordion>
     </>
   );
 };
