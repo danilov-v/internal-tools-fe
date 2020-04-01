@@ -1,7 +1,9 @@
 import React from 'react';
 import { Router } from '@reach/router';
+import { Provider } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'globalStyle';
+import { store } from 'redux/store';
 
 import { theme } from 'configs/theme';
 import { SignIn } from 'pages/signIn/signIn';
@@ -25,15 +27,17 @@ const FullScreenRouter = styled(Router)`
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <StyledMain>
-        <GlobalStyle />
-        <FullScreenRouter>
-          <SignIn path="/sign-in" />
-          <Main path="/*" />
-        </FullScreenRouter>
-      </StyledMain>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <StyledMain>
+          <GlobalStyle />
+          <FullScreenRouter>
+            <SignIn path="/sign-in" />
+            <Main path="/*" />
+          </FullScreenRouter>
+        </StyledMain>
+      </ThemeProvider>
+    </Provider>
   );
 };
 

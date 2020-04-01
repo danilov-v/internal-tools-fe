@@ -1,54 +1,47 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from '@reach/router';
 
-import { signIn } from 'services/auth';
-import { LoginData } from 'types/auth';
+import { loginFormInput } from 'redux/ui/slice';
+import { getLoginForm as getLoginFormSelector } from 'redux/ui/selectors';
+
+import { login } from 'redux/profile/thunks';
+import { isAuthorizedProfile as isAuthorizedProfileSelector } from 'redux/profile/selectors';
 
 import * as S from './LoginForm.style';
 
-const DEFAULT_FORM_DATA = {
-  login: '',
-  password: '',
-};
-
 export const LoginForm: React.FC<{}> = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<LoginData>(DEFAULT_FORM_DATA);
-  const [isValid, setValid] = useState<boolean>(true);
+  const dispatch = useDispatch();
 
-  const handleInput = (field: string) => (
+  const isAuthorizedProfile = useSelector(isAuthorizedProfileSelector);
+  const loginFormData = useSelector(getLoginFormSelector);
+
+  const { formData, error } = loginFormData;
+  const isValid = !error;
+
+  const handleInput = (field: 'login' | 'password') => (
     e: React.FormEvent<HTMLInputElement>,
   ): void => {
     e.preventDefault();
 
-    setValid(true);
-    setFormData({
-      ...formData,
-      [field]: e.currentTarget.value,
-    });
+    dispatch(
+      loginFormInput({ fieldName: field, value: e.currentTarget.value }),
+    );
   };
 
   const handleLoginInput = handleInput('login');
   const handlePasswordInput = handleInput('password');
 
-  const resetForm = (): void => {
-    setFormData(DEFAULT_FORM_DATA);
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-
-    signIn(formData)
-      .then(() => {
-        navigate('/main');
-
-        return null;
-      })
-      .catch(() => {
-        setValid(false);
-        resetForm();
-      });
+    dispatch(login(formData));
   };
+
+  if (isAuthorizedProfile) {
+    navigate('personnel');
+    return null;
+  }
 
   return (
     <S.LoginForm onSubmit={handleSubmit} data-testid="loginForm">
