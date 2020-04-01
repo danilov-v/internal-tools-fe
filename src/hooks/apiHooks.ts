@@ -6,12 +6,12 @@ import { Soldier } from 'types/soldier';
 import { Rank } from 'types/rank';
 import { Unit } from 'types/unit';
 
-const useSoldiers = (): [Array<Soldier>, Function] => {
+const useSoldiers = (unitId?: number): [Array<Soldier>, Function] => {
   const [soldiers, setSoldiers] = useState<Soldier[]>([]);
 
   const fetchSoldiers = useCallback(async () => {
     try {
-      const data = await getAllSoldiers();
+      const data = await getAllSoldiers(unitId);
 
       setSoldiers(data);
     } catch (error) {

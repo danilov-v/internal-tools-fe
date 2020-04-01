@@ -5,7 +5,6 @@ import { useModal } from 'hooks/uiHooks';
 import { useSoldiers, useUnits } from 'hooks/apiHooks';
 import { Unit } from 'types/unit';
 import { UNIT_ID } from 'helpers/constants';
-import { sortBy } from 'helpers/utils';
 import { Soldier } from 'types/soldier';
 import { Plat } from './Plat';
 
@@ -21,8 +20,14 @@ const getUnitChild = (units: Unit[], unitId = UNIT_ID): Unit[] => {
   }, []);
 };
 
-const getPlatSoldiers = (platId: number, allSoldiers: Soldier[]): Soldier[] =>
-  allSoldiers;
+const getPlatSoldiers = (
+  departments: Unit[],
+  coySoldiers: Soldier[],
+): Soldier[] => {
+  return coySoldiers.filter(({ unitId }) =>
+    departments.some(({ id }) => id === unitId),
+  );
+};
 
 export const SoldersList: React.FC<RouteComponentProps> = () => {
   const [itemModalOpen, toggleModal] = useModal();
@@ -37,14 +42,23 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
   return (
     <S.SoldiersList>
       <S.SoldiersHeader>Рота информационных технологий</S.SoldiersHeader>
-      {coy.sort(sortBy<Unit>('name')).map(plat => (
-        <Plat
-          key={plat.id}
-          plat={plat}
-          departments={getUnitChild(allUnits, plat.id)}
-          platSoldiers={getPlatSoldiers(plat.id, soldiers)}
-        />
-      ))}
+      {soldiers.length === 0 ? (
+        <S.NoSoldiersText>Пока нет военнослужащих.</S.NoSoldiersText>
+      ) : (
+        coy.map(plat => {
+          const departments = getUnitChild(allUnits, plat.id);
+          const platSoldiers = getPlatSoldiers(departments, soldiers);
+
+          return (
+            <Plat
+              key={plat.id}
+              plat={plat}
+              departments={departments}
+              platSoldiers={platSoldiers}
+            />
+          );
+        })
+      )}
       <S.AddSoldierContainer>
         <S.AddSoldierButton onClick={onAddSoldierButtonClick} />
         <S.AddSoldierText>Добавить военнослужащего</S.AddSoldierText>

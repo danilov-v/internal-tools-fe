@@ -27,7 +27,7 @@ const renderDepartmentButton = (title: string) => (
 );
 
 export const Department: React.FC<UnitPanelProps> = ({ unit, soldiers }) => {
-  return (
+  return soldiers.length !== 0 ? (
     <Accordion
       key={unit.id}
       isExpanded
@@ -35,5 +35,5 @@ export const Department: React.FC<UnitPanelProps> = ({ unit, soldiers }) => {
     >
       <SoldiersTable soldiers={getDepartmentSoldiers(unit.id, soldiers)} />
     </Accordion>
-  );
+  ) : null;
 };

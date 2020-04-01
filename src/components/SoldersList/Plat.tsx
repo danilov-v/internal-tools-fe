@@ -25,7 +25,7 @@ export const Plat: React.FC<PlatProps> = ({
   departments,
   platSoldiers,
 }) => {
-  return (
+  return platSoldiers.length !== 0 ? (
     <Accordion key={plat.id} isExpanded render={renderPlatButton(plat.name)}>
       {departments.map(department => (
         <Department
@@ -35,5 +35,5 @@ export const Plat: React.FC<PlatProps> = ({
         />
       ))}
     </Accordion>
-  );
+  ) : null;
 };
