@@ -3,7 +3,7 @@ import { Unit } from 'types/unit';
 import { Soldier } from 'types/soldier';
 import { Accordion } from 'components/Accordion';
 import { Department } from './Department';
-import * as S from './SoldersList.style';
+import { PlatButton } from './SoldersList.style';
 
 type PlatProps = {
   plat: Unit;
@@ -15,9 +15,9 @@ const renderPlatButton = (title: string) => (
   toggle: Function,
   isExpanded: boolean,
 ): ReactElement => (
-  <S.PlatButton expanded={isExpanded} onClick={(): void => toggle()}>
+  <PlatButton expanded={isExpanded} onClick={(): void => toggle()}>
     {title}
-  </S.PlatButton>
+  </PlatButton>
 );
 
 export const Plat: React.FC<PlatProps> = ({

@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
+import { filterBy } from 'helpers/utils';
 import { Unit } from 'types/unit';
 import { Soldier } from 'types/soldier';
 import { Accordion } from 'components/Accordion';
-import { filterBy } from 'helpers/utils';
 import { SoldiersTable } from './SoldiersTable';
 
-import * as S from './SoldersList.style';
+import { DivisionButton } from './SoldersList.style';
 
 type UnitPanelProps = {
   unit: Unit;
@@ -21,9 +21,9 @@ const renderDepartmentButton = (title: string) => (
   toggle: Function,
   isExpanded: boolean,
 ): ReactElement => (
-  <S.DivisionButton expanded={isExpanded} onClick={(): void => toggle()}>
+  <DivisionButton expanded={isExpanded} onClick={(): void => toggle()}>
     {title}
-  </S.DivisionButton>
+  </DivisionButton>
 );
 
 export const Department: React.FC<UnitPanelProps> = ({ unit, soldiers }) => {
