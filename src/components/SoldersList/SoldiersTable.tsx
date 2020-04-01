@@ -14,7 +14,7 @@ export const SoldiersTable: React.FC<SoldiersTableProps> = ({ soldiers }) => {
         <S.SoldiersTableItem key={soldier.id}>
           <S.SoldierNumber>{i + 1}</S.SoldierNumber>
           <S.SoldierName
-            to={`${soldier.id}`}
+            to={`/personnel-details/${soldier.id}`}
           >{`${soldier.lastName} ${soldier.firstName} ${soldier.middleName}`}</S.SoldierName>
           <S.SoldierProms>
             <span>1</span>
