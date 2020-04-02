@@ -17,7 +17,7 @@ export const getProfileError = createSelector(
 
 export const getProfileLoading = createSelector(
   getProfileSlice,
-  profileSliceData => profileSliceData.loading,
+  profileSliceData => profileSliceData.isLoading,
 );
 
 export const isAuthChecked = createSelector(
