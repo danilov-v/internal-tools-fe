@@ -70,5 +70,4 @@ const profileSlice = createSlice({
   },
 });
 
-// eslint-disable-next-line import/no-default-export
-export default profileSlice.reducer;
+export { profileSlice };
