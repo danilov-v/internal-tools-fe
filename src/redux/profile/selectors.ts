@@ -15,11 +15,6 @@ export const getProfileError = createSelector(
   profileSliceData => profileSliceData.error,
 );
 
-export const getProfileLoading = createSelector(
-  getProfileSlice,
-  profileSliceData => profileSliceData.isLoading,
-);
-
 export const isAuthChecked = createSelector(
   getProfileSlice,
   profileSliceData => profileSliceData.isChecked,

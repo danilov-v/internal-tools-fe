@@ -5,14 +5,12 @@ import { login, getProfile } from './thunks';
 export type ProfileState = {
   profile: User | null;
   error: SerializedError | null;
-  isLoading: boolean;
   isChecked: boolean;
 };
 
 const initialState: ProfileState = {
   profile: null,
   error: null,
-  isLoading: false,
   isChecked: false,
 };
 
@@ -25,14 +23,12 @@ const profileSlice = createSlice({
       return {
         ...state,
         error: null,
-        isLoading: true,
       };
     });
 
     builder.addCase(login.fulfilled, (state, action) => {
       return {
         ...state,
-        isLoading: false,
         isChecked: true,
         profile: { ...action.payload },
       };
@@ -41,7 +37,6 @@ const profileSlice = createSlice({
     builder.addCase(login.rejected, (state, action) => {
       return {
         ...state,
-        isLoading: false,
         isChecked: true,
         profile: null,
         error: action.error,
@@ -54,7 +49,6 @@ const profileSlice = createSlice({
         isChecked: true,
         profile: { ...action.payload },
         error: null,
-        isLoading: false,
       };
     });
 
@@ -64,7 +58,6 @@ const profileSlice = createSlice({
         isChecked: true,
         profile: null,
         error: action.error,
-        isLoading: false,
       };
     });
   },
