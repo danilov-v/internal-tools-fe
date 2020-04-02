@@ -15,15 +15,15 @@ import { NotFound } from 'pages/main/components/NotFound';
 
 const Main: React.FC<RouteComponentProps> = () => {
   const navigate = useNavigate();
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const isAuthChecked = useSelector(isAuthCheckedSelector);
   const isProfileExist = useSelector(isProfileExistSelector);
 
   useEffect(() => {
     if (!isAuthChecked) {
-      dispath(getProfile());
+      dispatch(getProfile());
     }
-  }, [dispath, isAuthChecked]);
+  }, [dispatch, isAuthChecked]);
 
   if (!isAuthChecked) {
     return <LoadingScreen />;
