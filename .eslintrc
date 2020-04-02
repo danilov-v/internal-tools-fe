@@ -54,7 +54,7 @@
     ],
     // Common abbreviations are known and readable
     "unicorn/prevent-abbreviations": "off",
-    "unicorn/consistent-function-scoping": 0
+    "unicorn/consistent-function-scoping": "off"
   },
   "settings": {
     "import/resolver": {

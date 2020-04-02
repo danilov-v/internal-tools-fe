@@ -1,61 +1,74 @@
-import { createSlice, createAction } from '@reduxjs/toolkit';
+import { createSlice, SerializedError } from '@reduxjs/toolkit';
 import { User } from 'types/user';
+import { login, getProfile } from './thunks';
 
 export type ProfileState = {
   profile: User | null;
-  error: string | null;
+  error: SerializedError | null;
+  loading: boolean;
   isChecked: boolean;
 };
-
-const loginFailed: any = createAction('profile/loginFailed');
-const loginSuccess: any = createAction('profile/loginSuccess');
 
 const initialState: ProfileState = {
   profile: null,
   error: null,
+  loading: false,
   isChecked: false,
 };
 
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
-  reducers: {
-    updateProfile(state, action) {
+  reducers: {},
+  extraReducers: builder => {
+    builder.addCase(login.pending, state => {
       return {
+        ...state,
         error: null,
-        isChecked: true,
-        profile: action.payload.profile,
+        loading: true,
       };
-    },
-    profileNotAvailable(state, action) {
+    });
+
+    builder.addCase(login.fulfilled, (state, action) => {
       return {
-        ...initialState,
-        error: action.payload,
+        ...state,
+        loading: false,
         isChecked: true,
+        profile: { ...action.payload },
       };
-    },
-  },
-  extraReducers: {
-    [loginFailed]: (state, action) => {
+    });
+
+    builder.addCase(login.rejected, (state, action) => {
       return {
-        ...initialState,
-        error: action.payload,
+        ...state,
+        loading: false,
         isChecked: true,
+        profile: null,
+        error: action.error,
       };
-    },
-    [loginSuccess]: (state, action) => {
+    });
+
+    builder.addCase(getProfile.fulfilled, (state, action) => {
       return {
+        ...state,
+        isChecked: true,
+        profile: { ...action.payload },
         error: null,
-        isChecked: true,
-        profile: action.payload.profile,
+        loading: false,
       };
-    },
+    });
+
+    builder.addCase(getProfile.rejected, (state, action) => {
+      return {
+        ...state,
+        isChecked: true,
+        profile: null,
+        error: action.error,
+        loading: false,
+      };
+    });
   },
 });
-
-const { updateProfile, profileNotAvailable } = profileSlice.actions;
-
-export { loginSuccess, loginFailed, updateProfile, profileNotAvailable };
 
 // eslint-disable-next-line import/no-default-export
 export default profileSlice.reducer;

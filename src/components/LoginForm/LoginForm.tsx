@@ -1,44 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from '@reach/router';
 
-import { loginFormInput } from 'redux/ui/slice';
-import { getLoginForm as getLoginFormSelector } from 'redux/ui/selectors';
-
 import { login } from 'redux/profile/thunks';
-import { isAuthorizedProfile as isAuthorizedProfileSelector } from 'redux/profile/selectors';
+import { isAuthorizedProfile, getProfileError } from 'redux/profile/selectors';
 
 import * as S from './LoginForm.style';
 
-export const LoginForm: React.FC<{}> = () => {
+const DEFAULT_FORM_DATA = {
+  login: '',
+  password: '',
+};
+
+export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const isAuthorizedProfile = useSelector(isAuthorizedProfileSelector);
-  const loginFormData = useSelector(getLoginFormSelector);
+  const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
+  const [isPristine, setPristine] = useState<boolean>(true);
 
-  const { formData, error } = loginFormData;
-  const isValid = !error;
+  const isAuthorized = useSelector(isAuthorizedProfile);
+  const profileError = useSelector(getProfileError);
+
+  const isValid = isPristine || !profileError;
 
   const handleInput = (field: 'login' | 'password') => (
     e: React.FormEvent<HTMLInputElement>,
   ): void => {
     e.preventDefault();
 
-    dispatch(
-      loginFormInput({ fieldName: field, value: e.currentTarget.value }),
-    );
+    setFormData({ ...formData, [field]: e.currentTarget.value });
   };
+
+  useEffect(() => {
+    const resetPassword = (): void => {
+      setFormData(state => ({ ...state, password: '' }));
+    };
+
+    if (!isValid) {
+      resetPassword();
+    }
+  }, [isValid]);
 
   const handleLoginInput = handleInput('login');
   const handlePasswordInput = handleInput('password');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
+    setPristine(false);
+
     dispatch(login(formData));
   };
 
-  if (isAuthorizedProfile) {
+  if (isAuthorized) {
     navigate('personnel');
     return null;
   }
