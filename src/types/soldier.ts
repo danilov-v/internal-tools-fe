@@ -8,4 +8,5 @@ export type Soldier = {
   birthday: string;
   unitId: number;
   rankId: number;
+  rank: string;
 };

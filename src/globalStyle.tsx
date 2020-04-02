@@ -6,19 +6,22 @@ export const GlobalStyle = createGlobalStyle`
   ${normalize}
   /* stylelint-enable value-keyword-case */
 
-  html {
-    width: 100%;
-    min-height: 100vh;
-  }
-
+  html,
   body {
-    font-family: Muller, sans-serif;
-    background: #44494b;
     background: linear-gradient(90deg, #44494b 0%, #4c5153 25%, #4c5153 100%);
-    width: 100%;
+    font-family: 'Muller', sans-serif;
     min-height: 100vh;
+    width: 100%;
   }
 
+  button,
+  input,
+  select,
+  textarea {
+    font-family: 'Muller', sans-serif;
+  }
+
+  /* FIXME: Remove this global overwrites https://youtrack.rit:8082/issue/IT-51 */
   h1, h2, h3, h4, h5, h6, p, button, a, ol, ul {
     margin: 0;
   }
