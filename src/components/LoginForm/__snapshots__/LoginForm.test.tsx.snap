@@ -9,7 +9,7 @@ exports[`<LoginForm /> should render and match snapshot 1`] = `
     >
       <input
         class="sc-AxirZ gQaiPr"
-        placeholder="Капитан"
+        placeholder="Имя пользователя"
         type="text"
         value=""
       />

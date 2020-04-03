@@ -54,7 +54,7 @@ export const LoginForm: React.FC = () => {
   };
 
   if (isAuthorized) {
-    navigate('personnel');
+    navigate('/personnel');
     return null;
   }
 
