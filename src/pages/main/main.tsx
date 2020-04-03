@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getProfile } from 'redux/profile/thunks';
 import {
   isAuthChecked as isAuthCheckedSelector,
-  isProfileExist as isProfileExistSelector,
+  getProfileInfo,
 } from 'redux/profile/selectors';
 import { Header } from 'components/Header';
 import { SoldersList } from 'components/SoldersList';
@@ -16,8 +16,8 @@ import { NotFound } from 'pages/main/components/NotFound';
 const Main: React.FC<RouteComponentProps> = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const profileInfo = useSelector(getProfileInfo);
   const isAuthChecked = useSelector(isAuthCheckedSelector);
-  const isProfileExist = useSelector(isProfileExistSelector);
 
   useEffect(() => {
     if (!isAuthChecked) {
@@ -29,7 +29,7 @@ const Main: React.FC<RouteComponentProps> = () => {
     return <LoadingScreen />;
   }
 
-  if (isAuthChecked && !isProfileExist) {
+  if (isAuthChecked && !profileInfo) {
     navigate('sign-in');
     return null;
   }

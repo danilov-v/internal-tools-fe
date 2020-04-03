@@ -63,7 +63,7 @@ export const LoginForm: React.FC = () => {
       <S.InputField
         type="text"
         value={formData.login}
-        placeholder="Капитан"
+        placeholder="Имя пользователя"
         onChange={handleLoginInput}
         isValid={isValid}
       />

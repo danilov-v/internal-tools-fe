@@ -1,32 +1,18 @@
-import { createSelector } from '@reduxjs/toolkit';
+import { createSelector, SerializedError } from '@reduxjs/toolkit';
 import { RootStore } from 'redux/store';
-import { ProfileState } from './slice';
+import { User } from 'types/user';
 
-export const getProfileSlice = (state: RootStore): ProfileState =>
-  state.profile;
+export const getProfileInfo = (state: RootStore): User | null =>
+  state.profile.profile;
 
-export const getProfileInfo = createSelector(
-  getProfileSlice,
-  profileSliceData => profileSliceData.profile,
-);
+export const getProfileError = (state: RootStore): SerializedError | null =>
+  state.profile.error;
 
-export const getProfileError = createSelector(
-  getProfileSlice,
-  profileSliceData => profileSliceData.error,
-);
-
-export const isAuthChecked = createSelector(
-  getProfileSlice,
-  profileSliceData => profileSliceData.isChecked,
-);
-
-export const isProfileExist = createSelector(
-  getProfileSlice,
-  profileSlice => profileSlice.profile,
-);
+export const isAuthChecked = (state: RootStore): boolean =>
+  state.profile.isChecked;
 
 export const isAuthorizedProfile = createSelector(
+  getProfileInfo,
   isAuthChecked,
-  isProfileExist,
-  (isChecked, isExist) => isChecked && isExist,
+  (profile, isChecked) => Boolean(profile && isChecked),
 );
