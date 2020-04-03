@@ -31,7 +31,7 @@ describe('<LoginForm />', () => {
     expect(component.baseElement).toMatchSnapshot();
   });
 
-  it('should redirect from login form if profile authorized', async () => {
+  it('should redirect from login form if profile authorized', () => {
     const navigateSpy = jest.fn();
     jest.spyOn(Router, 'useNavigate').mockImplementation(() => navigateSpy);
 
