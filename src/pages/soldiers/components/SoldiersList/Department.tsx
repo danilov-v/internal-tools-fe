@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { filterBy } from 'helpers/utils';
+import { filter } from 'lodash';
 import { Unit } from 'types/unit';
 import { Personnel } from 'types/personnel';
 import { Accordion } from 'components/Accordion';
@@ -16,7 +16,7 @@ const getDepartmentSoldiers = (
   departmentId: number,
   allSoldiers: Personnel[],
 ): Personnel[] =>
-  allSoldiers.filter(filterBy<Personnel>('unitId', departmentId));
+  filter(allSoldiers, soldier => soldier.unitId === departmentId);
 
 const renderDepartmentButton = (title: string) => (
   toggle: Function,
