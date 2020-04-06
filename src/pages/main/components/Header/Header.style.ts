@@ -6,10 +6,9 @@ type HumburgerProps = {
 };
 
 export const Header = styled.header`
-  position: fixed;
+  position: sticky;
   top: 0;
   z-index: 100;
-  width: 92%;
   min-height: 65px;
   font-size: 16px;
   border-bottom: 2px solid #616262;
