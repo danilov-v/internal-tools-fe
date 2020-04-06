@@ -15,8 +15,7 @@ type UnitPanelProps = {
 const getDepartmentSoldiers = (
   departmentId: number,
   allSoldiers: Personnel[],
-): Personnel[] =>
-  filter(allSoldiers, soldier => soldier.unitId === departmentId);
+): Personnel[] => filter(allSoldiers, { unitId: departmentId });
 
 const renderDepartmentButton = (title: string) => (
   toggle: Function,
