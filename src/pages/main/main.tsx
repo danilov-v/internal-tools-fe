@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
-import { RouteComponentProps, Router, useNavigate } from '@reach/router';
+import {
+  Redirect,
+  RouteComponentProps,
+  Router,
+  useNavigate,
+} from '@reach/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProfile } from 'redux/profile/thunks';
+import { requestProfile } from 'redux/profile/thunks';
 import {
   isAuthChecked as isAuthCheckedSelector,
   getProfileInfo,
@@ -22,7 +27,7 @@ const Main: React.FC<RouteComponentProps> = () => {
 
   useEffect(() => {
     if (!isAuthChecked) {
-      dispatch(getProfile());
+      dispatch(requestProfile());
     }
   }, [dispatch, isAuthChecked]);
 
@@ -31,7 +36,7 @@ const Main: React.FC<RouteComponentProps> = () => {
   }
 
   if (isAuthChecked && !profileInfo) {
-    navigate('sign-in');
+    navigate('/sign-in');
     return null;
   }
 
@@ -40,8 +45,9 @@ const Main: React.FC<RouteComponentProps> = () => {
       <Header />
       <Router>
         <NotFound default />
-        <Soldiers path="personnel" />
-        <PersonnelDetails path="personnel-details/:id" />
+        <Redirect from="/" noThrow to="/personnel" />
+        <Soldiers path="/personnel" />
+        <PersonnelDetails path="/personnel-details/:id" />
       </Router>
     </>
   );

@@ -1,6 +1,7 @@
 import { createSlice, SerializedError } from '@reduxjs/toolkit';
+
 import { User } from 'types/user';
-import { login, getProfile } from './thunks';
+import { requestLogin, requestProfile } from './thunks';
 
 export type ProfileState = {
   profile: User | null;
@@ -19,14 +20,14 @@ const profileSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(login.pending, state => {
+    builder.addCase(requestLogin.pending, state => {
       return {
         ...state,
         error: null,
       };
     });
 
-    builder.addCase(login.fulfilled, (state, action) => {
+    builder.addCase(requestLogin.fulfilled, (state, action) => {
       return {
         ...state,
         isChecked: true,
@@ -34,7 +35,7 @@ const profileSlice = createSlice({
       };
     });
 
-    builder.addCase(login.rejected, (state, action) => {
+    builder.addCase(requestLogin.rejected, (state, action) => {
       return {
         ...state,
         isChecked: true,
@@ -43,7 +44,7 @@ const profileSlice = createSlice({
       };
     });
 
-    builder.addCase(getProfile.fulfilled, (state, action) => {
+    builder.addCase(requestProfile.fulfilled, (state, action) => {
       return {
         ...state,
         isChecked: true,
@@ -52,7 +53,7 @@ const profileSlice = createSlice({
       };
     });
 
-    builder.addCase(getProfile.rejected, (state, action) => {
+    builder.addCase(requestProfile.rejected, (state, action) => {
       return {
         ...state,
         isChecked: true,

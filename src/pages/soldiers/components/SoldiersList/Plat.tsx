@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Unit } from 'types/unit';
-import { Soldier } from 'types/soldier';
+import { Personnel } from 'types/personnel';
 import { Accordion } from 'components/Accordion';
 import { Department } from './Department';
 import { PlatButton } from './SoldiersList.style';
@@ -8,7 +8,7 @@ import { PlatButton } from './SoldiersList.style';
 type PlatProps = {
   plat: Unit;
   departments: Unit[];
-  platSoldiers: Soldier[];
+  platSoldiers: Personnel[];
 };
 
 const renderPlatButton = (title: string) => (

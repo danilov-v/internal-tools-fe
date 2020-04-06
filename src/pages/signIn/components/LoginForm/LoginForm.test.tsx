@@ -1,13 +1,14 @@
 import React from 'react';
-import { render, fireEvent, RenderResult, act } from '@testing-library/react';
+import { waitForDomChange } from '@testing-library/dom';
+import { act, fireEvent, render, RenderResult } from '@testing-library/react';
 import * as Router from '@reach/router';
 import { Provider } from 'react-redux';
+
 import { getStore } from 'redux/store';
 import { EMPTY_PROFILE, FULFILLED_PROFILE } from 'tests/slices/profile';
-
 import { LoginForm } from './LoginForm';
 
-jest.mock('services/auth');
+jest.mock('services/http/auth');
 
 const source = Router.createMemorySource('/starting/url');
 const history = Router.createHistory(source);
@@ -60,6 +61,8 @@ describe('<LoginForm />', () => {
 
     await act(async () => {
       fireEvent.submit(formElement);
+      // FIXME: `waitForDomChange` is deprecated in latest versions of `@testing-library`
+      await waitForDomChange();
     });
 
     expect(loginInput).toHaveStyle('border-bottom: 2px solid #ff0000');

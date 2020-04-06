@@ -18,7 +18,7 @@ interface PersonnelDetailsProps extends RouteComponentProps {
 }
 
 const PersonnelDetails: React.FC<PersonnelDetailsProps> = ({ id }) => {
-  const [soldier] = useSoldier(id || '');
+  const [soldier] = useSoldier(Number(id) || 0);
 
   if (!id) {
     return <Redirect to="/personnel" />;

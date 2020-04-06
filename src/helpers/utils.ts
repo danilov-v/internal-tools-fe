@@ -24,3 +24,7 @@ export const filterBy = <T>(
   fieldName: keyof T,
   fieldValue: any,
 ): FilterFunction<T> => obj => obj[fieldName] === fieldValue;
+
+export const sleep = (milliseconds = 1000): Promise<void> => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+};

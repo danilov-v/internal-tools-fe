@@ -1,17 +1,19 @@
 import { useEffect, useState, useCallback } from 'react';
-import { getAllSoldiers, getSoldier } from 'services/soldier';
-import { getAllRanks, getRank } from 'services/rank';
-import { getAllUnits } from 'services/unit';
-import { Soldier } from 'types/soldier';
+
+import { UNIT_ID } from 'configs/constants';
+import { fetchPersonnel, fetchPersonnelDetails } from 'services/http/personnel';
+import { fetchRanks, fetchRankById } from 'services/http/rank';
+import { fetchUnits } from 'services/http/unit';
+import { Personnel, PersonnelDetails } from 'types/personnel';
 import { Rank } from 'types/rank';
 import { Unit } from 'types/unit';
 
-const useSoldiers = (unitId?: number): [Array<Soldier>, Function] => {
-  const [soldiers, setSoldiers] = useState<Soldier[]>([]);
+const useSoldiers = (unitId?: number): [Array<Personnel>, Function] => {
+  const [soldiers, setSoldiers] = useState<Personnel[]>([]);
 
   const fetchSoldiers = useCallback(async () => {
     try {
-      const data = await getAllSoldiers(unitId);
+      const data = await fetchPersonnel({ unitId: unitId || UNIT_ID });
 
       setSoldiers(data);
     } catch (error) {
@@ -26,20 +28,22 @@ const useSoldiers = (unitId?: number): [Array<Soldier>, Function] => {
   return [soldiers, fetchSoldiers];
 };
 
-const useSoldier = (soliderId: string): [Soldier | undefined, Function] => {
-  const [soldier, setSoldier] = useState<Soldier>();
+const useSoldier = (
+  personnelId: number,
+): [PersonnelDetails | undefined, Function] => {
+  const [soldier, setSoldier] = useState<PersonnelDetails>();
 
   const fetchSoldier = useCallback(async () => {
     try {
-      const soldierData = await getSoldier(soliderId);
-      const soldierRank = await getRank(`${soldierData.rankId}`);
+      const soldierData = await fetchPersonnelDetails(personnelId);
+      const soldierRank = await fetchRankById(soldierData.rankId);
       soldierData.rank = soldierRank.name;
 
       setSoldier(soldierData);
     } catch (error) {
       console.log(error);
     }
-  }, [soliderId]);
+  }, [personnelId]);
 
   useEffect(() => {
     fetchSoldier();
@@ -51,9 +55,9 @@ const useSoldier = (soliderId: string): [Soldier | undefined, Function] => {
 const useRanks = (): [Array<Rank>, Function] => {
   const [ranks, setRanks] = useState<Rank[]>([]);
 
-  const fetchRanks = useCallback(async () => {
+  const fetchAllRanks = useCallback(async () => {
     try {
-      const data = await getAllRanks();
+      const data = await fetchRanks();
 
       setRanks(data);
     } catch (error) {
@@ -62,8 +66,8 @@ const useRanks = (): [Array<Rank>, Function] => {
   }, []);
 
   useEffect(() => {
-    fetchRanks();
-  }, [fetchRanks]);
+    fetchAllRanks();
+  }, [fetchAllRanks]);
 
   return [ranks, setRanks];
 };
@@ -71,9 +75,9 @@ const useRanks = (): [Array<Rank>, Function] => {
 const useUnits = (): [Array<Unit>, Function] => {
   const [units, setUnits] = useState<Unit[]>([]);
 
-  const fetchUnits = useCallback(async () => {
+  const fetchAllUnits = useCallback(async () => {
     try {
-      const data = await getAllUnits();
+      const data = await fetchUnits();
 
       setUnits(data);
     } catch (error) {
@@ -82,8 +86,8 @@ const useUnits = (): [Array<Unit>, Function] => {
   }, []);
 
   useEffect(() => {
-    fetchUnits();
-  }, [fetchUnits]);
+    fetchAllUnits();
+  }, [fetchAllUnits]);
 
   return [units, setUnits];
 };

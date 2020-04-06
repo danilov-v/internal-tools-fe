@@ -5,7 +5,7 @@ import { useSoldiers, useUnits } from 'hooks/apiHooks';
 import { Unit } from 'types/unit';
 import { UNIT_ID } from 'configs/constants';
 import { Modal } from 'components/Modal';
-import { Soldier } from 'types/soldier';
+import { Personnel } from 'types/personnel';
 import { Plat } from './Plat';
 
 import * as S from './SoldiersList.style';
@@ -22,8 +22,8 @@ const getUnitChild = (units: Unit[], unitId = UNIT_ID): Unit[] => {
 
 const getPlatSoldiers = (
   departments: Unit[],
-  coySoldiers: Soldier[],
-): Soldier[] => {
+  coySoldiers: Personnel[],
+): Personnel[] => {
   return coySoldiers.filter(({ unitId }) =>
     departments.some(({ id }) => id === unitId),
   );

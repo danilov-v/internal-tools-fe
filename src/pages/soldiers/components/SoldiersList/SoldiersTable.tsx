@@ -1,10 +1,10 @@
 import React from 'react';
-import { Soldier } from 'types/soldier';
+import { Personnel } from 'types/personnel';
 
 import * as S from './SoldiersList.style';
 
 type SoldiersTableProps = {
-  soldiers: Soldier[];
+  soldiers: Personnel[];
 };
 
 export const SoldiersTable: React.FC<SoldiersTableProps> = ({ soldiers }) => {

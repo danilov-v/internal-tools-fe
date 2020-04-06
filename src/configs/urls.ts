@@ -1,11 +1,15 @@
-// TODO: add env support
-export const BASE_URL = 'http://localhost:3001';
+// auth
+export const LOGIN = '/login';
+export const LOGOUT = '/logout';
 
-export const LOGIN_URL = `${BASE_URL}/login`;
-export const LOGOUT_URL = `${BASE_URL}/logout`;
+// personnel
+export const PERSONNEL = '/personnel';
 
-export const PROFILE_URL = `${BASE_URL}/profile`;
+// profile
+export const PROFILE = '/profile';
 
-export const RANK_URL = `${BASE_URL}/rank`;
-export const SOLDIER_URL = `${BASE_URL}/personnel`;
-export const UNIT_URL = `${BASE_URL}/unit`;
+// rank
+export const RANK = '/rank';
+
+// unit
+export const UNIT = '/unit';

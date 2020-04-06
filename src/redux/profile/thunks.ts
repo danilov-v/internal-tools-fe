@@ -1,12 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { signIn } from 'services/auth';
-import { getProfile as getProfileAPI } from 'services/profile';
-import { LoginData } from 'types/auth';
 
-export const getProfile = createAsyncThunk('profile/get', () =>
-  getProfileAPI(),
-);
+import { login } from 'services/http/auth';
+import { fetchProfile } from 'services/http/profile';
 
-export const login = createAsyncThunk('profile/login', (data: LoginData) =>
-  signIn(data),
-);
+export const requestProfile = createAsyncThunk('profile/get', fetchProfile);
+
+export const requestLogin = createAsyncThunk('profile/login', login);

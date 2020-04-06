@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { filterBy } from 'helpers/utils';
 import { Unit } from 'types/unit';
-import { Soldier } from 'types/soldier';
+import { Personnel } from 'types/personnel';
 import { Accordion } from 'components/Accordion';
 import { SoldiersTable } from './SoldiersTable';
 
@@ -9,13 +9,14 @@ import { DivisionButton } from './SoldiersList.style';
 
 type UnitPanelProps = {
   unit: Unit;
-  soldiers: Soldier[];
+  soldiers: Personnel[];
 };
 
 const getDepartmentSoldiers = (
   departmentId: number,
-  allSoldiers: Soldier[],
-): Soldier[] => allSoldiers.filter(filterBy<Soldier>('unitId', departmentId));
+  allSoldiers: Personnel[],
+): Personnel[] =>
+  allSoldiers.filter(filterBy<Personnel>('unitId', departmentId));
 
 const renderDepartmentButton = (title: string) => (
   toggle: Function,

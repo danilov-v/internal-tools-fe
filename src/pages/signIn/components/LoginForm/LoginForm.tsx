@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from '@reach/router';
 
-import { login } from 'redux/profile/thunks';
+import { requestLogin } from 'redux/profile/thunks';
 import { isAuthorizedProfile, getProfileError } from 'redux/profile/selectors';
 
 import * as S from './LoginForm.style';
@@ -50,7 +50,7 @@ export const LoginForm: React.FC = () => {
 
     setPristine(false);
 
-    dispatch(login(formData));
+    dispatch(requestLogin(formData));
   };
 
   if (isAuthorized) {
