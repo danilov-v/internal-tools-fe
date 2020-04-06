@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Logo } from 'components/Logo';
-import { Avatar } from 'components/Avatar';
+import { Avatar } from 'pages/main/components/Avatar';
 import * as S from './Header.style';
 
 type IsActivePropsType = {

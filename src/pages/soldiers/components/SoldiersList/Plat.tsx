@@ -3,7 +3,7 @@ import { Unit } from 'types/unit';
 import { Soldier } from 'types/soldier';
 import { Accordion } from 'components/Accordion';
 import { Department } from './Department';
-import { PlatButton } from './SoldersList.style';
+import { PlatButton } from './SoldiersList.style';
 
 type PlatProps = {
   plat: Unit;

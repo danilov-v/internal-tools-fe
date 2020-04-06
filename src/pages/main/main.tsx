@@ -6,12 +6,13 @@ import {
   isAuthChecked as isAuthCheckedSelector,
   getProfileInfo,
 } from 'redux/profile/selectors';
-import { Header } from 'components/Header';
-import { SoldersList } from 'components/SoldersList';
+
+import { Soldiers } from 'pages/soldiers/soldiers';
 import { PersonnelDetails } from 'pages/personnelDetails/personnelDetails';
 
-import { LoadingScreen } from 'pages/main/components/LoadingScreen';
-import { NotFound } from 'pages/main/components/NotFound';
+import { Header } from './components/Header';
+import { LoadingScreen } from './components/LoadingScreen';
+import { NotFound } from './components/NotFound';
 
 const Main: React.FC<RouteComponentProps> = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const Main: React.FC<RouteComponentProps> = () => {
       <Header />
       <Router>
         <NotFound default />
-        <SoldersList path="personnel" />
+        <Soldiers path="personnel" />
         <PersonnelDetails path="personnel-details/:id" />
       </Router>
     </>

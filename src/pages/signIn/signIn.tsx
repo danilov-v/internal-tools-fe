@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { RouteComponentProps } from '@reach/router';
 
 import { Logo } from 'components/Logo';
-import { LoginForm } from 'components/LoginForm';
+import { LoginForm } from './components/LoginForm';
 
 const SignInWrapper = styled.div`
   min-height: 100vh;

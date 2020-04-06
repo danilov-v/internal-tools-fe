@@ -3,12 +3,12 @@ import { RouteComponentProps } from '@reach/router';
 import { useModal } from 'hooks/uiHooks';
 import { useSoldiers, useUnits } from 'hooks/apiHooks';
 import { Unit } from 'types/unit';
-import { UNIT_ID } from 'helpers/constants';
+import { UNIT_ID } from 'configs/constants';
 import { Modal } from 'components/Modal';
 import { Soldier } from 'types/soldier';
 import { Plat } from './Plat';
 
-import * as S from './SoldersList.style';
+import * as S from './SoldiersList.style';
 
 const getUnitChild = (units: Unit[], unitId = UNIT_ID): Unit[] => {
   return units.reduce((childUnits: Unit[], item) => {

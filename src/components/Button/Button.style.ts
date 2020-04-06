@@ -1,3 +1,4 @@
+// TODO: should be merged in `../buttons/Button/Button.tsx` (https://youtrack.rit:8082/issue/IT-58)
 import styled from 'styled-components';
 
 type ButtonProps = {

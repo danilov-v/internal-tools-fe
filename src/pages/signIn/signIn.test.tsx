@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import { SignIn } from './signIn';
 
-jest.mock('components/LoginForm', () => ({
+jest.mock('./components/LoginForm', () => ({
   LoginForm: () => '<div>LoginForm Component</div>',
 }));
 

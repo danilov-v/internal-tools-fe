@@ -1,4 +1,4 @@
-import { UNIT_URL } from 'helpers/url';
+import { UNIT_URL } from 'configs/urls';
 import { fetchAPI } from 'services/fetch';
 import { Unit } from 'types/unit';
 

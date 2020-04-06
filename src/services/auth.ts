@@ -1,4 +1,4 @@
-import { LOGIN_URL } from 'helpers/url';
+import { LOGIN_URL } from 'configs/urls';
 import { fetchAPI } from 'services/fetch';
 import { LoginData } from 'types/auth';
 import { User } from 'types/user';

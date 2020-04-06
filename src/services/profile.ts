@@ -1,4 +1,4 @@
-import { PROFILE_URL } from 'helpers/url';
+import { PROFILE_URL } from 'configs/urls';
 import { fetchAPI } from 'services/fetch';
 import { User } from 'types/user';
 

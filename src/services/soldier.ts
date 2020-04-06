@@ -1,5 +1,5 @@
-import { SOLDIER_URL } from 'helpers/url';
-import { UNIT_ID } from 'helpers/constants';
+import { SOLDIER_URL } from 'configs/urls';
+import { UNIT_ID } from 'configs/constants';
 import { fetchAPI } from 'services/fetch';
 import { Soldier } from 'types/soldier';
 

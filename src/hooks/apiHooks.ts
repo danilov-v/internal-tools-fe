@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { getAllSoldiers, getSoldier } from 'services/soldier';
 import { getAllRanks, getRank } from 'services/rank';
-import { getAllUnits, getUnit } from 'services/unit';
+import { getAllUnits } from 'services/unit';
 import { Soldier } from 'types/soldier';
 import { Rank } from 'types/rank';
 import { Unit } from 'types/unit';
@@ -17,7 +17,7 @@ const useSoldiers = (unitId?: number): [Array<Soldier>, Function] => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [unitId]);
 
   useEffect(() => {
     fetchSoldiers();

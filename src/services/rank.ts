@@ -1,4 +1,4 @@
-import { RANK_URL } from 'helpers/url';
+import { RANK_URL } from 'configs/urls';
 import { fetchAPI } from 'services/fetch';
 import { Rank } from 'types/rank';
 

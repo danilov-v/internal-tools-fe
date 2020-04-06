@@ -5,7 +5,7 @@ import { Soldier } from 'types/soldier';
 import { Accordion } from 'components/Accordion';
 import { SoldiersTable } from './SoldiersTable';
 
-import { DivisionButton } from './SoldersList.style';
+import { DivisionButton } from './SoldiersList.style';
 
 type UnitPanelProps = {
   unit: Unit;
