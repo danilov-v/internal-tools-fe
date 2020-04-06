@@ -13,12 +13,6 @@ const StyledMain = styled.main`
   min-height: 100vh;
   padding-left: 4%;
   padding-right: 4%;
-
-  &::before {
-    content: '';
-    display: block;
-    height: 65px;
-  }
 `;
 
 const FullScreenRouter = styled(Router)`
