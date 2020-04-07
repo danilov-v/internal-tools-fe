@@ -1,10 +1,10 @@
 import React from 'react';
 import { RouteComponentProps } from '@reach/router';
-import { useModal } from 'hooks/uiHooks';
-import { useSoldiers, useUnits } from 'hooks/apiHooks';
+import { useDialog } from 'helpers/hooks/uiHooks';
+import { useSoldiers, useUnits } from 'helpers/hooks/apiHooks';
 import { Unit } from 'types/unit';
 import { UNIT_ID } from 'configs/constants';
-import { Modal } from 'components/Modal';
+import { Dialog } from 'components/dialogs/Dialog';
 import { Personnel } from 'types/personnel';
 import { Plat } from './Plat';
 
@@ -30,13 +30,13 @@ const getPlatSoldiers = (
 };
 
 export const SoldersList: React.FC<RouteComponentProps> = () => {
-  const [itemModalOpen, toggleModal] = useModal();
+  const [itemDialogOpen, toggleDialog] = useDialog();
   const [soldiers] = useSoldiers();
   const [allUnits] = useUnits();
   const coy = getUnitChild(allUnits);
 
   const onAddSoldierButtonClick = (): void => {
-    toggleModal();
+    toggleDialog();
   };
 
   return (
@@ -63,7 +63,7 @@ export const SoldersList: React.FC<RouteComponentProps> = () => {
         <S.AddSoldierButton onClick={onAddSoldierButtonClick} />
         <S.AddSoldierText>Добавить военнослужащего</S.AddSoldierText>
       </S.AddSoldierContainer>
-      <Modal isOpened={itemModalOpen} handleClose={() => toggleModal()} />
+      <Dialog isOpened={itemDialogOpen} handleClose={() => toggleDialog()} />
     </S.SoldiersList>
   );
 };

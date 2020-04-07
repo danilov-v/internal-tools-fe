@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ModalBackground = styled.div`
+export const DialogBackground = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -10,7 +10,7 @@ export const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
 `;
 
-export const ModalWrapper = styled.div`
+export const DialogWrapper = styled.div`
   position: absolute;
   top: calc(50% - 250px);
   left: calc(50% - 200px);

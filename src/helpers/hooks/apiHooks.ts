@@ -1,3 +1,4 @@
+// FIXME: should be replaced by redux slices
 import { useEffect, useState, useCallback } from 'react';
 
 import { UNIT_ID } from 'configs/constants';

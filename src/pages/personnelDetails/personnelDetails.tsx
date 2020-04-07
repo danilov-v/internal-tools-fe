@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps, Redirect } from '@reach/router';
 
-import { useSoldier } from 'hooks/apiHooks';
+import { useSoldier } from 'helpers/hooks/apiHooks';
 
 import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
 import { ReactComponent as DownIcon } from 'assets/icons/down.svg';

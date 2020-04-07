@@ -2,7 +2,7 @@ import React from 'react';
 
 import logoCaptioned from 'assets/logo_captioned.svg';
 import logo from 'assets/logo.svg';
-import * as S from './Logo.styles';
+import * as S from './Logo.style';
 
 type LogoProps = {
   size?: 'default' | 'small' | 'large';
