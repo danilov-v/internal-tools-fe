@@ -8,52 +8,46 @@ type HumburgerProps = {
 export const Header = styled.header`
   position: sticky;
   top: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
   z-index: 100;
-  min-height: 65px;
-  font-size: 16px;
   border-bottom: 2px solid #616262;
-  padding-bottom: 10px;
   background: linear-gradient(90deg, #44494b 0%, #4c5153 25%, #4c5153 100%);
 
   @media screen and (min-width: 768px) {
-    display: flex;
     align-items: flex-end;
+    justify-content: initial;
   }
 `;
 
-export const UserLogo = styled.div`
+export const Logo = styled.div`
   cursor: pointer;
-  @media screen and (max-width: 768px) {
-    position: absolute;
-    top: 20px;
-  }
 `;
 
 export const NavBar = styled.ul<HumburgerProps>`
   list-style-type: none;
   padding: 0;
-  display: ${({ expanded }) => (expanded ? 'block' : 'none')};
+  display: ${({ expanded }) => (expanded ? 'flex' : 'none')};
+  flex-direction: column;
   margin-top: 80px;
-  margin-bottom: 0;
 
   @media screen and (min-width: 768px) {
-    margin: 0;
     display: block;
+    flex: 1;
+    margin-top: 0;
   }
 `;
 
 export const NavItem = styled.li`
+  display: block;
   text-align: center;
-  margin-left: 40px;
-  display: inline-block;
+  margin-bottom: 20px;
 
-  @media screen and (max-width: 768px) {
-    display: block;
-    margin: 0;
-
-    &:not(:first-child) {
-      margin-top: 20px;
-    }
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+    margin-left: 40px;
+    margin-bottom: 0;
   }
 `;
 
@@ -73,8 +67,8 @@ export const NavLink = styled(Link)`
       display: block;
       position: absolute;
       top: -12px;
-      left: 40%;
-      width: 9px;
+      left: calc(50% - 5px);
+      width: 10px;
       height: 8px;
       background-color: #ffdc62;
       clip-path: polygon(50% 100%, 0 0, 100% 0);
@@ -83,9 +77,6 @@ export const NavLink = styled(Link)`
 `;
 
 export const Humburger = styled.div<HumburgerProps>`
-  position: absolute;
-  top: 20px;
-  right: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -123,12 +114,9 @@ export const Humburger = styled.div<HumburgerProps>`
 `;
 
 export const UserAvatar = styled.div`
-  position: absolute;
-  right: 70px;
-  top: 20px;
+  display: none;
 
   @media screen and (min-width: 768px) {
-    right: 0;
-    top: 25px;
+    display: block;
   }
 `;

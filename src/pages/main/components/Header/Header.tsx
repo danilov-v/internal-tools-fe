@@ -24,9 +24,9 @@ const Header: React.FC<{}> = () => {
 
   return (
     <S.Header>
-      <S.UserLogo>
+      <S.Logo>
         <Logo />
-      </S.UserLogo>
+      </S.Logo>
       <S.NavBar expanded={isExpanded}>
         <S.NavItem>
           <S.NavLink getProps={isActive} to="/personnel">

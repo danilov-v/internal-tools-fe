@@ -10,8 +10,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: linear-gradient(90deg, #44494b 0%, #4c5153 25%, #4c5153 100%);
     font-family: 'Muller', sans-serif;
-    min-height: 100vh;
-    width: 100%;
   }
 
   button,
