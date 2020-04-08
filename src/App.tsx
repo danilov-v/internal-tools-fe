@@ -10,13 +10,8 @@ import { SignIn } from 'pages/signIn/signIn';
 import { Main } from 'pages/main/main';
 
 const StyledMain = styled.main`
-  min-height: 100vh;
   padding-left: 4%;
   padding-right: 4%;
-`;
-
-const FullScreenRouter = styled(Router)`
-  min-height: 100vh;
 `;
 
 const App: React.FC = () => {
@@ -25,10 +20,10 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <StyledMain>
           <GlobalStyle />
-          <FullScreenRouter>
+          <Router>
             <SignIn path="/sign-in" />
             <Main path="/*" />
-          </FullScreenRouter>
+          </Router>
         </StyledMain>
       </ThemeProvider>
     </Provider>
