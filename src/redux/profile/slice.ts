@@ -1,7 +1,7 @@
 import { createSlice, SerializedError } from '@reduxjs/toolkit';
 
 import { User } from 'types/user';
-import { requestLogin, requestProfile } from './thunks';
+import { requestLogin, requestProfile, requestLogout } from './thunks';
 
 export type ProfileState = {
   profile: User | null;
@@ -59,6 +59,14 @@ const profileSlice = createSlice({
         isChecked: true,
         profile: null,
         error: action.error,
+      };
+    });
+
+    builder.addCase(requestLogout.fulfilled, (state, action) => {
+      return {
+        isChecked: true,
+        profile: null,
+        error: null,
       };
     });
   },

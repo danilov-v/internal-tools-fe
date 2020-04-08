@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Rank /> should render and match snapshot profile exist 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-AxjAm eJEiKT"
+    >
+      <img
+        alt="Rank"
+        class="sc-AxirZ cDVCzV"
+        src="lieutenant.svg"
+      />
+      <div
+        class="sc-AxiKw gThUmF"
+      >
+        <span>
+          admin
+        </span>
+        Gab
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<Rank /> should render null when profile empty 1`] = `
+<body>
+  <div />
+</body>
+`;

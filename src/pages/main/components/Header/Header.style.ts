@@ -5,6 +5,8 @@ type HumburgerProps = {
   expanded: boolean;
 };
 
+const LINE_COLOR = '#616262';
+
 export const Header = styled.header`
   position: sticky;
   top: 0;
@@ -12,7 +14,7 @@ export const Header = styled.header`
   justify-content: space-between;
   padding: 15px 0;
   z-index: 100;
-  border-bottom: 2px solid #616262;
+  border-bottom: 2px solid ${LINE_COLOR};
   background: linear-gradient(90deg, #44494b 0%, #4c5153 25%, #4c5153 100%);
 
   @media screen and (min-width: 768px) {
@@ -113,10 +115,34 @@ export const Humburger = styled.div<HumburgerProps>`
   }
 `;
 
-export const UserAvatar = styled.div`
+export const UserRank = styled.div`
   display: none;
 
   @media screen and (min-width: 768px) {
     display: block;
   }
+`;
+
+export const Actions = styled.div`
+  display: flex;
+  border-left: 2px solid ${LINE_COLOR};
+  margin-left: 20px;
+`;
+
+export const Action = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export const ActionIcon = styled.img`
+  width: 15px;
+  height: 15px;
 `;

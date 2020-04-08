@@ -1,15 +1,23 @@
 import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
-import 'jest-styled-components';
+import { Provider } from 'react-redux';
+
+import { getStore } from 'redux/store';
 
 import { Header } from './Header';
 
-describe('Header component', () => {
+describe('<Header />', () => {
   const getComponent = (): RenderResult => {
-    return render(<Header />);
+    const store = getStore();
+
+    return render(
+      <Provider store={store}>
+        <Header />
+      </Provider>,
+    );
   };
 
-  it('matches snapshot', () => {
+  it('should render and match snapshot', () => {
     expect(getComponent().baseElement).toMatchSnapshot();
   });
 });
