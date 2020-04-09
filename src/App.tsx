@@ -6,7 +6,6 @@ import { GlobalStyle } from 'globalStyle';
 import { getStore } from 'redux/store';
 
 import { theme } from 'configs/theme';
-import { SignIn } from 'pages/signIn/signIn';
 import { Main } from 'pages/main/main';
 
 const StyledMain = styled.main`
@@ -21,7 +20,6 @@ const App: React.FC = () => {
         <StyledMain>
           <GlobalStyle />
           <Router>
-            <SignIn path="/sign-in" />
             <Main path="/*" />
           </Router>
         </StyledMain>
