@@ -1,5 +1,6 @@
 import React from 'react';
 import { Personnel } from 'types/personnel';
+import { PERSONNEL_DETAILS } from 'configs/paths';
 
 import * as S from './SoldiersList.style';
 
@@ -14,7 +15,7 @@ export const SoldiersTable: React.FC<SoldiersTableProps> = ({ soldiers }) => {
         <S.SoldiersTableItem key={soldier.id}>
           <S.SoldierNumber>{i + 1}</S.SoldierNumber>
           <S.SoldierName
-            to={`/personnel-details/${soldier.id}`}
+            to={`${PERSONNEL_DETAILS}/${soldier.id}`}
           >{`${soldier.lastName} ${soldier.firstName} ${soldier.middleName}`}</S.SoldierName>
           <S.SoldierProms>
             <span>1</span>
