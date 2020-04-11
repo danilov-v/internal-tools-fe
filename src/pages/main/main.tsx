@@ -12,6 +12,7 @@ import {
   isAuthChecked as isAuthCheckedSelector,
   getProfileInfo,
 } from 'redux/profile/selectors';
+import { SIGN_IN, PERSONNEL, PERSONNEL_DETAILS } from 'configs/paths';
 
 import { SignIn } from 'pages/signIn/signIn';
 import { Soldiers } from 'pages/soldiers/soldiers';
@@ -21,16 +22,12 @@ import { Header } from './components/Header';
 import { LoadingScreen } from './components/LoadingScreen';
 import { NotFound } from './components/NotFound';
 
-const SIGN_IN_URL = '/sign-in';
-const PERSONNEL_URL = '/personnel';
-const PERSONNEL_DETAILS_URL = '/personnel-details/:id';
-
 const Main: React.FC<RouteComponentProps> = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const profileInfo = useSelector(getProfileInfo);
   const isAuthChecked = useSelector(isAuthCheckedSelector);
-  const isSignInPage = useMatch(SIGN_IN_URL);
+  const isSignInPage = useMatch(SIGN_IN);
 
   useEffect(() => {
     if (!isAuthChecked) {
@@ -43,12 +40,12 @@ const Main: React.FC<RouteComponentProps> = () => {
   }
 
   if (!isSignInPage && isAuthChecked && !profileInfo) {
-    navigate(SIGN_IN_URL);
+    navigate(SIGN_IN);
     return null;
   }
 
   if (isSignInPage && isAuthChecked && profileInfo) {
-    navigate(PERSONNEL_URL);
+    navigate(PERSONNEL);
     return null;
   }
 
@@ -57,10 +54,10 @@ const Main: React.FC<RouteComponentProps> = () => {
       {!isSignInPage && <Header />}
       <Router>
         <NotFound default />
-        <Redirect from="/" noThrow to={PERSONNEL_URL} />
-        <SignIn path={SIGN_IN_URL} />
-        <Soldiers path={PERSONNEL_URL} />
-        <PersonnelDetails path={PERSONNEL_DETAILS_URL} />
+        <Redirect from="/" noThrow to={PERSONNEL} />
+        <SignIn path={SIGN_IN} />
+        <Soldiers path={PERSONNEL} />
+        <PersonnelDetails path={`${PERSONNEL_DETAILS}/:id`} />
       </Router>
     </>
   );
