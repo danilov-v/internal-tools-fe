@@ -11,7 +11,7 @@ const VARIANTS = {
   contained: {
     background: {
       default: 'primaryGray',
-      primary: 'primaryGreen',
+      primary: 'secondaryGreen',
       secondary: 'primaryRed',
       yellow: 'primaryYellow',
     },

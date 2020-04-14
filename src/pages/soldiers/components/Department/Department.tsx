@@ -3,9 +3,9 @@ import { filter } from 'lodash';
 import { Unit } from 'types/unit';
 import { Personnel } from 'types/personnel';
 import { Accordion } from 'components/Accordion';
-import { SoldiersTable } from './SoldiersTable';
+import { SoldiersTable } from '../SoldiersTable/SoldiersTable';
 
-import { DivisionButton } from './SoldiersList.style';
+import { DivisionButton } from './Department.style';
 
 type UnitPanelProps = {
   unit: Unit;
@@ -31,7 +31,7 @@ export const Department: React.FC<UnitPanelProps> = ({ unit, soldiers }) => {
     <Accordion
       key={unit.id}
       isExpanded
-      render={renderDepartmentButton(unit.name)}
+      render={renderDepartmentButton(`${unit.name} отделение`)}
     >
       <SoldiersTable soldiers={getDepartmentSoldiers(unit.id, soldiers)} />
     </Accordion>

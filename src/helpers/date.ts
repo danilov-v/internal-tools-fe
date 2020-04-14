@@ -1,7 +1,9 @@
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
+export const DEFAULT_LOCALE = ru;
 export const FULL_DATE_FORMAT = 'd MMMM yyyy';
+export const ISO_DATE_FORMAT = 'yyyy-MM-dd';
 
 export const formatDate = (
   date: number | Date,

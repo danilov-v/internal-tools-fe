@@ -62,11 +62,10 @@ const profileSlice = createSlice({
       };
     });
 
-    builder.addCase(requestLogout.fulfilled, (state, action) => {
+    builder.addCase(requestLogout.fulfilled, () => {
       return {
+        ...initialState,
         isChecked: true,
-        profile: null,
-        error: null,
       };
     });
   },

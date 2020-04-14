@@ -7,6 +7,7 @@ type ContainerProps = {
     | 'flex-start'
     | 'space-around'
     | 'space-between';
+  align?: 'center' | 'flex-end' | 'flex-start' | 'baseline';
   mb: number;
   ml: number;
   mr: number;
@@ -20,6 +21,7 @@ type ContainerProps = {
 export const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: ${({ justify }) => justify};
+  align-items: ${({ align }) => align};
   margin-bottom: ${({ mb }) => mb}px;
   margin-left: ${({ ml }) => ml}px;
   margin-right: ${({ mr }) => mr}px;

@@ -24,6 +24,24 @@ export type PersonnelDetails = {
   unitId: number;
 };
 
+export type PersonnelFormData = {
+  comment?: string | null;
+  id?: number;
+  firstName: string;
+  lastName: string;
+  middleName: string;
+  calledAt: Date | null;
+  demobilizationAt: Date | null;
+  birthday: Date | null;
+  phone: string;
+  position: string;
+  unitName: string;
+  unitId: string;
+  platName: string;
+  rankId: string;
+  marriageStatus?: string;
+};
+
 export type PersonnelFilter = {
   unitId: number;
 };

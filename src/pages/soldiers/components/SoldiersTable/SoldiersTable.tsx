@@ -2,7 +2,7 @@ import React from 'react';
 import { Personnel } from 'types/personnel';
 import { PERSONNEL_DETAILS } from 'configs/paths';
 
-import * as S from './SoldiersList.style';
+import * as S from './SoldiersTable.style';
 
 type SoldiersTableProps = {
   soldiers: Personnel[];

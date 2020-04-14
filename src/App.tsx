@@ -2,11 +2,11 @@ import React from 'react';
 import { Router } from '@reach/router';
 import { Provider } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from 'globalStyle';
-import { getStore } from 'redux/store';
 
 import { theme } from 'configs/theme';
 import { Main } from 'pages/main/main';
+import { getStore } from 'redux/store';
+import { GlobalStyle } from './globalStyle';
 
 const StyledMain = styled.main`
   padding-left: 4%;

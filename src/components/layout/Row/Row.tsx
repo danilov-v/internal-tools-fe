@@ -6,6 +6,7 @@ const Row: React.FC<RowProps> = ({
   justify = 'flex-start',
   children = '',
   className = '',
+  align = 'flex-start',
   mb = 8,
   ml = 0,
   mr = 0,
@@ -18,6 +19,7 @@ const Row: React.FC<RowProps> = ({
   <S.Container
     className={className}
     justify={justify}
+    align={align}
     mb={mb}
     ml={ml}
     mr={mr}
@@ -39,6 +41,7 @@ type RowProps = {
     | 'flex-start'
     | 'space-around'
     | 'space-between';
+  align?: 'center' | 'flex-end' | 'flex-start' | 'baseline';
   mb?: number;
   ml?: number;
   mr?: number;
