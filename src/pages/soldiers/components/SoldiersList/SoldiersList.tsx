@@ -56,8 +56,13 @@ export const SoldersList: React.FC<SoldersListProps> = ({
     <S.SoldiersList>
       <S.SoldiersHeader>Рота информационных технологий</S.SoldiersHeader>
       <S.AddSoldierContainer>
-        <S.AddSoldierButton onClick={toggleCreateForm} />
-        <S.AddSoldierText>Добавить военнослужащего</S.AddSoldierText>
+        <S.AddSoldierButton
+          startIcon={<S.PlusIcon />}
+          variant="text"
+          onClick={toggleCreateForm}
+        >
+          Добавить военнослужащего
+        </S.AddSoldierButton>
       </S.AddSoldierContainer>
       {personnels.length === 0 ? (
         <S.NoSoldiersText>Пока нет военнослужащих.</S.NoSoldiersText>

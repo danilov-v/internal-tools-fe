@@ -21,7 +21,11 @@ const renderDepartmentButton = (title: string) => (
   toggle: Function,
   isExpanded: boolean,
 ): ReactElement => (
-  <DivisionButton expanded={isExpanded} onClick={(): void => toggle()}>
+  <DivisionButton
+    variant="text"
+    expanded={isExpanded}
+    onClick={(): void => toggle()}
+  >
     {title}
   </DivisionButton>
 );

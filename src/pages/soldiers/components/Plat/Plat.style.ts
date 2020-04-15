@@ -1,12 +1,9 @@
 import styled from 'styled-components';
-import { DropDownButton } from 'components/Button';
+import { DropDownButton } from 'components/buttons/Button';
 
 export const PlatButton = styled(DropDownButton)`
-  display: block;
-  border: none;
   letter-spacing: 2px;
   text-transform: uppercase;
-  cursor: pointer;
   margin-left: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
