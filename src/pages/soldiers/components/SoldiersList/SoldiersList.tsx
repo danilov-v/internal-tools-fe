@@ -5,7 +5,6 @@ import { Unit } from 'types/unit';
 import { UNIT_ID } from 'configs/constants';
 
 import { requestPersonnel } from 'redux/personnel/thunks';
-import { requestUnits } from 'redux/unit/thunks';
 
 import { getPersonnel } from 'redux/personnel/selectors';
 import { getUnits } from 'redux/unit/selectors';
@@ -49,7 +48,6 @@ export const SoldersList: React.FC<SoldersListProps> = ({
 
   useEffect(() => {
     dispatch(requestPersonnel(UNIT_ID));
-    dispatch(requestUnits());
   }, [dispatch]);
 
   return (

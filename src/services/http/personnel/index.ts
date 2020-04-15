@@ -1,12 +1,7 @@
 import { PERSONNEL } from 'configs/urls';
-import {
-  Personnel,
-  PersonnelDetails,
-  PersonnelFormData,
-  PersonnelFilter,
-} from 'types/personnel';
+import { Personnel, PersonnelDetails, PersonnelFilter } from 'types/personnel';
 import { http } from 'services/http';
-import { formatPersonnelDetails, formatPersonnelFormData } from './formatters';
+import { formatPersonnelDetails } from './formatters';
 
 export const fetchPersonnel = async (
   filter: PersonnelFilter,
@@ -19,8 +14,11 @@ export const fetchPersonnelDetails = async (
   http.get(`${PERSONNEL}/${personnelId}`).then(formatPersonnelDetails);
 
 export const createPersonnel = async (
-  personnelDetails: PersonnelFormData,
+  personnelDetails: PersonnelDetails,
+): Promise<PersonnelDetails> => http.post(PERSONNEL, personnelDetails);
+
+export const updatePersonnel = async (
+  personnelId: number,
+  personnelDetails: PersonnelDetails,
 ): Promise<PersonnelDetails> =>
-  http
-    .post(PERSONNEL, formatPersonnelFormData(personnelDetails))
-    .then(formatPersonnelDetails);
+  http.put(`${PERSONNEL}/${personnelId}`, personnelDetails);

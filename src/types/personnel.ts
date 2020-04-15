@@ -25,20 +25,21 @@ export type PersonnelDetails = {
 };
 
 export type PersonnelFormData = {
+  birthday: Date | null;
+  calledAt: Date | null;
   comment?: string | null;
-  id?: number;
+  demobilizationAt: Date | null;
   firstName: string;
+  id?: number;
   lastName: string;
   middleName: string;
-  calledAt: Date | null;
-  demobilizationAt: Date | null;
-  birthday: Date | null;
   phone: string;
   position: string;
+  rank?: string;
+  rankId: string;
   unitName: string;
   unitId: string;
   platName: string;
-  rankId: string;
   marriageStatus?: string;
 };
 

@@ -15,15 +15,6 @@ export const PlusIcon = styled(Plus)<TypedComponent>`
   }
 `;
 
-export const Avatar = styled.div`
-  align-items: center;
-  border: solid 2px ${({ theme }) => theme.lightGray};
-  display: flex;
-  height: 80px;
-  justify-content: center;
-  width: 80px;
-`;
-
 export const Block = styled(Row).attrs({
   justify: 'space-between',
   mb: 6,
@@ -44,21 +35,6 @@ export const Container = styled.div`
   margin: 80px auto;
 `;
 
-export const Initials = styled(Text)`
-  color: ${({ theme }) => theme.primaryWhite};
-  font-size: 30px;
-  font-weight: 600;
-`;
-
-export const LastName = styled(Text).attrs({
-  mb: 6,
-})`
-  color: ${({ theme }) => theme.primaryWhite};
-  font-size: 28px;
-  font-weight: 600;
-  text-transform: uppercase;
-`;
-
 export const NoteComment = styled(Text).attrs({
   variant: 'secondary',
 })`
@@ -72,16 +48,6 @@ export const NoteName = styled(Text).attrs({
   color: ${({ theme, type }) =>
     type === 'promotion' ? theme.primaryGreen : theme.primaryYellow};
   font-size: 16px;
-`;
-
-export const Rank = styled(Text).attrs({
-  variant: 'secondary',
-})``;
-
-export const RestName = styled(Text).attrs({
-  mb: 6,
-})`
-  font-size: 20px;
 `;
 
 export const Title = styled(Text)<TypedComponent>`
