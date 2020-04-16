@@ -1,4 +1,4 @@
-import { trim, isEmpty, flow, isDate } from 'lodash';
+import { trim, isEmpty, flow, each } from 'lodash';
 import { PersonnelFormData } from 'types/personnel';
 import { Validator, ValidationErrors } from 'types/validator';
 
@@ -39,32 +39,11 @@ export class PersonnelFormValidator implements Validator<PersonnelFormData> {
   validate = (values: PersonnelFormData): ValidationErrors => {
     const errors: ValidationErrors = {};
 
-    if (isStringEmpty(values.firstName))
-      errors.firstName = VALIDATION_ERRORS.firstName;
-
-    if (isStringEmpty(values.lastName))
-      errors.lastName = VALIDATION_ERRORS.lastName;
-
-    if (isStringEmpty(values.middleName))
-      errors.middleName = VALIDATION_ERRORS.middleName;
-
-    if (isStringEmpty(values.middleName))
-      errors.middleName = VALIDATION_ERRORS.middleName;
-
-    if (isStringEmpty(values.phone)) errors.phone = VALIDATION_ERRORS.phone;
-
-    if (isStringEmpty(values.unitName))
-      errors.unitName = VALIDATION_ERRORS.unitName;
-
-    if (isStringEmpty(values.platName))
-      errors.platName = VALIDATION_ERRORS.platName;
-
-    if (!isDate(values.calledAt)) errors.calledAt = VALIDATION_ERRORS.calledAt;
-
-    if (!isDate(values.demobilizationAt))
-      errors.demobilizationAt = VALIDATION_ERRORS.demobilizationAt;
-
-    if (!isDate(values.birthday)) errors.birthday = VALIDATION_ERRORS.birthday;
+    each(values, (value, key) => {
+      if (isStringEmpty(value)) {
+        errors[key] = VALIDATION_ERRORS[key];
+      }
+    });
 
     this.errors = errors;
 

@@ -8,6 +8,7 @@ import {
 } from './Input.style';
 
 const Input: React.FC<InputProps> = ({
+  innerRef,
   align = 'left',
   className = '',
   color = 'primary',
@@ -30,6 +31,7 @@ const Input: React.FC<InputProps> = ({
   <Container>
     {label && <label htmlFor={id}>{label}</label>}
     <StyledInput
+      ref={innerRef}
       align={align}
       className={className}
       color={color}
@@ -72,6 +74,7 @@ export interface InputProps extends StyledInputProps {
   value?: string;
   variant?: 'default' | 'outlined' | 'primary';
   warn?: boolean;
+  innerRef?: any;
 }
 
 export { Input };

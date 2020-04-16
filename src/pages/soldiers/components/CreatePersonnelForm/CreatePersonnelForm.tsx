@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { find, map } from 'lodash';
+import { find, map, parseInt } from 'lodash';
+import { addYears, subDays, format } from 'date-fns';
 import { useSelector, useDispatch } from 'react-redux';
 import { RouteComponentProps } from '@reach/router';
-import { addYears, subDays } from 'date-fns';
 // selectors
 import { getRanks } from 'redux/rank/selectors';
 import { getUnits } from 'redux/unit/selectors';
@@ -12,9 +12,9 @@ import { requestUnits } from 'redux/unit/thunks';
 import { requestRank } from 'redux/rank/thunks';
 // components
 import { Button } from 'components/buttons/Button';
-import { Input } from 'components/Input';
+import { Input } from 'components/inputs/Input';
+import { DateInput } from 'components/inputs/DateInput';
 import { Select } from 'components/Select';
-import { DatePicker } from 'components/DatePicker';
 import { Column, Row } from 'components/layout';
 // types
 import { PersonnelFormData } from 'types/personnel';
@@ -39,16 +39,16 @@ const DEFAULT_FORM_DATA = {
   firstName: '',
   lastName: '',
   middleName: '',
-  calledAt: null,
-  demobilizationAt: null,
-  birthday: null,
+  calledAt: '',
+  demobilizationAt: '',
+  birthday: '',
   phone: '',
   position: POSITIONS.OPERATOR,
   marriageStatus: 'холост',
   unitName: '',
   platName: '',
   rankId: '18',
-  unitId: '',
+  unitId: 'unset',
 };
 
 const validator = new PersonnelFormValidator();
@@ -82,16 +82,23 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
     onChange(field, e.currentTarget.value);
   };
 
-  const onChangeDate = (dateField: keyof PersonnelFormData) => (
-    date: Date,
-  ): void => onChange(dateField, date);
+  const onChangeCalledAt = (
+    e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
+  ): void => {
+    const calledAt = e.currentTarget.value;
 
-  const onChangeCalledAt = (date: Date): void => {
-    if (date !== null) {
-      onChange('calledAt', date);
-      onChange('demobilizationAt', subDays(addYears(date, 1), 1));
+    if (calledAt.length === 10) {
+      const [day, month, year] = calledAt.split('-').map(parseInt);
+
+      const demobilizationAt = format(
+        addYears(subDays(new Date(year, month - 1, day), 1), 1),
+        'dd-MM-yyyy',
+      );
+
+      onChange('calledAt', calledAt);
+      onChange('demobilizationAt', demobilizationAt);
     } else {
-      onChange('calledAt', date);
+      onChange('calledAt', calledAt);
     }
   };
 
@@ -225,12 +232,12 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
           <S.Label>Дата призыва:</S.Label>
-          <DatePicker
+          <DateInput
             variant="primary"
-            onChangeDate={onChangeCalledAt}
-            selected={values.calledAt}
-            placeholder="28 мая 2019"
+            id="calledAt"
             name="calledAt"
+            onChange={onChangeCalledAt}
+            value={values.calledAt}
             align="right"
             invalid={errorsShown}
             errorMessage={errors.calledAt}
@@ -238,12 +245,12 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
           <S.Label>Дата дембеля:</S.Label>
-          <DatePicker
+          <DateInput
             variant="primary"
+            id="demobilizationAt"
             name="demobilizationAt"
-            onChangeDate={onChangeDate('demobilizationAt')}
-            selected={values.demobilizationAt}
-            placeholder="27 мая 2020"
+            onChange={handleInput('demobilizationAt')}
+            value={values.demobilizationAt}
             align="right"
             invalid={errorsShown}
             errorMessage={errors.demobilizationAt}
@@ -251,12 +258,12 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
           <S.Label>Дата рождения:</S.Label>
-          <DatePicker
+          <DateInput
             variant="primary"
+            id="birthday"
             name="birthday"
-            onChangeDate={onChangeDate('birthday')}
-            selected={values.birthday}
-            placeholder="13 мая 1995"
+            onChange={handleInput('birthday')}
+            value={values.birthday}
             align="right"
             invalid={errorsShown}
             errorMessage={errors.birthday}
@@ -289,7 +296,7 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
             align="right"
             placeholder="1"
             onChange={handleInput('platName')}
-            max="4"
+            max="5"
             min="1"
             invalid={errorsShown}
             errorMessage={errors.platName}
@@ -305,7 +312,7 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
             align="right"
             placeholder="1"
             onChange={handleInput('unitName')}
-            max="3"
+            max="5"
             min="1"
             invalid={errorsShown}
             errorMessage={errors.unitName}

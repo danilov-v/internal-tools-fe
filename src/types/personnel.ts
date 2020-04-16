@@ -30,9 +30,9 @@ export type PersonnelFormData = {
   firstName: string;
   lastName: string;
   middleName: string;
-  calledAt: Date | null;
-  demobilizationAt: Date | null;
-  birthday: Date | null;
+  calledAt: string;
+  demobilizationAt: string;
+  birthday: string;
   phone: string;
   position: string;
   unitName: string;
