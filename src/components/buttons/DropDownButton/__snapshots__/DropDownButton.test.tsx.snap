@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropDownButton component Should render and match snapshot 1`] = `
+<body>
+  <div>
+    <button
+      class="sc-AxjAm dGijUn"
+      color="default"
+      name=""
+      type="button"
+    >
+      <span
+        class="sc-AxirZ cXnwHz"
+      />
+      <svg
+        data-testid="down-svg"
+      >
+        down.svg
+      </svg>
+    </button>
+  </div>
+</body>
+`;

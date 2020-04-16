@@ -2,7 +2,7 @@ import React, { MouseEvent, ReactNode } from 'react';
 
 import * as S from './Button.style';
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   children = '',
   className = '',
   color = 'default',
@@ -33,7 +33,7 @@ const Button: React.FC<ButtonProps> = ({
   </S.Container>
 );
 
-type ButtonProps = {
+export type ButtonProps = {
   className?: string;
   color?: 'default' | 'primary' | 'secondary' | 'yellow';
   disabled?: boolean;
@@ -44,6 +44,5 @@ type ButtonProps = {
   startIcon?: ReactNode;
   type?: 'button' | 'submit' | 'reset';
   variant?: 'contained' | 'outlined' | 'text';
+  children?: React.ReactNode;
 };
-
-export { Button };
