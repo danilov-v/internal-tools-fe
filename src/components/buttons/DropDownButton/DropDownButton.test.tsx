@@ -1,19 +1,16 @@
 import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
-import { Button } from 'components/buttons/Button';
-import { withDropDownIndicator } from './withDropDownIndicator';
+import { DropDownButton } from './DropDownButton';
 
 const getComponent = (props = {}): RenderResult => {
   const parsedProps = {
     ...props,
   };
 
-  const DropDownButton = withDropDownIndicator(Button);
-
   return render(<DropDownButton {...parsedProps} />);
 };
 
-describe('withDropDownIndicator hight order component', () => {
+describe('DropDownButton component', () => {
   it('Should render and match snapshot', () => {
     expect(getComponent().baseElement).toMatchSnapshot();
   });

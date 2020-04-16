@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DropDownButton } from 'components/buttons/Button';
+import { DropDownButton } from 'components/buttons/DropDownButton';
 
 export const PlatButton = styled(DropDownButton)`
   letter-spacing: 2px;
