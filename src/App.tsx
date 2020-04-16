@@ -1,5 +1,5 @@
 import React from 'react';
-import { Location } from '@reach/router';
+import { Router } from '@reach/router';
 import { Provider } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
 
@@ -19,7 +19,9 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <StyledMain>
           <GlobalStyle />
-          <Location>{props => <AppRouter {...props} />}</Location>
+          <Router>
+            <AppRouter path="/*" />
+          </Router>
         </StyledMain>
       </ThemeProvider>
     </Provider>

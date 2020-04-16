@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react';
-import { Router, LocationContext } from '@reach/router';
+import {
+  RouteComponentProps,
+  Router,
+  useLocation,
+  useNavigate,
+} from '@reach/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { SIGN_IN, PERSONNEL } from 'configs/paths';
 
@@ -14,8 +19,9 @@ import { Main } from 'pages/main/main';
 
 import { LoadingScreen } from 'components/LoadingScreen';
 
-const AppRouter: React.FC<LocationContext> = props => {
-  const { location, navigate } = props;
+const AppRouter: React.FC<RouteComponentProps> = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const profileInfo = useSelector(getProfileInfo);

@@ -1,8 +1,12 @@
 import { createAsyncThunk, Dispatch } from '@reduxjs/toolkit';
 import { find } from 'lodash';
+
+import { UNIT_ID } from 'configs/constants';
+import { formatPersonnelFormData } from 'helpers/formatters/personnel';
+import { PLAT_TYPE_ID, DEP_TYPE_ID } from 'helpers/unit';
+import { requestPersonnel } from 'redux/personnel/thunks';
 import { RootStore } from 'redux/store.types';
 import { getUnits } from 'redux/unit/selectors';
-import { requestPersonnel } from 'redux/personnel/thunks';
 import { requestUnits } from 'redux/unit/thunks';
 import {
   fetchPersonnelDetails,
@@ -11,10 +15,7 @@ import {
 } from 'services/http/personnel';
 import { createUnit } from 'services/http/unit';
 import { Unit } from 'types/unit';
-import { PersonnelFormData } from 'types/personnel';
-import { PLAT_TYPE_ID, DEP_TYPE_ID } from 'helpers/unit';
-import { UNIT_ID } from 'configs/constants';
-import { formatPersonnelFormData } from 'helpers/formatters/personnel';
+import { PersonnelFormData, PersonnelDetails } from 'types/personnel';
 
 type ThunkAPI = {
   state: RootStore;
@@ -58,7 +59,7 @@ export const requestPersonnelDetails = createAsyncThunk(
 );
 
 export const createPersonnelDetails = createAsyncThunk<
-  any,
+  PersonnelDetails,
   PersonnelFormData,
   ThunkAPI
 >('personnelDetails/create', async (formData, thunkAPI) => {
@@ -85,7 +86,7 @@ export const createPersonnelDetails = createAsyncThunk<
 });
 
 export const editPersonnelDetails = createAsyncThunk<
-  any,
+  PersonnelDetails,
   PersonnelFormData,
   ThunkAPI
 >('personnelDetails/edit', async (formData, thunkAPI) => {
