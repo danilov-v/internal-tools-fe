@@ -1,11 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { Unit } from 'types/unit';
+import { UnitState } from './types';
 import { requestUnits } from './thunks';
-
-export type UnitState = {
-  units: Unit[];
-};
 
 const initialState: UnitState = {
   units: [],

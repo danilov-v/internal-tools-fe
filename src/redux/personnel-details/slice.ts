@@ -1,11 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { PersonnelDetails } from 'types/personnel';
+import { PersonnelDetailsState } from './types';
 import { requestPersonnelDetails } from './thunks';
-
-export type PersonnelDetailsState = {
-  personnelDetails: PersonnelDetails | null;
-};
 
 const initialState: PersonnelDetailsState = {
   personnelDetails: null,
@@ -14,7 +10,13 @@ const initialState: PersonnelDetailsState = {
 const personnelDetailsSlice = createSlice({
   name: 'personnelDetails',
   initialState,
-  reducers: {},
+  reducers: {
+    purge: () => {
+      return {
+        ...initialState,
+      };
+    },
+  },
   extraReducers: builder => {
     builder.addCase(requestPersonnelDetails.fulfilled, (state, action) => {
       return {
@@ -25,4 +27,6 @@ const personnelDetailsSlice = createSlice({
   },
 });
 
-export { personnelDetailsSlice };
+const { purge } = personnelDetailsSlice.actions;
+
+export { personnelDetailsSlice, purge };

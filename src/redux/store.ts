@@ -1,12 +1,10 @@
 import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
-import { profileSlice, ProfileState } from './profile/slice';
-import { personnelSlice, PersonnelState } from './personnel/slice';
-import { rankSlice, RankState } from './rank/slice';
-import { unitSlice, UnitState } from './unit/slice';
-import {
-  personnelDetailsSlice,
-  PersonnelDetailsState,
-} from './personnel-details/slice';
+import { profileSlice } from './profile/slice';
+import { personnelSlice } from './personnel/slice';
+import { rankSlice } from './rank/slice';
+import { unitSlice } from './unit/slice';
+import { personnelDetailsSlice } from './personnel-details/slice';
+import { OptionalRootStore } from './store.types';
 
 export const getStore = (initialState?: OptionalRootStore): EnhancedStore =>
   configureStore({
@@ -19,13 +17,3 @@ export const getStore = (initialState?: OptionalRootStore): EnhancedStore =>
     },
     preloadedState: initialState,
   });
-
-export type RootStore = {
-  profile: ProfileState;
-  personnel: PersonnelState;
-  rank: RankState;
-  unit: UnitState;
-  personnelDetails: PersonnelDetailsState;
-};
-
-export type OptionalRootStore = Partial<RootStore>;

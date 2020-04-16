@@ -19,7 +19,6 @@ export type PersonnelDetails = {
   middleName: string;
   phone: string;
   position: string;
-  rank?: string;
   rankId: number;
   unitId: number;
 };

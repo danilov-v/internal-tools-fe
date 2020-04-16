@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import { isObject } from 'lodash';
-import { RouteComponentProps } from '@reach/router';
-import { useSelector, useDispatch } from 'react-redux';
+import { RouteComponentProps, useParams } from '@reach/router';
+import { useDispatch } from 'react-redux';
 // helpers
 import { useDialog } from 'helpers/hooks/uiHooks';
+// actions
+import { purge } from 'redux/personnel-details/slice';
 // thunks
 import { requestPersonnelDetails } from 'redux/personnel-details/thunks';
-// selectors
-import { getPersonnelDetails } from 'redux/personnel-details/selectors';
 // assets
 import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
 import { ReactComponent as DownIcon } from 'assets/icons/down.svg';
@@ -25,32 +24,23 @@ import { PersonnelInfo } from './components/PersonnelInfo';
 
 import * as S from './personnelDetails.style';
 
-interface PersonnelDetailsProps extends RouteComponentProps {
-  id?: string;
-}
-
-const PersonnelDetails: React.FC<PersonnelDetailsProps> = ({ id }) => {
+const PersonnelDetails: React.FC<RouteComponentProps> = () => {
   const dispatch = useDispatch();
-  const personnelDetails = useSelector(getPersonnelDetails);
+  const params = useParams();
   const [isOpen, toggleDialog] = useDialog();
 
   useEffect(() => {
-    dispatch(requestPersonnelDetails(parseInt(id || '0', 10)));
-  }, []);
-  console.log('personol details');
+    dispatch(requestPersonnelDetails(params.id));
 
-  if (!isObject(personnelDetails)) {
-    // TODO: Loading screen here
-    return null;
-  }
+    return () => {
+      dispatch(purge());
+    };
+  }, []);
 
   return (
     <S.Container>
       <>
-        <PersonnelInfo
-          personnelDetails={personnelDetails}
-          onToggleDialog={toggleDialog}
-        />
+        <PersonnelInfo onToggleDialog={toggleDialog} />
 
         <Column>
           <Row>
@@ -166,11 +156,7 @@ const PersonnelDetails: React.FC<PersonnelDetailsProps> = ({ id }) => {
         </Row>
 
         <Dialog isOpened={isOpen}>
-          <PersonnelForm
-            onFormClose={toggleDialog}
-            personnelDetails={personnelDetails}
-            isEdit
-          />
+          <PersonnelForm onFormClose={toggleDialog} isEdit />
         </Dialog>
       </>
     </S.Container>

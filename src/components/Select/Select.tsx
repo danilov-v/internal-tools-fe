@@ -30,7 +30,7 @@ const Select: React.FC<SelectProps> = ({
 
 type OptionType = {
   name: string;
-  value: string;
+  value: string | number;
 };
 
 type SelectProps = {
@@ -40,7 +40,7 @@ type SelectProps = {
   onChange: (e: React.FormEvent<HTMLSelectElement>) => void;
   options?: Array<OptionType>;
   placeholder?: string;
-  value?: string;
+  value?: string | number;
 };
 
 export { Select };

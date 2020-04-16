@@ -1,11 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { Personnel } from 'types/personnel';
+import { PersonnelState } from './types';
 import { requestPersonnel } from './thunks';
-
-export type PersonnelState = {
-  personnel: Personnel[];
-};
 
 const initialState: PersonnelState = {
   personnel: [],

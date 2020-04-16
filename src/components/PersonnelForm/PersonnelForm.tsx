@@ -1,14 +1,16 @@
-import React, { useMemo } from 'react';
-import { find, map, partial } from 'lodash';
+import React from 'react';
+import { map } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
 import { addYears, subDays } from 'date-fns';
 // selectors
 import { getRanks } from 'redux/rank/selectors';
-import { getUnits } from 'redux/unit/selectors';
+import { getPersonnelDetailsFormData } from 'redux/personnel-details/selectors';
 // thunks
-import { requestPersonnelDetails } from 'redux/personnel-details/thunks';
-import { requestPersonnel } from 'redux/personnel/thunks';
-import { requestUnits } from 'redux/unit/thunks';
+import {
+  createPersonnelDetails,
+  editPersonnelDetails,
+} from 'redux/personnel-details/thunks';
+
 // components
 import { Button } from 'components/buttons/Button';
 import { Input } from 'components/Input';
@@ -16,20 +18,10 @@ import { Select } from 'components/Select';
 import { DatePicker } from 'components/DatePicker';
 import { Column, Row } from 'components/layout';
 // types
-import { PersonnelFormData, PersonnelDetails } from 'types/personnel';
-// services
-import { createPersonnel, updatePersonnel } from 'services/http/personnel';
-import { createUnit } from 'services/http/unit';
-// helpers
-import {
-  formatPersonnelDetailsToFormData,
-  formatPersonnelFormData,
-} from 'helpers/formatters/personnel';
+import { PersonnelFormData } from 'types/personnel';
+
 import { useForm } from 'helpers/hooks/useForm';
-import { PLAT_TYPE_ID, DEP_TYPE_ID } from 'helpers/unit';
 import * as POSITIONS from 'helpers/position';
-// constants
-import { UNIT_ID } from 'configs/constants';
 
 import { PersonnelFormValidator } from './validators/personnelForm';
 
@@ -37,46 +29,26 @@ import * as S from './PersonnelForm.style';
 
 type PersonnelFormType = {
   onFormClose: () => void;
-  personnelDetails?: PersonnelDetails;
-  isEdit?: true;
+  isEdit?: boolean;
 };
-
-const DEFAULT_PERSONNEL = {
-  firstName: '',
-  lastName: '',
-  middleName: '',
-  calledAt: '2020-04-10',
-  demobilizationAt: '2021-04-09',
-  birthday: '1995-04-01',
-  phone: '',
-  position: POSITIONS.OPERATOR,
-  marriageStatus: 'холост',
-  rankId: 0,
-  unitId: 0,
-} as PersonnelDetails;
 
 const validator = new PersonnelFormValidator();
 
-const PersonnelForm: React.FC<PersonnelFormType> = ({
+export const PersonnelForm = ({
   onFormClose,
-  isEdit,
-  personnelDetails = DEFAULT_PERSONNEL,
-}) => {
+  isEdit = false,
+}: PersonnelFormType): JSX.Element => {
   const dispatch = useDispatch();
   const ranks = useSelector(getRanks);
-  const units = useSelector(getUnits);
-  const initialFormData = useMemo(
-    () => formatPersonnelDetailsToFormData(personnelDetails, units, ranks),
-    [personnelDetails, units, ranks],
-  );
+  const formData = useSelector(getPersonnelDetailsFormData);
 
   const { onChange, values, errorsShown, errors, validateForm } = useForm<
     PersonnelFormData
-  >(initialFormData, validator);
+  >(formData, validator);
 
   const soldierRanksOptions = ranks
     .filter(rank => rank.value < 70)
-    .map(({ name, id }) => ({ name, value: `${id}` }));
+    .map(({ name, id }) => ({ name, value: id }));
 
   const solderPositionsOptions = map(POSITIONS, pos => ({
     name: pos,
@@ -107,49 +79,13 @@ const PersonnelForm: React.FC<PersonnelFormType> = ({
   ): Promise<void> => {
     e.preventDefault();
     if (validateForm()) {
-      const { platName, unitName } = values;
-      const httpMethod =
-        isEdit && personnelDetails
-          ? partial(updatePersonnel, personnelDetails.id || 0)
-          : createPersonnel;
+      if (isEdit) {
+        dispatch(editPersonnelDetails(values));
+      } else {
+        dispatch(createPersonnelDetails(values));
+      }
 
-      const plat =
-        find(units, {
-          name: platName,
-          parentUnit: UNIT_ID,
-          typeId: PLAT_TYPE_ID,
-        }) ||
-        (await createUnit({
-          name: platName,
-          parentUnit: UNIT_ID,
-          typeId: PLAT_TYPE_ID,
-        }));
-
-      const unit =
-        find(units, {
-          name: unitName,
-          parentUnit: plat.id,
-          typeId: DEP_TYPE_ID,
-        }) ||
-        (await createUnit({
-          name: unitName,
-          parentUnit: plat.id,
-          typeId: DEP_TYPE_ID,
-        }));
-
-      httpMethod(formatPersonnelFormData({ ...values, unitId: `${unit.id}` }))
-        .then(() => {
-          if (isEdit && personnelDetails) {
-            dispatch(requestPersonnelDetails(personnelDetails.id || 0));
-          } else {
-            dispatch(requestPersonnel(UNIT_ID));
-          }
-          dispatch(requestUnits());
-
-          return null;
-        })
-        .then(onFormClose)
-        .catch(console.log);
+      onFormClose();
     }
   };
 
@@ -352,5 +288,3 @@ const PersonnelForm: React.FC<PersonnelFormType> = ({
     </S.Form>
   );
 };
-
-export { PersonnelForm };

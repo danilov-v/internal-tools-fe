@@ -1,32 +1,21 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Column, Divider, Row, Text } from 'components/layout';
 import { Button } from 'components/buttons/Button';
-import { PersonnelDetails } from 'types/personnel';
+
 import { formatDate } from 'helpers/date';
 
-import { formatPersonnelDetailsToFormData } from 'helpers/formatters/personnel';
-import { useSelector } from 'react-redux';
-import { getRanks } from 'redux/rank/selectors';
-import { getUnits } from 'redux/unit/selectors';
+import { getPersonnelDetailsFormData } from 'redux/personnel-details/selectors';
+
 import * as S from './PersonnelInfo.style';
 
 type ComponentProps = {
-  personnelDetails: PersonnelDetails;
   onToggleDialog: () => void;
 };
 
-export const PersonnelInfo: React.FC<ComponentProps> = ({
-  personnelDetails,
-  onToggleDialog,
-}) => {
-  const ranks = useSelector(getRanks);
-  const units = useSelector(getUnits);
-  const personnelFormData = formatPersonnelDetailsToFormData(
-    personnelDetails,
-    units,
-    ranks,
-  );
+export const PersonnelInfo: React.FC<ComponentProps> = ({ onToggleDialog }) => {
+  const personnelFormData = useSelector(getPersonnelDetailsFormData);
 
   if (!personnelFormData) return null;
 

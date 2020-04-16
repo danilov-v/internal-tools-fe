@@ -1,10 +1,10 @@
 import React from 'react';
-import { Router } from '@reach/router';
+import { Location } from '@reach/router';
 import { Provider } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
 
 import { theme } from 'configs/theme';
-import { Main } from 'pages/main/main';
+import { AppRouter } from 'router/AppRouter';
 import { getStore } from 'redux/store';
 import { GlobalStyle } from './globalStyle';
 
@@ -19,9 +19,7 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <StyledMain>
           <GlobalStyle />
-          <Router>
-            <Main path="/*" />
-          </Router>
+          <Location>{props => <AppRouter {...props} />}</Location>
         </StyledMain>
       </ThemeProvider>
     </Provider>
