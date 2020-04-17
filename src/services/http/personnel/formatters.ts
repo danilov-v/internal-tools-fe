@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { PersonnelDetails, PersonnelFormData } from 'types/personnel';
-import { formatDate, formatDateStringToISO } from 'helpers/date';
+import { formatDate, formatLocaleDateStringToISO } from 'helpers/date';
 
 export const formatPersonnelDetails = ({
   data: personnel,
@@ -26,9 +26,9 @@ export const formatPersonnelFormData = (
 
   return {
     ...rest,
-    calledAt: formatDateStringToISO(calledAt),
-    demobilizationAt: formatDateStringToISO(calledAt),
-    birthday: formatDateStringToISO(birthday),
+    calledAt: formatLocaleDateStringToISO(calledAt),
+    demobilizationAt: formatLocaleDateStringToISO(demobilizationAt),
+    birthday: formatLocaleDateStringToISO(birthday),
     rankId: +rankId,
     unitId: +unitId,
   };

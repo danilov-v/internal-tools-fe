@@ -24,9 +24,14 @@ export const formatDate = (
   });
 };
 
-export const formatDateStringToISO = (date: string): string =>
-  date
-    .split('-')
-    .map(parseInt)
-    .reverse()
-    .join('-');
+export const formatLocaleDateStringToISO = (dateStr: string): string => {
+  return formatDate(
+    new Date(
+      ...(dateStr
+        .split('-')
+        .map((number, i) => (i === 1 ? parseInt(number) - 1 : parseInt(number)))
+        .reverse() as [number, number, number]),
+    ),
+    ISO_DATE_FORMAT,
+  );
+};
