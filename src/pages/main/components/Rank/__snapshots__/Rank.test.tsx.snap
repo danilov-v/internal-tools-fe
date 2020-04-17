@@ -12,7 +12,7 @@ exports[`<Rank /> should render and match snapshot profile exist 1`] = `
         src="lieutenant.svg"
       />
       <div
-        class="sc-AxiKw gThUmF"
+        class="sc-AxiKw eEODNF"
       >
         <span>
           admin
