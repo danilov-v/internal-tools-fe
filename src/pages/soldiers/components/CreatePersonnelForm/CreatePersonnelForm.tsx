@@ -14,6 +14,7 @@ import { requestRank } from 'redux/rank/thunks';
 import { Button } from 'components/buttons/Button';
 import { Input } from 'components/inputs/Input';
 import { DateInput } from 'components/inputs/DateInput';
+import { PhoneInput } from 'components/inputs/PhoneInput';
 import { Select } from 'components/Select';
 import { Column, Row } from 'components/layout';
 // types
@@ -217,7 +218,7 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
           <S.Label>Телефон:</S.Label>
-          <Input
+          <PhoneInput
             variant="primary"
             type="tel"
             id="phone"
@@ -225,7 +226,6 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
             onChange={handleInput('phone')}
             value={values.phone}
             align="right"
-            placeholder="+3752912312323"
             invalid={errorsShown}
             errorMessage={errors.phone}
           />
