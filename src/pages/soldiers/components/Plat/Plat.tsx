@@ -12,10 +12,10 @@ type PlatProps = {
 };
 
 const renderPlatButton = (title: string) => (
-  toggle: Function,
+  toggle: () => void,
   isExpanded: boolean,
 ): ReactElement => (
-  <PlatButton expanded={isExpanded} onClick={(): void => toggle()}>
+  <PlatButton variant="text" expanded={isExpanded} onClick={toggle}>
     {title}
   </PlatButton>
 );

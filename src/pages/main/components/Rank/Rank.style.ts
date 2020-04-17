@@ -13,6 +13,7 @@ export const RankImage = styled.img`
 export const RankCaption = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   color: #cccccc;
   margin-left: 5px;
 

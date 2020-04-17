@@ -20,10 +20,10 @@ exports[`<Header /> should render and match snapshot 1`] = `
           />
         </div>
       </div>
-      <ul
+      <div
         class="sc-Axmtr empjiD"
       >
-        <li
+        <div
           class="sc-AxmLO ACpjz"
         >
           <a
@@ -33,8 +33,8 @@ exports[`<Header /> should render and match snapshot 1`] = `
           >
             Рота
           </a>
-        </li>
-        <li
+        </div>
+        <div
           class="sc-AxmLO ACpjz"
         >
           <a
@@ -44,16 +44,16 @@ exports[`<Header /> should render and match snapshot 1`] = `
           >
             График
           </a>
-        </li>
-      </ul>
+        </div>
+      </div>
       <div
         class="sc-fzpans faASHH"
       />
       <div
-        class="sc-fzplWN ka-daBj"
+        class="sc-fzplWN fjTdmU"
       >
         <div
-          class="sc-fznyAO czlwcB"
+          class="sc-fznyAO ivNEJa"
         >
           <img
             alt="profile image"
@@ -62,7 +62,7 @@ exports[`<Header /> should render and match snapshot 1`] = `
           />
         </div>
         <div
-          class="sc-fznyAO czlwcB"
+          class="sc-fznyAO ivNEJa"
         >
           <img
             alt="setting image"
@@ -71,7 +71,7 @@ exports[`<Header /> should render and match snapshot 1`] = `
           />
         </div>
         <div
-          class="sc-fznyAO czlwcB"
+          class="sc-fznyAO ivNEJa"
         >
           <img
             alt="logout image"

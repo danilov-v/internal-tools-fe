@@ -1,6 +1,6 @@
 import React, { useState, ReactElement } from 'react';
 
-import { DropDownButton } from 'components/Button';
+import { DropDownButton } from 'components/buttons/DropDownButton';
 import * as S from './Accordion.style';
 
 type AccordionProps = {

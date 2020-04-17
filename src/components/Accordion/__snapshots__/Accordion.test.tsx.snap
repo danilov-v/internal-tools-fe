@@ -4,12 +4,24 @@ exports[`Accordion component matches snapshot with additional props 1`] = `
 <body>
   <div>
     <button
-      class="sc-AxjAm sc-AxirZ jwJGcr"
+      class="sc-AxjAm dGijUn"
+      color="default"
+      name=""
+      type="button"
     >
-      title
+      <span
+        class="sc-AxirZ cXnwHz"
+      >
+        title
+      </span>
+      <svg
+        data-testid="up-svg"
+      >
+        up.svg
+      </svg>
     </button>
     <div
-      class="sc-AxhCb dwhDyV"
+      class="sc-AxiKw fxFXnp"
     />
   </div>
 </body>
@@ -19,10 +31,22 @@ exports[`Accordion component matches snapshots with required props only 1`] = `
 <body>
   <div>
     <button
-      class="sc-AxjAm sc-AxirZ jwJGcr"
-    />
+      class="sc-AxjAm dGijUn"
+      color="default"
+      name=""
+      type="button"
+    >
+      <span
+        class="sc-AxirZ cXnwHz"
+      />
+      <svg
+        data-testid="up-svg"
+      >
+        up.svg
+      </svg>
+    </button>
     <div
-      class="sc-AxhCb dwhDyV"
+      class="sc-AxiKw fxFXnp"
     />
   </div>
 </body>

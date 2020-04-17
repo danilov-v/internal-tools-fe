@@ -18,10 +18,10 @@ const getDepartmentSoldiers = (
 ): Personnel[] => filter(allSoldiers, { unitId: departmentId });
 
 const renderDepartmentButton = (title: string) => (
-  toggle: Function,
+  toggle: () => void,
   isExpanded: boolean,
 ): ReactElement => (
-  <DivisionButton expanded={isExpanded} onClick={(): void => toggle()}>
+  <DivisionButton variant="text" expanded={isExpanded} onClick={toggle}>
     {title}
   </DivisionButton>
 );

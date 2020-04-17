@@ -1,6 +1,13 @@
 import styled from 'styled-components';
+import { ReactComponent as Plus } from 'assets/icons/plus.svg';
+import { Button } from 'components/buttons/Button';
 
-import { PlusButton } from 'components/Button';
+export const PlusIcon = styled(Plus)`
+  circle,
+  path {
+    stroke: ${({ theme }) => theme.primaryGray};
+  }
+`;
 
 export const SoldiersList = styled.section`
   margin-top: 45px;
@@ -32,6 +39,6 @@ export const AddSoldierText = styled.p`
   color: #7c7c7c;
 `;
 
-export const AddSoldierButton = styled(PlusButton).attrs(props => ({
-  color: props.color || '#808080',
-}))``;
+export const AddSoldierButton = styled(Button)`
+  opacity: 0.5;
+`;
