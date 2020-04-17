@@ -27,7 +27,7 @@ export const Logo = styled.div`
   cursor: pointer;
 `;
 
-export const NavBar = styled.ul<HumburgerProps>`
+export const NavBar = styled.div<HumburgerProps>`
   list-style-type: none;
   padding: 0;
   display: ${({ expanded }) => (expanded ? 'flex' : 'none')};
@@ -41,7 +41,7 @@ export const NavBar = styled.ul<HumburgerProps>`
   }
 `;
 
-export const NavItem = styled.li`
+export const NavItem = styled.div`
   display: block;
   text-align: center;
   margin-bottom: 20px;
@@ -125,16 +125,20 @@ export const UserRank = styled.div`
 
 export const Actions = styled.div`
   display: flex;
+  align-items: flex-end;
   border-left: 2px solid ${LINE_COLOR};
   margin-left: 20px;
+  height: 40px;
+  justify-content: space-around;
+  flex-basis: 120px;
 `;
 
 export const Action = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  flex-basis: 30px;
+  padding: 4px 0;
   cursor: pointer;
 
   &:hover {
