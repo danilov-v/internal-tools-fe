@@ -1,27 +1,32 @@
-import React from 'react';
-import { map } from 'lodash';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addYears, subDays } from 'date-fns';
+// types
+import { PersonnelDetails } from 'types/personnel';
 // selectors
-import { getRanks } from 'redux/rank/selectors';
-import { getPersonnelDetailsFormData } from 'redux/personnel-details/selectors';
+import { getPositionOptions } from 'redux/position/selectors';
+import { getRanksOptions } from 'redux/rank/selectors';
+import { getSquadOptions, getPlatOptions } from 'redux/unit/selectors';
+import {
+  getPersonnelDetails,
+  getPersonnelPlatId,
+  isLoadingPersonnelDetails,
+  getPersonnelDetailsError,
+} from 'redux/personnel-details/selectors';
 // thunks
 import {
   createPersonnelDetails,
   editPersonnelDetails,
 } from 'redux/personnel-details/thunks';
-
 // components
 import { Button } from 'components/buttons/Button';
 import { Input } from 'components/Input';
 import { Select } from 'components/Select';
 import { DatePicker } from 'components/DatePicker';
 import { Column, Row } from 'components/layout';
-// types
-import { PersonnelFormData } from 'types/personnel';
 
 import { useForm } from 'helpers/hooks/useForm';
-import * as POSITIONS from 'helpers/position';
+import { formatDate, ISO_DATE_FORMAT } from 'helpers/date';
 
 import { PersonnelFormValidator } from './validators/personnelForm';
 
@@ -32,6 +37,19 @@ type PersonnelFormType = {
   isEdit?: boolean;
 };
 
+export const DEFAULT_PERSONNEL = {
+  firstName: '',
+  lastName: '',
+  middleName: '',
+  calledAt: '2020-04-10',
+  demobilizationAt: '2021-04-09',
+  birthday: '1995-04-01',
+  phone: '',
+  position: 'Оператор ПЭВМ',
+  rankId: 18,
+  unitId: 0,
+} as PersonnelDetails;
+
 const validator = new PersonnelFormValidator();
 
 export const PersonnelForm = ({
@@ -39,39 +57,56 @@ export const PersonnelForm = ({
   isEdit = false,
 }: PersonnelFormType): JSX.Element => {
   const dispatch = useDispatch();
-  const ranks = useSelector(getRanks);
-  const formData = useSelector(getPersonnelDetailsFormData);
+  const isFirstRun = useRef(true);
+  const isInProgress = useRef(false);
+
+  const formData = useSelector(getPersonnelDetails) || DEFAULT_PERSONNEL;
+
+  const isLoading = useSelector(isLoadingPersonnelDetails);
+  // TODO: add notification if http error exist
+  const httpError = useSelector(getPersonnelDetailsError);
+
+  const positionOptions = useSelector(getPositionOptions);
+  const ranksOptions = useSelector(getRanksOptions);
+  const platOptions = useSelector(getPlatOptions);
+
+  const personnelPlatId = useSelector(getPersonnelPlatId);
+  const [platId, setPlatId] = useState(personnelPlatId || platOptions[0].value);
+
+  const squadOptionsSelector = useSelector(getSquadOptions);
+  const squadOptions = squadOptionsSelector(platId);
+  const [squadId, setSquadId] = useState(
+    formData.unitId || squadOptions[0].value,
+  );
 
   const { onChange, values, errorsShown, errors, validateForm } = useForm<
-    PersonnelFormData
+    PersonnelDetails
   >(formData, validator);
 
-  const soldierRanksOptions = ranks
-    .filter(rank => rank.value < 70)
-    .map(({ name, id }) => ({ name, value: id }));
-
-  const solderPositionsOptions = map(POSITIONS, pos => ({
-    name: pos,
-    value: pos,
-  }));
-
-  const handleInput = (field: keyof PersonnelFormData) => (
+  const handleInput = (field: keyof PersonnelDetails) => (
     e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
   ): void => {
     onChange(field, e.currentTarget.value);
   };
 
-  const onChangeDate = (dateField: keyof PersonnelFormData) => (
+  const handleSelect = (setMethod: (T: number) => void) => (
+    e: React.FormEvent<HTMLSelectElement>,
+  ): void => {
+    setMethod(+e.currentTarget.value);
+  };
+
+  const onChangeDate = (dateField: keyof PersonnelDetails) => (
     date: Date,
-  ): void => onChange(dateField, date);
+  ): void => {
+    onChange(dateField, formatDate(date, ISO_DATE_FORMAT));
+  };
 
   const onChangeCalledAt = (date: Date): void => {
-    if (date !== null) {
-      onChange('calledAt', date);
-      onChange('demobilizationAt', subDays(addYears(date, 1), 1));
-    } else {
-      onChange('calledAt', date);
-    }
+    onChange('calledAt', formatDate(date, ISO_DATE_FORMAT));
+    onChange(
+      'demobilizationAt',
+      formatDate(subDays(addYears(date, 1), 1), ISO_DATE_FORMAT),
+    );
   };
 
   const submitForm = async (
@@ -79,15 +114,37 @@ export const PersonnelForm = ({
   ): Promise<void> => {
     e.preventDefault();
     if (validateForm()) {
+      const personnelDetails = {
+        ...values,
+        rankId: +values.rankId,
+        unitId: squadId,
+      };
       if (isEdit) {
-        dispatch(editPersonnelDetails(values));
+        dispatch(editPersonnelDetails(personnelDetails));
       } else {
-        dispatch(createPersonnelDetails(values));
+        dispatch(createPersonnelDetails(personnelDetails));
       }
-
-      onFormClose();
     }
   };
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
+    setSquadId(squadOptions[0].value);
+  }, [platId, squadOptions]);
+
+  useEffect(() => {
+    if (isInProgress.current && !isLoading && !httpError) {
+      onFormClose();
+    }
+  }, [isInProgress, isLoading, httpError, onFormClose]);
+
+  useEffect(() => {
+    isInProgress.current = isLoading;
+  }, [isLoading]);
 
   return (
     <S.Form onSubmit={submitForm}>
@@ -108,7 +165,7 @@ export const PersonnelForm = ({
           <Select
             value={values.rankId}
             onChange={handleInput('rankId')}
-            options={soldierRanksOptions}
+            options={ranksOptions}
           />
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
@@ -116,7 +173,7 @@ export const PersonnelForm = ({
           <Select
             value={values.position}
             onChange={handleInput('position')}
-            options={solderPositionsOptions}
+            options={positionOptions}
           />
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
@@ -181,7 +238,7 @@ export const PersonnelForm = ({
           <DatePicker
             variant="primary"
             onChangeDate={onChangeCalledAt}
-            selected={values.calledAt}
+            selected={new Date(values.calledAt)}
             placeholder="28 мая 2019"
             name="calledAt"
             align="right"
@@ -195,7 +252,7 @@ export const PersonnelForm = ({
             variant="primary"
             name="demobilizationAt"
             onChangeDate={onChangeDate('demobilizationAt')}
-            selected={values.demobilizationAt}
+            selected={new Date(values.demobilizationAt)}
             placeholder="27 мая 2020"
             align="right"
             invalid={errorsShown}
@@ -208,64 +265,31 @@ export const PersonnelForm = ({
             variant="primary"
             name="birthday"
             onChangeDate={onChangeDate('birthday')}
-            selected={values.birthday}
+            selected={new Date(values.birthday)}
             placeholder="13 мая 1995"
             align="right"
             invalid={errorsShown}
             errorMessage={errors.birthday}
           />
         </Row>
-        <Row justify="space-between" mt={0} mb={50}>
-          <S.Label>Семейное положение</S.Label>
-          <Select
-            value={values.marriageStatus}
-            onChange={handleInput('marriageStatus')}
-            options={[
-              {
-                name: 'холост',
-                value: 'холост',
-              },
-              {
-                name: 'женат',
-                value: 'женат',
-              },
-            ]}
-          />
-        </Row>
         <Row justify="space-between" mt={0} mb={10}>
           <S.Label>Взвод</S.Label>
-          <Input
-            variant="primary"
-            type="number"
-            id="personnelFirstName"
-            name="firstName"
-            align="right"
-            placeholder="1"
-            onChange={handleInput('platName')}
-            max="4"
-            min="1"
-            value={values.platName}
-            invalid={errorsShown}
-            errorMessage={errors.platName}
+          <Select
+            value={platId}
+            onChange={handleSelect(setPlatId)}
+            options={platOptions}
           />
         </Row>
-        <Row justify="space-between" mt={0} mb={10}>
-          <S.Label>Отделение</S.Label>
-          <Input
-            variant="primary"
-            type="number"
-            id="personnelFirstName"
-            name="firstName"
-            align="right"
-            placeholder="1"
-            onChange={handleInput('unitName')}
-            max="3"
-            min="1"
-            value={values.unitName}
-            invalid={errorsShown}
-            errorMessage={errors.unitName}
-          />
-        </Row>
+        {squadOptions.length > 0 && (
+          <Row justify="space-between" mt={0} mb={10}>
+            <S.Label>Отделение</S.Label>
+            <Select
+              value={squadId}
+              onChange={handleSelect(setSquadId)}
+              options={squadOptions}
+            />
+          </Row>
+        )}
         <Row justify="space-between" align="flex-end" mt={10}>
           <Column>
             <S.Label>Фотография </S.Label>

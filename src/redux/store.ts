@@ -4,6 +4,7 @@ import { personnelSlice } from './personnel/slice';
 import { rankSlice } from './rank/slice';
 import { unitSlice } from './unit/slice';
 import { personnelDetailsSlice } from './personnel-details/slice';
+import { positionSlice } from './position/slice';
 import { OptionalRootStore } from './store.types';
 
 export const getStore = (initialState?: OptionalRootStore): EnhancedStore =>
@@ -14,6 +15,7 @@ export const getStore = (initialState?: OptionalRootStore): EnhancedStore =>
       personnelDetails: personnelDetailsSlice.reducer,
       rank: rankSlice.reducer,
       unit: unitSlice.reducer,
+      position: positionSlice.reducer,
     },
     preloadedState: initialState,
   });

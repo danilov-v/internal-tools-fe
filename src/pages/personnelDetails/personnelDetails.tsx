@@ -35,7 +35,7 @@ const PersonnelDetails: React.FC<RouteComponentProps> = () => {
     return () => {
       dispatch(purge());
     };
-  }, []);
+  }, [params.id, dispatch]);
 
   return (
     <S.Container>

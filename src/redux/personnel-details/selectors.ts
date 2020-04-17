@@ -1,49 +1,57 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { find } from 'lodash';
+import { createSelector, SerializedError } from '@reduxjs/toolkit';
 import { RootStore } from 'redux/store.types';
-import { PersonnelDetails, PersonnelFormData } from 'types/personnel';
+import { PersonnelDetails } from 'types/personnel';
+import { getSquadUnits, getPlatUnits, getUnits } from 'redux/unit/selectors';
 import { getRanks } from 'redux/rank/selectors';
-import { getUnits } from 'redux/unit/selectors';
-import * as POSITIONS from 'helpers/position';
-
-export const DEFAULT_PERSONNEL = {
-  firstName: '',
-  lastName: '',
-  middleName: '',
-  calledAt: '2020-04-10',
-  demobilizationAt: '2021-04-09',
-  birthday: '1995-04-01',
-  phone: '',
-  position: POSITIONS.OPERATOR,
-  rankId: 0,
-  unitId: 0,
-} as PersonnelDetails;
+import { formatDate } from 'helpers/date';
 
 export const getPersonnelDetails = (
   state: RootStore,
 ): PersonnelDetails | null => state.personnelDetails.personnelDetails;
 
-export const getPersonnelDetailsFormData = createSelector(
+export const isLoadingPersonnelDetails = (state: RootStore): boolean =>
+  state.personnelDetails.loading;
+
+export const getPersonnelDetailsError = (
+  state: RootStore,
+): SerializedError | null => state.personnelDetails.error;
+
+export const getPersonnelPlatId = createSelector(
   getPersonnelDetails,
+  getSquadUnits,
+  getPlatUnits,
+  (personnelDetails, squadUnits, platUnits) => {
+    if (!personnelDetails) return null;
+    const { unitId } = personnelDetails;
+
+    const squadUnit = squadUnits.find(unit => unit.id === unitId);
+    const platUnit =
+      squadUnit && platUnits.find(unit => unit.id === squadUnit.parentUnit);
+
+    return platUnit ? platUnit.id : null;
+  },
+);
+
+export const getPersonnelDetailsInfo = createSelector(
+  getPersonnelDetails,
+  getPersonnelPlatId,
   getUnits,
   getRanks,
-  (personnelDetail, units, ranks): PersonnelFormData => {
-    const personnel = personnelDetail || DEFAULT_PERSONNEL;
-    const personnelUnit = find(units, unit => unit.id === personnel.unitId);
-    const personnelPlat =
-      personnelUnit &&
-      find(units, unit => unit.id === personnelUnit.parentUnit);
-    const personnelRank = find(ranks, rank => rank.id === personnel.rankId);
+  (personnelDetails, platId, units, ranks) => {
+    if (!personnelDetails) return null;
+
+    const plat = units.find(unit => unit.id === platId);
+    const squad = units.find(unit => unit.id === personnelDetails.unitId);
+    const rankInfo = ranks.find(rank => rank.id === personnelDetails.rankId);
+
     return {
-      ...personnel,
-      birthday: new Date(personnel.birthday),
-      calledAt: new Date(personnel.calledAt),
-      demobilizationAt: new Date(personnel.demobilizationAt),
-      unitName: personnelUnit ? personnelUnit.name : '',
-      platName: personnelPlat ? personnelPlat.name : '',
-      rank: personnelRank && personnelRank.name,
-      rankId: personnel.rankId.toString(),
-      unitId: personnel.unitId.toString(),
+      ...personnelDetails,
+      birthday: formatDate(new Date(personnelDetails.birthday)),
+      calledAt: formatDate(new Date(personnelDetails.calledAt)),
+      demobilizationAt: formatDate(new Date(personnelDetails.demobilizationAt)),
+      rankName: rankInfo?.name,
+      unitName: squad?.name,
+      platName: plat?.name,
     };
   },
 );

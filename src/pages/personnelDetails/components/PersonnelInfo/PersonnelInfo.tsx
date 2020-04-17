@@ -1,12 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import { getPersonnelDetailsInfo } from 'redux/personnel-details/selectors';
+
 import { Column, Divider, Row, Text } from 'components/layout';
 import { Button } from 'components/buttons/Button';
-
-import { formatDate } from 'helpers/date';
-
-import { getPersonnelDetailsFormData } from 'redux/personnel-details/selectors';
 
 import * as S from './PersonnelInfo.style';
 
@@ -15,19 +13,19 @@ type ComponentProps = {
 };
 
 export const PersonnelInfo: React.FC<ComponentProps> = ({ onToggleDialog }) => {
-  const personnelFormData = useSelector(getPersonnelDetailsFormData);
+  const personnelInfo = useSelector(getPersonnelDetailsInfo);
 
-  if (!personnelFormData) return null;
+  if (!personnelInfo) return null;
 
   return (
     <>
       <Row justify="space-between" mt={0}>
         <Column>
-          <S.LastName>{personnelFormData.lastName}</S.LastName>
+          <S.LastName>{personnelInfo.lastName}</S.LastName>
           <S.RestName>
-            {personnelFormData.firstName} {personnelFormData.middleName}
+            {personnelInfo.firstName} {personnelInfo.middleName}
           </S.RestName>
-          <S.Rank>{personnelFormData.rank}</S.Rank>
+          <S.Rank>{personnelInfo.rankName}</S.Rank>
         </Column>
         <S.Avatar>
           <S.Initials>БД</S.Initials>
@@ -39,21 +37,17 @@ export const PersonnelInfo: React.FC<ComponentProps> = ({ onToggleDialog }) => {
       <Column>
         <Row justify="space-between" mt={0}>
           <Text>Дата призыва:</Text>
-          {personnelFormData.calledAt && (
-            <Text>{formatDate(personnelFormData.calledAt)}</Text>
-          )}
+          {personnelInfo.calledAt && <Text>{personnelInfo.calledAt}</Text>}
         </Row>
         <Row justify="space-between" mt={0}>
           <Text>Дата дембеля:</Text>
-          {personnelFormData.demobilizationAt && (
-            <Text>{formatDate(personnelFormData.demobilizationAt)}</Text>
+          {personnelInfo.demobilizationAt && (
+            <Text>{personnelInfo.demobilizationAt}</Text>
           )}
         </Row>
         <Row justify="space-between" mt={0}>
           <Text>Дата рождения:</Text>
-          {personnelFormData.birthday && (
-            <Text>{formatDate(personnelFormData.birthday)}</Text>
-          )}
+          {personnelInfo.birthday && <Text>{personnelInfo.birthday}</Text>}
         </Row>
         <Row justify="space-between" mt={0}>
           <Text>Семейное положение</Text>
@@ -61,11 +55,11 @@ export const PersonnelInfo: React.FC<ComponentProps> = ({ onToggleDialog }) => {
         </Row>
         <Row justify="space-between" mt={0}>
           <Text>Взвод</Text>
-          <Text>{personnelFormData.platName}</Text>
+          <Text>{personnelInfo.platName}</Text>
         </Row>
         <Row justify="space-between" mt={0}>
           <Text>Отделение</Text>
-          <Text>{personnelFormData.unitName}</Text>
+          <Text>{personnelInfo.unitName}</Text>
         </Row>
       </Column>
 

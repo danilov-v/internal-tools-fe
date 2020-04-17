@@ -23,25 +23,6 @@ export type PersonnelDetails = {
   unitId: number;
 };
 
-export type PersonnelFormData = {
-  birthday: Date | null;
-  calledAt: Date | null;
-  comment?: string | null;
-  demobilizationAt: Date | null;
-  firstName: string;
-  id?: number;
-  lastName: string;
-  middleName: string;
-  phone: string;
-  position: string;
-  rank?: string;
-  rankId: string;
-  unitName: string;
-  unitId: string;
-  platName: string;
-  marriageStatus?: string;
-};
-
 export type PersonnelFilter = {
   unitId: number;
 };
