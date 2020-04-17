@@ -25,6 +25,7 @@ import { Select } from 'components/Select';
 import { DatePicker } from 'components/DatePicker';
 import { Column, Row } from 'components/layout';
 
+import { usePrevious } from 'helpers/hooks/usePrevious';
 import { useForm } from 'helpers/hooks/useForm';
 import { formatDate, ISO_DATE_FORMAT } from 'helpers/date';
 
@@ -58,11 +59,10 @@ export const PersonnelForm = ({
 }: PersonnelFormType): JSX.Element => {
   const dispatch = useDispatch();
   const isFirstRun = useRef(true);
-  const isInProgress = useRef(false);
-
   const formData = useSelector(getPersonnelDetails) || DEFAULT_PERSONNEL;
 
   const isLoading = useSelector(isLoadingPersonnelDetails);
+  const previousIsLoading = usePrevious(isLoading);
   // TODO: add notification if http error exist
   const httpError = useSelector(getPersonnelDetailsError);
 
@@ -137,14 +137,10 @@ export const PersonnelForm = ({
   }, [platId, squadOptions]);
 
   useEffect(() => {
-    if (isInProgress.current && !isLoading && !httpError) {
+    if (previousIsLoading && !isLoading && !httpError) {
       onFormClose();
     }
-  }, [isInProgress, isLoading, httpError, onFormClose]);
-
-  useEffect(() => {
-    isInProgress.current = isLoading;
-  }, [isLoading]);
+  });
 
   return (
     <S.Form onSubmit={submitForm}>
