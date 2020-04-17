@@ -1,5 +1,5 @@
 import { createSelector, SerializedError } from '@reduxjs/toolkit';
-import { RootStore } from 'redux/store.types';
+import { RootStore } from 'redux/store';
 import { User } from 'types/user';
 
 export const getProfileInfo = (state: RootStore): User | null =>

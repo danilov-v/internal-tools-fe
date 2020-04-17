@@ -1,5 +1,5 @@
 import { createSelector, SerializedError } from '@reduxjs/toolkit';
-import { RootStore } from 'redux/store.types';
+import { RootStore } from 'redux/store';
 import { PersonnelDetails } from 'types/personnel';
 import { getSquadUnits, getPlatUnits, getUnits } from 'redux/unit/selectors';
 import { getRanks } from 'redux/rank/selectors';

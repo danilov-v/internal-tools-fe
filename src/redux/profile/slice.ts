@@ -1,7 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-import { ProfileState } from './types';
+import { createSlice, SerializedError } from '@reduxjs/toolkit';
+import { User } from 'types/user';
 import { requestLogin, requestProfile, requestLogout } from './thunks';
+
+export type ProfileState = {
+  profile: User | null;
+  error: SerializedError | null;
+  isChecked: boolean;
+};
 
 const initialState: ProfileState = {
   profile: null,

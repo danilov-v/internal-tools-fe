@@ -1,4 +1,4 @@
-import { RootStore } from 'redux/store.types';
+import { RootStore } from 'redux/store';
 import { Position } from 'types/position';
 import { createSelector } from '@reduxjs/toolkit';
 

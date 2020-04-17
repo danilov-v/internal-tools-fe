@@ -1,4 +1,4 @@
-import { OptionalRootStore } from 'redux/store.types';
+import { OptionalRootStore } from 'redux/store';
 import { UserMock } from 'tests/test-data/user.mock';
 
 export const EMPTY_PROFILE: OptionalRootStore = {

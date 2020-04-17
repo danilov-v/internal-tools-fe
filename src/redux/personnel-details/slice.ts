@@ -1,11 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, SerializedError } from '@reduxjs/toolkit';
+import { PersonnelDetails } from 'types/personnel';
 
-import { PersonnelDetailsState } from './types';
 import {
   requestPersonnelDetails,
   createPersonnelDetails,
   editPersonnelDetails,
 } from './thunks';
+
+export type PersonnelDetailsState = {
+  personnelDetails: PersonnelDetails | null;
+  loading: boolean;
+  error: SerializedError | null;
+};
 
 const initialState: PersonnelDetailsState = {
   personnelDetails: null,

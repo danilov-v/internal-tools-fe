@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { PositionState } from './types';
+import { Position } from 'types/position';
+
+export type PositionState = {
+  positions: Position[];
+};
 
 const STUB_POSITIONS = [
   {

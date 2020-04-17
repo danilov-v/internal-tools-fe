@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Rank } from 'types/rank';
 
-import { RankState } from './types';
 import { requestRank } from './thunks';
+
+export type RankState = {
+  ranks: Rank[];
+};
 
 const initialState: RankState = {
   ranks: [],

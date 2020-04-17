@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { filter, map, memoize } from 'lodash';
-import { RootStore } from 'redux/store.types';
+import { RootStore } from 'redux/store';
 import { Unit } from 'types/unit';
 import { PLAT_TYPE_ID, DEP_TYPE_ID } from 'helpers/unit';
 
