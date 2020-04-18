@@ -74,7 +74,7 @@ export interface InputProps extends StyledInputProps {
   value?: string;
   variant?: 'default' | 'outlined' | 'primary';
   warn?: boolean;
-  innerRef?: any;
+  innerRef?: React.Ref<HTMLInputElement>;
 }
 
 export { Input };
