@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
   RouteComponentProps,
   Router,
-  useLocation,
+  useMatch,
   useNavigate,
 } from '@reach/router';
 import { useSelector, useDispatch } from 'react-redux';
@@ -20,13 +20,12 @@ import { Main } from 'pages/main/main';
 import { LoadingScreen } from 'components/LoadingScreen';
 
 const AppRouter: React.FC<RouteComponentProps> = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
   const profileInfo = useSelector(getProfileInfo);
   const isAuthChecked = useSelector(isAuthCheckedSelector);
-  const isSignInPage = location.pathname === SIGN_IN;
+  const isSignInPage = useMatch(SIGN_IN);
 
   useEffect(() => {
     if (!isAuthChecked) {
