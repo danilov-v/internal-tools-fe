@@ -1,4 +1,5 @@
-import { trim, isEmpty, flow, isDate } from 'lodash';
+import { trim, isEmpty, flow, each, parseInt } from 'lodash';
+import { isExists } from 'date-fns';
 import { PersonnelFormData } from 'types/personnel';
 import { Validator, ValidationErrors } from 'types/validator';
 
@@ -20,9 +21,9 @@ const VALIDATION_ERRORS: ValidationErrors = {
   firstName: 'Введите имя военнослужащего',
   lastName: 'Введите фамилию военнослужащего',
   middleName: 'Введите отчество военнослужащего',
-  calledAt: 'Введите дату призыва',
-  demobilizationAt: 'Введите дату дембеля',
-  birthday: 'Введите дату рождения',
+  calledAt: 'Введенная  дата не коректна',
+  demobilizationAt: 'Введенная  дата не коректна',
+  birthday: 'Введенная  дата не коректна',
   position: 'Введите звание',
   phone: 'Введите номер телефона',
   unitName: 'Выберите номер отделения',
@@ -30,6 +31,14 @@ const VALIDATION_ERRORS: ValidationErrors = {
 };
 
 const isStringEmpty = flow([trim, isEmpty]);
+
+const isDateStringValidDate = (localDateString: string): boolean => {
+  if (localDateString.length < 10) return false;
+
+  const [day, month, year] = localDateString.split('-').map(parseInt);
+
+  return isExists(year, month - 1, day);
+};
 
 export class PersonnelFormValidator implements Validator<PersonnelFormData> {
   errors: PersonnelFValidationErrors = {};
@@ -39,32 +48,20 @@ export class PersonnelFormValidator implements Validator<PersonnelFormData> {
   validate = (values: PersonnelFormData): ValidationErrors => {
     const errors: ValidationErrors = {};
 
-    if (isStringEmpty(values.firstName))
-      errors.firstName = VALIDATION_ERRORS.firstName;
+    each(values, (value, key) => {
+      if (isStringEmpty(value)) {
+        errors[key] = VALIDATION_ERRORS[key];
+      }
+    });
 
-    if (isStringEmpty(values.lastName))
-      errors.lastName = VALIDATION_ERRORS.lastName;
+    if (!isDateStringValidDate(values.calledAt))
+      errors.calledAt = VALIDATION_ERRORS.calledAt;
 
-    if (isStringEmpty(values.middleName))
-      errors.middleName = VALIDATION_ERRORS.middleName;
-
-    if (isStringEmpty(values.middleName))
-      errors.middleName = VALIDATION_ERRORS.middleName;
-
-    if (isStringEmpty(values.phone)) errors.phone = VALIDATION_ERRORS.phone;
-
-    if (isStringEmpty(values.unitName))
-      errors.unitName = VALIDATION_ERRORS.unitName;
-
-    if (isStringEmpty(values.platName))
-      errors.platName = VALIDATION_ERRORS.platName;
-
-    if (!isDate(values.calledAt)) errors.calledAt = VALIDATION_ERRORS.calledAt;
-
-    if (!isDate(values.demobilizationAt))
+    if (!isDateStringValidDate(values.demobilizationAt))
       errors.demobilizationAt = VALIDATION_ERRORS.demobilizationAt;
 
-    if (!isDate(values.birthday)) errors.birthday = VALIDATION_ERRORS.birthday;
+    if (!isDateStringValidDate(values.birthday))
+      errors.birthday = VALIDATION_ERRORS.birthday;
 
     this.errors = errors;
 

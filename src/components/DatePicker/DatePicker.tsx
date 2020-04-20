@@ -3,7 +3,7 @@ import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { FULL_DATE_FORMAT, DEFAULT_LOCALE } from 'helpers/date';
-import { Input, InputProps } from 'components/Input';
+import { Input, InputProps } from 'components/inputs/Input';
 
 import { Container, StyledDatePicker } from './DatePicker.style';
 
