@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { parseInt } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
-import { addYears, subDays } from 'date-fns';
+import { addYears, subDays, format } from 'date-fns';
 // types
 import { PersonnelDetails } from 'types/personnel';
 // selectors
@@ -20,14 +21,14 @@ import {
 } from 'redux/personnel-details/thunks';
 // components
 import { Button } from 'components/buttons/Button';
-import { Input } from 'components/Input';
+import { Input } from 'components/inputs/Input';
+import { DateInput } from 'components/inputs/DateInput';
+import { PhoneInput } from 'components/inputs/PhoneInput';
 import { Select } from 'components/Select';
-import { DatePicker } from 'components/DatePicker';
 import { Column, Row } from 'components/layout';
 
 import { usePrevious } from 'helpers/hooks/usePrevious';
 import { useForm } from 'helpers/hooks/useForm';
-import { formatDate, ISO_DATE_FORMAT } from 'helpers/date';
 
 import { PersonnelFormValidator } from './validators/personnelForm';
 
@@ -95,18 +96,24 @@ export const PersonnelForm = ({
     setMethod(+e.currentTarget.value);
   };
 
-  const onChangeDate = (dateField: keyof PersonnelDetails) => (
-    date: Date,
+  const onChangeCalledAt = (
+    e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
   ): void => {
-    onChange(dateField, formatDate(date, ISO_DATE_FORMAT));
-  };
+    const calledAt = e.currentTarget.value;
 
-  const onChangeCalledAt = (date: Date): void => {
-    onChange('calledAt', formatDate(date, ISO_DATE_FORMAT));
-    onChange(
-      'demobilizationAt',
-      formatDate(subDays(addYears(date, 1), 1), ISO_DATE_FORMAT),
-    );
+    if (calledAt.length === 10) {
+      const [day, month, year] = calledAt.split('-').map(parseInt);
+
+      const demobilizationAt = format(
+        addYears(subDays(new Date(year, month - 1, day), 1), 1),
+        'dd-MM-yyyy',
+      );
+
+      onChange('calledAt', calledAt);
+      onChange('demobilizationAt', demobilizationAt);
+    } else {
+      onChange('calledAt', calledAt);
+    }
   };
 
   const submitForm = async (
@@ -216,7 +223,7 @@ export const PersonnelForm = ({
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
           <S.Label>Телефон:</S.Label>
-          <Input
+          <PhoneInput
             variant="primary"
             type="tel"
             id="phone"
@@ -224,18 +231,16 @@ export const PersonnelForm = ({
             onChange={handleInput('phone')}
             value={values.phone}
             align="right"
-            placeholder="+3752912312323"
             invalid={errorsShown}
             errorMessage={errors.phone}
           />
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
           <S.Label>Дата призыва:</S.Label>
-          <DatePicker
+          <DateInput
             variant="primary"
-            onChangeDate={onChangeCalledAt}
-            selected={new Date(values.calledAt)}
-            placeholder="28 мая 2019"
+            onChange={onChangeCalledAt}
+            value={values.calledAt}
             name="calledAt"
             align="right"
             invalid={errorsShown}
@@ -244,12 +249,12 @@ export const PersonnelForm = ({
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
           <S.Label>Дата дембеля:</S.Label>
-          <DatePicker
+          <DateInput
             variant="primary"
+            id="demobilizationAt"
             name="demobilizationAt"
-            onChangeDate={onChangeDate('demobilizationAt')}
-            selected={new Date(values.demobilizationAt)}
-            placeholder="27 мая 2020"
+            onChange={handleInput('demobilizationAt')}
+            value={values.demobilizationAt}
             align="right"
             invalid={errorsShown}
             errorMessage={errors.demobilizationAt}
@@ -257,12 +262,12 @@ export const PersonnelForm = ({
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
           <S.Label>Дата рождения:</S.Label>
-          <DatePicker
+          <DateInput
             variant="primary"
+            id="birthday"
             name="birthday"
-            onChangeDate={onChangeDate('birthday')}
-            selected={new Date(values.birthday)}
-            placeholder="13 мая 1995"
+            onChange={handleInput('birthday')}
+            value={values.birthday}
             align="right"
             invalid={errorsShown}
             errorMessage={errors.birthday}

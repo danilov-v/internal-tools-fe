@@ -16,7 +16,12 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es5"
+    "target": "es5",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./@types/@viewstools"
+  ]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "@types"]
 }

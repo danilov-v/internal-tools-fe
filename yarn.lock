@@ -1816,6 +1816,13 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
+"@viewstools/use-masked-input@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@viewstools/use-masked-input/-/use-masked-input-2.0.1.tgz#d3f71f79622f9319512b633ab37fe785584d4a9b"
+  integrity sha512-XY6+Ho4zND3+SSfaAHNYj3dtR5naWd4jMg3XmfkUkg+Jr1uIvPGx+Hf3mhsQjQqjcNuA6Eq3S3ZDu0K5hkjVwQ==
+  dependencies:
+    text-mask-core "^5.1.2"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
@@ -11708,6 +11715,11 @@ test-exclude@^5.2.3:
     minimatch "^3.0.4"
     read-pkg-up "^4.0.0"
     require-main-filename "^2.0.0"
+
+text-mask-core@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/text-mask-core/-/text-mask-core-5.1.2.tgz#80dd5ebe04825757e46619e691407a9f8b3c1b6f"
+  integrity sha1-gN1evgSCV1fkZhnmkUB6n4s8G28=
 
 text-table@0.2.0, text-table@^0.2.0:
   version "0.2.0"
