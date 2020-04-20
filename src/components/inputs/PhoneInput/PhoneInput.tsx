@@ -1,34 +1,35 @@
 import React, { useRef } from 'react';
 import useMaskedInput from '@viewstools/use-masked-input';
+
 import { PHONE_MASK } from 'helpers/mask';
 import { Input, InputProps } from 'components/inputs/Input';
 
 const PhoneInput: React.FC<PhoneInputProps> = ({
-  onChange,
-  value,
-  placeholder,
   guide = false,
   keepCharPositions = false,
+  onChange,
+  placeholder,
+  value,
   ...props
 }) => {
-  const input = useRef(null);
+  const inputRef = useRef(null);
 
   const change = useMaskedInput({
-    input,
     guide,
+    input: inputRef,
     keepCharPositions,
-    showMask: true,
     mask: PHONE_MASK,
     onChange,
+    showMask: true,
     value,
   });
 
   return (
     <Input
       {...props}
-      innerRef={input}
       onChange={change}
       placeholder={placeholder || '(29) 123-12-13'}
+      ref={inputRef}
     />
   );
 };

@@ -7,53 +7,59 @@ import {
   ValidationError,
 } from './Input.style';
 
-const Input: React.FC<InputProps> = ({
-  innerRef,
-  align = 'left',
-  className = '',
-  color = 'primary',
-  disabled = false,
-  errorMessage,
-  id,
-  invalid = false,
-  label,
-  max,
-  min,
-  name,
-  onBlur = () => {},
-  onChange = () => {},
-  placeholder,
-  type = 'text',
-  value,
-  variant = 'default',
-  warn = false,
-}) => (
-  <Container>
-    {label && <label htmlFor={id}>{label}</label>}
-    <StyledInput
-      ref={innerRef}
-      align={align}
-      className={className}
-      color={color}
-      disabled={disabled}
-      id={id}
-      invalid={!!errorMessage && invalid}
-      max={max}
-      min={min}
-      name={name}
-      onBlur={onBlur}
-      onChange={onChange}
-      placeholder={placeholder}
-      type={type}
-      value={value}
-      variant={variant}
-      warn={warn}
-    />
-    {invalid && errorMessage && (
-      <ValidationError align={align}>{errorMessage}</ValidationError>
-    )}
-  </Container>
+const Input: React.FC<InputProps> = React.forwardRef(
+  (
+    {
+      align = 'left',
+      className = '',
+      color = 'primary',
+      disabled = false,
+      errorMessage,
+      id,
+      invalid = false,
+      label,
+      max,
+      min,
+      name,
+      onBlur = () => {},
+      onChange = () => {},
+      placeholder,
+      type = 'text',
+      value,
+      variant = 'default',
+      warn = false,
+    },
+    ref,
+  ) => (
+    <Container>
+      {label && <label htmlFor={id}>{label}</label>}
+      <StyledInput
+        align={align}
+        className={className}
+        color={color}
+        disabled={disabled}
+        id={id}
+        invalid={!!errorMessage && invalid}
+        max={max}
+        min={min}
+        name={name}
+        onBlur={onBlur}
+        onChange={onChange}
+        placeholder={placeholder}
+        ref={ref}
+        type={type}
+        value={value}
+        variant={variant}
+        warn={warn}
+      />
+      {invalid && errorMessage && (
+        <ValidationError align={align}>{errorMessage}</ValidationError>
+      )}
+    </Container>
+  ),
 );
+
+Input.displayName = 'Input';
 
 export interface InputProps extends StyledInputProps {
   align?: 'left' | 'right' | 'center';
@@ -74,7 +80,6 @@ export interface InputProps extends StyledInputProps {
   value?: string;
   variant?: 'default' | 'outlined' | 'primary';
   warn?: boolean;
-  innerRef?: React.Ref<HTMLInputElement>;
 }
 
 export { Input };

@@ -19,6 +19,7 @@ export type StyledInputProps = {
   align?: 'left' | 'right' | 'center';
   color?: keyof Colors;
   invalid?: boolean;
+  ref?: React.Ref<HTMLInputElement>;
   variant?: keyof Variants;
   warn?: boolean;
 };

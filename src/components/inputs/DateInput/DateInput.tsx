@@ -1,34 +1,35 @@
 import React, { useRef } from 'react';
 import useMaskedInput from '@viewstools/use-masked-input';
+
 import { DATE_MASK } from 'helpers/mask';
 import { Input, InputProps } from 'components/inputs/Input';
 
 const DateInput: React.FC<DateInputProps> = ({
-  onChange,
-  value,
-  placeholder,
   guide = false,
   keepCharPositions = false,
+  onChange,
+  placeholder,
+  value,
   ...props
 }) => {
-  const input = useRef(null);
+  const inputRef = useRef(null);
 
   const change = useMaskedInput({
-    input,
     guide,
+    input: inputRef,
     keepCharPositions,
-    showMask: true,
     mask: DATE_MASK,
     onChange,
+    showMask: true,
     value,
   });
 
   return (
     <Input
       {...props}
-      innerRef={input}
       onChange={change}
       placeholder={placeholder || 'дд-мм-гггг'}
+      ref={inputRef}
     />
   );
 };
