@@ -36,6 +36,10 @@ export const PersonnelInfo: React.FC<ComponentProps> = ({ onToggleDialog }) => {
 
       <Column>
         <Row justify="space-between" mt={0}>
+          <Text>Должность:</Text>
+          <Text>{personnelInfo.position}</Text>
+        </Row>
+        <Row justify="space-between" mt={0}>
           <Text>Дата призыва:</Text>
           {personnelInfo.calledAt && <Text>{personnelInfo.calledAt}</Text>}
         </Row>
@@ -48,6 +52,10 @@ export const PersonnelInfo: React.FC<ComponentProps> = ({ onToggleDialog }) => {
         <Row justify="space-between" mt={0}>
           <Text>Дата рождения:</Text>
           {personnelInfo.birthday && <Text>{personnelInfo.birthday}</Text>}
+        </Row>
+        <Row justify="space-between" mt={0}>
+          <Text>Телефон:</Text>
+          <Text>{personnelInfo.phone}</Text>
         </Row>
         <Row justify="space-between" mt={0}>
           <Text>Семейное положение</Text>
