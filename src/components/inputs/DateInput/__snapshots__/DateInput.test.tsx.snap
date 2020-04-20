@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DateInput component Should render and matche snapshot 1`] = `
+exports[`DateInput component matches snapshot with required props only 1`] = `
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;

@@ -14,7 +14,7 @@ const getComponent = (props = {}): RenderResult => {
 };
 
 describe('PhoneInput component', () => {
-  it('Should render and matche snapshot', () => {
+  it('matches snapshot with required props only', () => {
     expect(getComponent().baseElement).toMatchSnapshot();
   });
 });
