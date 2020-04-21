@@ -13,12 +13,15 @@ import { PersonnelDetails } from 'types/personnel';
 export const convertToFormData = memoize(personnel => {
   return {
     ...personnel,
-    birthday: formatDate(new Date(personnel.birthday), DD_MM_YYYY),
-    calledAt: formatDate(new Date(personnel.calledAt), DD_MM_YYYY),
-    demobilizationAt: formatDate(
-      new Date(personnel.demobilizationAt),
-      DD_MM_YYYY,
-    ),
+    birthday:
+      personnel.birthday &&
+      formatDate(new Date(personnel.birthday), DD_MM_YYYY),
+    calledAt:
+      personnel.calledAt &&
+      formatDate(new Date(personnel.calledAt), DD_MM_YYYY),
+    demobilizationAt:
+      personnel.demobilizationAt &&
+      formatDate(new Date(personnel.demobilizationAt), DD_MM_YYYY),
   };
 });
 
