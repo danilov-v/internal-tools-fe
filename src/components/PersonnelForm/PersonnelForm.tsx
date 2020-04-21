@@ -26,10 +26,12 @@ import { DateInput } from 'components/inputs/DateInput';
 import { PhoneInput } from 'components/inputs/PhoneInput';
 import { Select } from 'components/Select';
 import { Column, Row } from 'components/layout';
-
+// helpers
+import { DD_MM_YYYY } from 'helpers/date';
 import { usePrevious } from 'helpers/hooks/usePrevious';
 import { useForm } from 'helpers/hooks/useForm';
 
+import { convertToFormData, formatPersonnelDetails } from './utils';
 import { PersonnelFormValidator } from './validators/personnelForm';
 
 import * as S from './PersonnelForm.style';
@@ -60,7 +62,9 @@ export const PersonnelForm = ({
 }: PersonnelFormType): JSX.Element => {
   const dispatch = useDispatch();
   const isFirstRun = useRef(true);
-  const formData = useSelector(getPersonnelDetails) || DEFAULT_PERSONNEL;
+  const personnelDetailsFormData = convertToFormData(
+    useSelector(getPersonnelDetails) || DEFAULT_PERSONNEL,
+  );
 
   const isLoading = useSelector(isLoadingPersonnelDetails);
   const previousIsLoading = usePrevious(isLoading);
@@ -77,12 +81,12 @@ export const PersonnelForm = ({
   const squadOptionsSelector = useSelector(getSquadOptions);
   const squadOptions = squadOptionsSelector(platId);
   const [squadId, setSquadId] = useState(
-    formData.unitId || squadOptions[0].value,
+    personnelDetailsFormData.unitId || squadOptions[0].value,
   );
 
   const { onChange, values, errorsShown, errors, validateForm } = useForm<
     PersonnelDetails
-  >(formData, validator);
+  >(personnelDetailsFormData, validator);
 
   const handleInput = (field: keyof PersonnelDetails) => (
     e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
@@ -106,7 +110,7 @@ export const PersonnelForm = ({
 
       const demobilizationAt = format(
         addYears(subDays(new Date(year, month - 1, day), 1), 1),
-        'dd-MM-yyyy',
+        DD_MM_YYYY,
       );
 
       onChange('calledAt', calledAt);
@@ -121,11 +125,7 @@ export const PersonnelForm = ({
   ): Promise<void> => {
     e.preventDefault();
     if (validateForm()) {
-      const personnelDetails = {
-        ...values,
-        rankId: +values.rankId,
-        unitId: squadId,
-      };
+      const personnelDetails = formatPersonnelDetails(values, squadId);
       if (isEdit) {
         dispatch(editPersonnelDetails(personnelDetails));
       } else {

@@ -1,4 +1,4 @@
-import { trim, isEmpty, flow, each, parseInt } from 'lodash';
+import { trim, isEmpty, flow, each, parseInt, omit } from 'lodash';
 import { isExists } from 'date-fns';
 import { PersonnelDetails } from 'types/personnel';
 import { Validator, ValidationErrors } from 'types/validator';
@@ -43,7 +43,7 @@ export class PersonnelFormValidator implements Validator<PersonnelDetails> {
   validate = (values: PersonnelDetails): ValidationErrors => {
     const errors: ValidationErrors = {};
 
-    each(values, (value, key) => {
+    each(omit(values, 'comment'), (value, key) => {
       if (isStringEmpty(value)) {
         errors[key] = VALIDATION_ERRORS[key];
       }

@@ -5,6 +5,7 @@ import { parseInt } from 'lodash';
 export const DEFAULT_LOCALE = ru;
 export const FULL_DATE_FORMAT = 'd MMMM yyyy';
 export const ISO_DATE_FORMAT = 'yyyy-MM-dd';
+export const DD_MM_YYYY = 'dd-MM-yyyy';
 
 export const formatDate = (
   date: number | Date,
