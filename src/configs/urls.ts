@@ -13,3 +13,11 @@ export const RANK = '/rank';
 
 // unit
 export const UNIT = '/unit';
+
+export const PROMOTION = '/promotion';
+
+export const PROMOTION_TYPES = '/promotion/types';
+
+export const PENALTY = '/penalty';
+
+export const PENALTY_TYPES = '/penalty/types';
