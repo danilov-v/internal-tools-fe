@@ -1,6 +1,7 @@
+import { createSelector } from '@reduxjs/toolkit';
+
 import { RootStore } from 'redux/store';
 import { Position } from 'types/position';
-import { createSelector } from '@reduxjs/toolkit';
 
 export const getPositions = (state: RootStore): Position[] =>
   state.position.positions;

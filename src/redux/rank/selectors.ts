@@ -1,6 +1,7 @@
+import { createSelector } from '@reduxjs/toolkit';
+
 import { RootStore } from 'redux/store';
 import { Rank } from 'types/rank';
-import { createSelector } from '@reduxjs/toolkit';
 
 export const getRanks = (state: RootStore): Rank[] => state.rank.ranks;
 

@@ -1,8 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { filter, map, memoize } from 'lodash';
+
+import { PLAT_TYPE_ID, DEP_TYPE_ID } from 'helpers/unit';
 import { RootStore } from 'redux/store';
 import { Unit } from 'types/unit';
-import { PLAT_TYPE_ID, DEP_TYPE_ID } from 'helpers/unit';
 
 export const getUnits = (state: RootStore): Unit[] => state.unit.units;
 

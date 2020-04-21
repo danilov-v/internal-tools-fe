@@ -1,12 +1,14 @@
 import styled from 'styled-components';
-import { Text } from 'components/layout';
+import { Row, Text } from 'components/layout';
 
-export const Avatar = styled.div`
-  align-items: center;
+export const Avatar = styled(Row).attrs({
+  align: 'center',
+  justify: 'center',
+  mb: 0,
+  mt: 0,
+})`
   border: solid 2px ${({ theme }) => theme.lightGray};
-  display: flex;
   height: 80px;
-  justify-content: center;
   width: 80px;
 `;
 

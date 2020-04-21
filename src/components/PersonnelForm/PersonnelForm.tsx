@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { parseInt } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
-import { addYears, subDays, format } from 'date-fns';
+import { addYears, subDays } from 'date-fns';
+
 // types
 import { PersonnelDetails } from 'types/personnel';
 // selectors
@@ -27,7 +28,7 @@ import { PhoneInput } from 'components/inputs/PhoneInput';
 import { Select } from 'components/Select';
 import { Column, Row } from 'components/layout';
 // helpers
-import { DD_MM_YYYY } from 'helpers/date';
+import { DD_MM_YYYY, formatDate } from 'helpers/date';
 import { usePrevious } from 'helpers/hooks/usePrevious';
 import { useForm } from 'helpers/hooks/useForm';
 
@@ -37,29 +38,29 @@ import { PersonnelFormValidator } from './validators/personnelForm';
 import * as S from './PersonnelForm.style';
 
 type PersonnelFormType = {
-  onFormClose: () => void;
   isEdit?: boolean;
+  onFormClose: () => void;
 };
 
-export const DEFAULT_PERSONNEL = {
+export const DEFAULT_PERSONNEL: PersonnelDetails = {
+  birthday: '',
+  calledAt: '',
+  demobilizationAt: '',
   firstName: '',
   lastName: '',
   middleName: '',
-  calledAt: '',
-  demobilizationAt: '',
-  birthday: '',
   phone: '',
   position: 'Оператор ПЭВМ',
   rankId: 18,
   unitId: 0,
-} as PersonnelDetails;
+};
 
 const validator = new PersonnelFormValidator();
 
-export const PersonnelForm = ({
+const PersonnelForm: React.FC<PersonnelFormType> = ({
   onFormClose,
   isEdit = false,
-}: PersonnelFormType): JSX.Element => {
+}) => {
   const dispatch = useDispatch();
   const isFirstRun = useRef(true);
   const personnelDetailsFormData = convertToFormData(
@@ -84,7 +85,7 @@ export const PersonnelForm = ({
     personnelDetailsFormData.unitId || squadOptions[0].value,
   );
 
-  const { onChange, values, errorsShown, errors, validateForm } = useForm<
+  const { errors, onChange, errorsShown, validateForm, values } = useForm<
     PersonnelDetails
   >(personnelDetailsFormData, validator);
 
@@ -108,7 +109,7 @@ export const PersonnelForm = ({
     if (calledAt.length === 10) {
       const [day, month, year] = calledAt.split('-').map(parseInt);
 
-      const demobilizationAt = format(
+      const demobilizationAt = formatDate(
         addYears(subDays(new Date(year, month - 1, day), 1), 1),
         DD_MM_YYYY,
       );
@@ -120,10 +121,9 @@ export const PersonnelForm = ({
     }
   };
 
-  const submitForm = async (
-    e: React.FormEvent<HTMLFormElement>,
-  ): Promise<void> => {
+  const submitForm = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
     if (validateForm()) {
       const personnelDetails = formatPersonnelDetails(values, squadId);
       if (isEdit) {
@@ -313,3 +313,5 @@ export const PersonnelForm = ({
     </S.Form>
   );
 };
+
+export { PersonnelForm };

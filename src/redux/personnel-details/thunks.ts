@@ -1,15 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { UNIT_ID } from 'configs/constants';
-
 import { requestPersonnel } from 'redux/personnel/thunks';
-
 import {
-  fetchPersonnelDetails,
   createPersonnel,
+  fetchPersonnelDetails,
   updatePersonnel,
 } from 'services/http/personnel';
-
 import { PersonnelDetails } from 'types/personnel';
 
 export const requestPersonnelDetails = createAsyncThunk(

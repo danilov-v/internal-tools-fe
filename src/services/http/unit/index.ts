@@ -1,6 +1,6 @@
 import { UNIT } from 'configs/urls';
-import { Unit } from 'types/unit';
 import { http } from 'services/http';
+import { Unit } from 'types/unit';
 
 export const fetchUnits = async (): Promise<Unit[]> => http.get(UNIT);
 

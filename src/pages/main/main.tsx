@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { Redirect, RouteComponentProps, Router } from '@reach/router';
 import { useDispatch } from 'react-redux';
-import { requestRank } from 'redux/rank/thunks';
-import { requestUnits } from 'redux/unit/thunks';
 
 import { PERSONNEL, PERSONNEL_DETAILS } from 'configs/paths';
-
+import { requestRank } from 'redux/rank/thunks';
+import { requestUnits } from 'redux/unit/thunks';
 import { Soldiers } from 'pages/soldiers/soldiers';
 import { PersonnelDetails } from 'pages/personnelDetails/personnelDetails';
 

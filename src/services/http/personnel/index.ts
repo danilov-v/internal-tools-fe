@@ -1,5 +1,5 @@
-import { http } from 'services/http';
 import { PERSONNEL } from 'configs/urls';
+import { http } from 'services/http';
 import { Personnel, PersonnelDetails, PersonnelFilter } from 'types/personnel';
 
 export const fetchPersonnel = async (

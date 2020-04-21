@@ -12,10 +12,12 @@ type ComponentProps = {
   onToggleDialog: () => void;
 };
 
-export const PersonnelInfo: React.FC<ComponentProps> = ({ onToggleDialog }) => {
+const PersonnelInfo: React.FC<ComponentProps> = ({ onToggleDialog }) => {
   const personnelInfo = useSelector(getPersonnelDetailsInfo);
 
-  if (!personnelInfo) return null;
+  if (!personnelInfo) {
+    return null;
+  }
 
   return (
     <>
@@ -81,3 +83,5 @@ export const PersonnelInfo: React.FC<ComponentProps> = ({ onToggleDialog }) => {
     </>
   );
 };
+
+export { PersonnelInfo };

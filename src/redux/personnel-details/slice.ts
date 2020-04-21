@@ -1,4 +1,5 @@
 import { createSlice, SerializedError } from '@reduxjs/toolkit';
+
 import { PersonnelDetails } from 'types/personnel';
 
 import {
@@ -8,15 +9,15 @@ import {
 } from './thunks';
 
 export type PersonnelDetailsState = {
-  personnelDetails: PersonnelDetails | null;
-  loading: boolean;
   error: SerializedError | null;
+  loading: boolean;
+  personnelDetails: PersonnelDetails | null;
 };
 
 const initialState: PersonnelDetailsState = {
-  personnelDetails: null,
-  loading: false,
   error: null,
+  loading: false,
+  personnelDetails: null,
 };
 
 const personnelDetailsSlice = createSlice({
@@ -37,12 +38,12 @@ const personnelDetailsSlice = createSlice({
       error: null,
     }));
 
-    builder.addCase(createPersonnelDetails.pending, (state, action) => ({
+    builder.addCase(createPersonnelDetails.pending, state => ({
       ...state,
       loading: true,
       error: null,
     }));
-    builder.addCase(createPersonnelDetails.fulfilled, (state, action) => ({
+    builder.addCase(createPersonnelDetails.fulfilled, state => ({
       ...state,
       loading: false,
       error: null,

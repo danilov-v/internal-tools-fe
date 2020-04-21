@@ -1,4 +1,5 @@
 import { createSlice, SerializedError } from '@reduxjs/toolkit';
+
 import { User } from 'types/user';
 import { requestLogin, requestProfile, requestLogout } from './thunks';
 
