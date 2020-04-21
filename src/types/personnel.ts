@@ -19,27 +19,8 @@ export type PersonnelDetails = {
   middleName: string;
   phone: string;
   position: string;
-  rank?: string;
   rankId: number;
   unitId: number;
-};
-
-export type PersonnelFormData = {
-  comment?: string | null;
-  id?: number;
-  firstName: string;
-  lastName: string;
-  middleName: string;
-  calledAt: string;
-  demobilizationAt: string;
-  birthday: string;
-  phone: string;
-  position: string;
-  unitName: string;
-  unitId: string;
-  platName: string;
-  rankId: string;
-  marriageStatus?: string;
 };
 
 export type PersonnelFilter = {

@@ -1,6 +1,6 @@
-import { trim, isEmpty, flow, each, parseInt } from 'lodash';
+import { trim, isEmpty, flow, each, parseInt, omit } from 'lodash';
 import { isExists } from 'date-fns';
-import { PersonnelFormData } from 'types/personnel';
+import { PersonnelDetails } from 'types/personnel';
 import { Validator, ValidationErrors } from 'types/validator';
 
 interface PersonnelFValidationErrors extends ValidationErrors {
@@ -12,22 +12,17 @@ interface PersonnelFValidationErrors extends ValidationErrors {
   birthday?: string;
   phone?: string;
   position?: string;
-  unitName?: string;
-  platName?: string;
-  rankId?: string;
 }
 
 const VALIDATION_ERRORS: ValidationErrors = {
   firstName: 'Введите имя военнослужащего',
   lastName: 'Введите фамилию военнослужащего',
   middleName: 'Введите отчество военнослужащего',
-  calledAt: 'Введенная  дата не коректна',
-  demobilizationAt: 'Введенная  дата не коректна',
-  birthday: 'Введенная  дата не коректна',
+  calledAt: 'Введенная  дата не корректна',
+  demobilizationAt: 'Введенная  дата не корректна',
+  birthday: 'Введенная  дата не корректна',
   position: 'Введите звание',
   phone: 'Введите номер телефона',
-  unitName: 'Выберите номер отделения',
-  platName: 'Выберите номер взвода',
 };
 
 const isStringEmpty = flow([trim, isEmpty]);
@@ -40,15 +35,15 @@ const isDateStringValidDate = (localDateString: string): boolean => {
   return isExists(year, month - 1, day);
 };
 
-export class PersonnelFormValidator implements Validator<PersonnelFormData> {
+export class PersonnelFormValidator implements Validator<PersonnelDetails> {
   errors: PersonnelFValidationErrors = {};
 
   getErrors = (): PersonnelFValidationErrors => this.errors;
 
-  validate = (values: PersonnelFormData): ValidationErrors => {
+  validate = (values: PersonnelDetails): ValidationErrors => {
     const errors: ValidationErrors = {};
 
-    each(values, (value, key) => {
+    each(omit(values, 'comment'), (value, key) => {
       if (isStringEmpty(value)) {
         errors[key] = VALIDATION_ERRORS[key];
       }

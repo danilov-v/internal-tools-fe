@@ -1,15 +1,25 @@
-import React, { useEffect } from 'react';
-import { find, map, parseInt } from 'lodash';
-import { addYears, subDays, format } from 'date-fns';
+import React, { useEffect, useRef, useState } from 'react';
+import { parseInt } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
-import { RouteComponentProps } from '@reach/router';
+import { addYears, subDays } from 'date-fns';
+
+// types
+import { PersonnelDetails } from 'types/personnel';
 // selectors
-import { getRanks } from 'redux/rank/selectors';
-import { getUnits } from 'redux/unit/selectors';
+import { getPositionOptions } from 'redux/position/selectors';
+import { getRanksOptions } from 'redux/rank/selectors';
+import { getSquadOptions, getPlatOptions } from 'redux/unit/selectors';
+import {
+  getPersonnelDetails,
+  getPersonnelPlatId,
+  isLoadingPersonnelDetails,
+  getPersonnelDetailsError,
+} from 'redux/personnel-details/selectors';
 // thunks
-import { requestPersonnel } from 'redux/personnel/thunks';
-import { requestUnits } from 'redux/unit/thunks';
-import { requestRank } from 'redux/rank/thunks';
+import {
+  createPersonnelDetails,
+  editPersonnelDetails,
+} from 'redux/personnel-details/thunks';
 // components
 import { Button } from 'components/buttons/Button';
 import { Input } from 'components/inputs/Input';
@@ -17,70 +27,78 @@ import { DateInput } from 'components/inputs/DateInput';
 import { PhoneInput } from 'components/inputs/PhoneInput';
 import { Select } from 'components/Select';
 import { Column, Row } from 'components/layout';
-// types
-import { PersonnelFormData } from 'types/personnel';
-// services
-import { createPersonnel } from 'services/http/personnel';
-import { createUnit } from 'services/http/unit';
 // helpers
+import { DD_MM_YYYY, formatDate } from 'helpers/date';
+import { usePrevious } from 'helpers/hooks/usePrevious';
 import { useForm } from 'helpers/hooks/useForm';
-import { PLAT_TYPE_ID, DEP_TYPE_ID } from 'helpers/unit';
-import * as POSITIONS from 'helpers/position';
-// constants
-import { UNIT_ID } from 'configs/constants';
 
+import { convertToFormData, formatPersonnelDetails } from './utils';
 import { PersonnelFormValidator } from './validators/personnelForm';
-import * as S from './CreatePersonnelForm.style';
 
-interface PersonnelDetailsProps extends RouteComponentProps {
+import * as S from './PersonnelForm.style';
+
+type PersonnelFormType = {
+  isEdit?: boolean;
   onFormClose: () => void;
-}
+};
 
-const DEFAULT_FORM_DATA = {
+export const DEFAULT_PERSONNEL: PersonnelDetails = {
+  birthday: '',
+  calledAt: '',
+  demobilizationAt: '',
   firstName: '',
   lastName: '',
   middleName: '',
-  calledAt: '',
-  demobilizationAt: '',
-  birthday: '',
   phone: '',
-  position: POSITIONS.OPERATOR,
-  marriageStatus: 'холост',
-  unitName: '',
-  platName: '',
-  rankId: '18',
-  unitId: 'unset',
+  position: 'Оператор ПЭВМ',
+  rankId: 18,
+  unitId: 0,
 };
 
 const validator = new PersonnelFormValidator();
 
-const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
+const PersonnelForm: React.FC<PersonnelFormType> = ({
   onFormClose,
+  isEdit = false,
 }) => {
   const dispatch = useDispatch();
-  const ranks = useSelector(getRanks);
-  const units = useSelector(getUnits);
-  const { onChange, values, errorsShown, errors, validateForm } = useForm<
-    PersonnelFormData
-  >(DEFAULT_FORM_DATA, validator);
+  const isFirstRun = useRef(true);
+  const personnelDetailsFormData = convertToFormData(
+    useSelector(getPersonnelDetails) || DEFAULT_PERSONNEL,
+  );
 
-  useEffect(() => {
-    dispatch(requestRank());
-  }, [dispatch]);
+  const isLoading = useSelector(isLoadingPersonnelDetails);
+  const previousIsLoading = usePrevious(isLoading);
+  // TODO: add notification if http error exist
+  const httpError = useSelector(getPersonnelDetailsError);
 
-  const soldierRanksOptions = ranks
-    .filter(rank => rank.value < 70)
-    .map(({ name, id }) => ({ name, value: `${id}` }));
+  const positionOptions = useSelector(getPositionOptions);
+  const ranksOptions = useSelector(getRanksOptions);
+  const platOptions = useSelector(getPlatOptions);
 
-  const solderPositionsOptions = map(POSITIONS, pos => ({
-    name: pos,
-    value: pos,
-  }));
+  const personnelPlatId = useSelector(getPersonnelPlatId);
+  const [platId, setPlatId] = useState(personnelPlatId || platOptions[0].value);
 
-  const handleInput = (field: keyof PersonnelFormData) => (
+  const squadOptionsSelector = useSelector(getSquadOptions);
+  const squadOptions = squadOptionsSelector(platId);
+  const [squadId, setSquadId] = useState(
+    personnelDetailsFormData.unitId || squadOptions[0].value,
+  );
+
+  const { errors, onChange, errorsShown, validateForm, values } = useForm<
+    PersonnelDetails
+  >(personnelDetailsFormData, validator);
+
+  const handleInput = (field: keyof PersonnelDetails) => (
     e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
   ): void => {
     onChange(field, e.currentTarget.value);
+  };
+
+  const handleSelect = (setMethod: (T: number) => void) => (
+    e: React.FormEvent<HTMLSelectElement>,
+  ): void => {
+    setMethod(+e.currentTarget.value);
   };
 
   const onChangeCalledAt = (
@@ -91,9 +109,9 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
     if (calledAt.length === 10) {
       const [day, month, year] = calledAt.split('-').map(parseInt);
 
-      const demobilizationAt = format(
+      const demobilizationAt = formatDate(
         addYears(subDays(new Date(year, month - 1, day), 1), 1),
-        'dd-MM-yyyy',
+        DD_MM_YYYY,
       );
 
       onChange('calledAt', calledAt);
@@ -103,48 +121,33 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
     }
   };
 
-  const submitForm = async (
-    e: React.FormEvent<HTMLFormElement>,
-  ): Promise<void> => {
+  const submitForm = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
     if (validateForm()) {
-      const { platName, unitName } = values;
-
-      const plat =
-        find(units, {
-          name: platName,
-          parentUnit: UNIT_ID,
-          typeId: PLAT_TYPE_ID,
-        }) ||
-        (await createUnit({
-          name: platName,
-          parentUnit: UNIT_ID,
-          typeId: PLAT_TYPE_ID,
-        }));
-
-      const unit =
-        find(units, {
-          name: unitName,
-          parentUnit: plat.id,
-          typeId: DEP_TYPE_ID,
-        }) ||
-        (await createUnit({
-          name: unitName,
-          parentUnit: plat.id,
-          typeId: DEP_TYPE_ID,
-        }));
-
-      createPersonnel({ ...values, unitId: `${unit.id}` })
-        .then(() => {
-          dispatch(requestPersonnel(UNIT_ID));
-          dispatch(requestUnits());
-
-          return null;
-        })
-        .then(onFormClose)
-        .catch(console.log);
+      const personnelDetails = formatPersonnelDetails(values, squadId);
+      if (isEdit) {
+        dispatch(editPersonnelDetails(personnelDetails));
+      } else {
+        dispatch(createPersonnelDetails(personnelDetails));
+      }
     }
   };
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
+    setSquadId(squadOptions[0].value);
+  }, [platId, squadOptions]);
+
+  useEffect(() => {
+    if (previousIsLoading && !isLoading && !httpError) {
+      onFormClose();
+    }
+  });
 
   return (
     <S.Form onSubmit={submitForm}>
@@ -155,7 +158,9 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
         mt={15}
         mb={50}
       >
-        Добавление военнослужащего
+        {isEdit
+          ? 'Редактирование военнослужащего'
+          : 'Добавление военнослужащего'}
       </S.FormHeader>
       <Column>
         <Row justify="space-between" mt={0} mb={10}>
@@ -163,7 +168,7 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
           <Select
             value={values.rankId}
             onChange={handleInput('rankId')}
-            options={soldierRanksOptions}
+            options={ranksOptions}
           />
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
@@ -171,7 +176,7 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
           <Select
             value={values.position}
             onChange={handleInput('position')}
-            options={solderPositionsOptions}
+            options={positionOptions}
           />
         </Row>
         <Row justify="space-between" mt={0} mb={10}>
@@ -234,10 +239,9 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
           <S.Label>Дата призыва:</S.Label>
           <DateInput
             variant="primary"
-            id="calledAt"
-            name="calledAt"
             onChange={onChangeCalledAt}
             value={values.calledAt}
+            name="calledAt"
             align="right"
             invalid={errorsShown}
             errorMessage={errors.calledAt}
@@ -269,55 +273,24 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
             errorMessage={errors.birthday}
           />
         </Row>
-        <Row justify="space-between" mt={0} mb={50}>
-          <S.Label>Семейное положение</S.Label>
-          <Select
-            value={values.marriageStatus}
-            onChange={handleInput('marriageStatus')}
-            options={[
-              {
-                name: 'холост',
-                value: 'холост',
-              },
-              {
-                name: 'женат',
-                value: 'женат',
-              },
-            ]}
-          />
-        </Row>
         <Row justify="space-between" mt={0} mb={10}>
           <S.Label>Взвод</S.Label>
-          <Input
-            variant="primary"
-            type="number"
-            id="personnelFirstName"
-            name="firstName"
-            align="right"
-            placeholder="1"
-            onChange={handleInput('platName')}
-            max="5"
-            min="1"
-            invalid={errorsShown}
-            errorMessage={errors.platName}
+          <Select
+            value={platId}
+            onChange={handleSelect(setPlatId)}
+            options={platOptions}
           />
         </Row>
-        <Row justify="space-between" mt={0} mb={10}>
-          <S.Label>Отделение</S.Label>
-          <Input
-            variant="primary"
-            type="number"
-            id="personnelFirstName"
-            name="firstName"
-            align="right"
-            placeholder="1"
-            onChange={handleInput('unitName')}
-            max="5"
-            min="1"
-            invalid={errorsShown}
-            errorMessage={errors.unitName}
-          />
-        </Row>
+        {squadOptions.length > 0 && (
+          <Row justify="space-between" mt={0} mb={10}>
+            <S.Label>Отделение</S.Label>
+            <Select
+              value={squadId}
+              onChange={handleSelect(setSquadId)}
+              options={squadOptions}
+            />
+          </Row>
+        )}
         <Row justify="space-between" align="flex-end" mt={10}>
           <Column>
             <S.Label>Фотография </S.Label>
@@ -341,4 +314,4 @@ const CreatePersonnelForm: React.FC<PersonnelDetailsProps> = ({
   );
 };
 
-export { CreatePersonnelForm };
+export { PersonnelForm };

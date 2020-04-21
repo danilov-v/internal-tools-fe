@@ -45,6 +45,7 @@
     "typescript": "~3.8.3"
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^3.2.1",
     "@types/browserslist": "4.8.0",
     "@types/eslint": "6.1.8",
     "@types/jest": "^24.9.1",
@@ -77,6 +78,7 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
     "prettier": "^1.19.1",
+    "react-test-renderer": "^16.13.1",
     "source-map-explorer": "^2.3.1",
     "stylelint": "^13.2.1",
     "stylelint-a11y": "^1.2.3",

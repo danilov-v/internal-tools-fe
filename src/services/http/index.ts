@@ -9,4 +9,6 @@ const http = axios.create({
   withCredentials: true,
 });
 
+http.interceptors.response.use(response => response.data);
+
 export { http };

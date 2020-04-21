@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { Rank } from 'types/rank';
+
 import { requestRank } from './thunks';
 
 export type RankState = {

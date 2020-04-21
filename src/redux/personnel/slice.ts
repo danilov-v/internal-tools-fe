@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { Personnel } from 'types/personnel';
+
 import { requestPersonnel } from './thunks';
 
 export type PersonnelState = {
