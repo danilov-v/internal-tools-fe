@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { isEmpty } from 'lodash';
+import { isEmpty, isEqual } from 'lodash';
 import { Validator, ValidationErrors } from 'types/validator';
 
 interface UseFormOutput<formValues> {
@@ -45,8 +45,11 @@ export const useForm = <formValues>(
   ): void => {
     setValues(prevValues => {
       const newValues = { ...prevValues, [fieldName]: fieldValue };
-      // TODO: improve this logic - вызывает постоянно двойной рендер компонента. Нужно делать setErrors только если они появились или исчезли
-      setErrors(validator.validate(newValues));
+
+      if (errorsShown && !isEqual(validator.validate(newValues), errors)) {
+        setErrors(validator.validate(newValues));
+      }
+
       return newValues;
     });
   };
