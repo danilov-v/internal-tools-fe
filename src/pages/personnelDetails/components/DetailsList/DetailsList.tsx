@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { Promotion } from 'types/promotion';
-import { Penalty } from 'types/penalty';
-
-import { Column, Row } from 'components/layout';
-import { IconButton } from 'components/buttons/IconButton';
 // assets
 import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
 import { ReactComponent as TickIcon } from 'assets/icons/tick.svg';
+// components
+import { Column, Row } from 'components/layout';
+import { IconButton } from 'components/buttons/IconButton';
+// types
+import { Promotion } from 'types/promotion';
+import { Penalty } from 'types/penalty';
 
 import * as S from './DetailsList.style';
 

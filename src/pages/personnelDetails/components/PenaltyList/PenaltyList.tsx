@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { Button } from 'components/buttons/Button';
+import { Dialog } from 'components/dialogs/Dialog';
+import { Column, Row } from 'components/layout';
+import { useDialog } from 'helpers/hooks/uiHooks';
 import {
-  requestPenaltyCreate,
-  requestPenaltyClose,
-  requestPenaltyRemove,
   requestPenaltiesById,
+  requestPenaltyClose,
+  requestPenaltyCreate,
+  requestPenaltyRemove,
 } from 'redux/penalty/thunks';
 import { getActivePenalties } from 'redux/penalty/selectors';
 import { getPenaltyTypeOptions } from 'redux/penaltyType/selectors';
 import { Penalty } from 'types/penalty';
-import { useDialog } from 'helpers/hooks/uiHooks';
-import { Dialog } from 'components/dialogs/Dialog';
-import { Button } from 'components/buttons/Button';
-import { Column, Row } from 'components/layout';
+
 import { DetailsList } from '../DetailsList';
+import { ItemForm } from '../ItemForm';
 
 import * as S from './PenaltyList.style';
-import { ItemForm } from '../ItemForm';
 
 export const PenaltyList: React.FC<{ personnelId: number }> = ({
   personnelId,
@@ -55,10 +57,10 @@ export const PenaltyList: React.FC<{ personnelId: number }> = ({
         <S.Title>Взыскания:</S.Title>
       </Row>
       <DetailsList
-        type="penalty"
         items={penalties}
         onClose={closePenalty}
         onRemove={removePenalty}
+        type="penalty"
       />
       <Row>
         <Button
@@ -72,10 +74,10 @@ export const PenaltyList: React.FC<{ personnelId: number }> = ({
       </Row>
       <Dialog isOpened={isOpen}>
         <ItemForm
-          type="penalty"
-          types={penaltyTypes}
           onFormClose={toggleDialog}
           onSubmit={createPenalty}
+          type="penalty"
+          types={penaltyTypes}
         />
       </Dialog>
     </Column>

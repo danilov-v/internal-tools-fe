@@ -8,17 +8,17 @@ import { Column, Row } from 'components/layout';
 import * as S from './ItemForm.style';
 
 type ItemFormProps = {
-  type: 'promotion' | 'penalty';
-  types: OptionType[];
   onFormClose: () => void;
   onSubmit: (comment: string, typeId: number) => void;
+  type: 'promotion' | 'penalty';
+  types: OptionType[];
 };
 
 export const ItemForm: React.FC<ItemFormProps> = ({
-  type,
-  types,
   onFormClose,
   onSubmit,
+  type,
+  types,
 }) => {
   const [formData, setFormData] = useState({
     comment: '',
@@ -51,40 +51,40 @@ export const ItemForm: React.FC<ItemFormProps> = ({
   return (
     <form onSubmit={submitForm}>
       <S.FormHeader
-        component="h3"
-        variant="secondary"
         align="center"
-        mt={15}
+        component="h3"
         mb={50}
+        mt={15}
+        variant="secondary"
       >
         {isPromotion ? 'Добавление поощерение' : 'Добавление взыскания'}
       </S.FormHeader>
       <Column>
-        <Row justify="space-between" mt={0} mb={10}>
+        <Row justify="space-between" mb={10} mt={0}>
           <S.Label>Тип {isPromotion ? 'поощерения:' : 'взыскания:'}</S.Label>
           <Select
-            value={formData.typeId}
             onChange={handleSelect}
             options={types}
+            value={formData.typeId}
           />
         </Row>
-        <Row justify="space-between" mt={0} mb={10}>
+        <Row justify="space-between" mb={10} mt={0}>
           <S.Label>Комментарий</S.Label>
           <Input
-            variant="primary"
+            align="right"
             id="comment"
             name="comment"
             onChange={handleInput}
-            value={formData.comment}
-            align="right"
             placeholder={
               isPromotion ? 'За успешный наряд' : 'За опоздание в строй'
             }
+            value={formData.comment}
+            variant="primary"
           />
         </Row>
 
-        <Row justify="space-around" mt={24} mr={100} ml={100}>
-          <Button variant="contained" color="primary" type="submit">
+        <Row justify="space-around" ml={100} mr={100} mt={24}>
+          <Button color="primary" type="submit" variant="contained">
             Сохранить
           </Button>
           <Button color="secondary" onClick={onFormClose} type="reset">

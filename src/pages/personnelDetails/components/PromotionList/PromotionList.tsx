@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Promotion } from 'types/promotion';
+
+import { Button } from 'components/buttons/Button';
+import { Dialog } from 'components/dialogs/Dialog';
+import { Column, Row } from 'components/layout';
+import { useDialog } from 'helpers/hooks/uiHooks';
 import {
   requestPromotionClose,
-  requestPromotionRemove,
   requestPromotionCreate,
+  requestPromotionRemove,
   requestPromotionsById,
 } from 'redux/promotion/thunks';
 import { getActivePromotions } from 'redux/promotion/selectors';
 import { getPromotionTypeOptions } from 'redux/promotionType/selectors';
-import { useDialog } from 'helpers/hooks/uiHooks';
-import { Dialog } from 'components/dialogs/Dialog';
-import { Button } from 'components/buttons/Button';
-import { Column, Row } from 'components/layout';
+import { Promotion } from 'types/promotion';
 
 import { DetailsList } from '../DetailsList';
 import { ItemForm } from '../ItemForm';
@@ -56,10 +57,10 @@ export const PromotionList: React.FC<{ personnelId: number }> = ({
         <S.Title>Поощрения:</S.Title>
       </Row>
       <DetailsList
-        type="promotion"
         items={promotions}
         onClose={closePromotion}
         onRemove={removePromotion}
+        type="promotion"
       />
       <Row>
         <Button
@@ -73,10 +74,10 @@ export const PromotionList: React.FC<{ personnelId: number }> = ({
       </Row>
       <Dialog isOpened={isOpen}>
         <ItemForm
-          type="promotion"
-          types={promotionTypes}
           onFormClose={toggleDialog}
           onSubmit={createPromotion}
+          type="promotion"
+          types={promotionTypes}
         />
       </Dialog>
     </Column>

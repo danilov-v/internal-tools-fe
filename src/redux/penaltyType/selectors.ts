@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
+
 import { RootStore } from 'redux/store';
 import { PenaltyType } from 'types/penaltyType';
 

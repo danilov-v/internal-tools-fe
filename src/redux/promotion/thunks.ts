@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import {
-  fetchPromotionsById,
   createPromotion,
-  updatePromotion,
+  fetchPromotionsById,
   removePromotion,
+  updatePromotion,
 } from 'services/http/promotion';
 import { Promotion } from 'types/promotion';
 

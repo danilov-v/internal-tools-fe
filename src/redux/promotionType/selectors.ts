@@ -1,6 +1,7 @@
+import { createSelector } from '@reduxjs/toolkit';
+
 import { RootStore } from 'redux/store';
 import { PromotionType } from 'types/promotionType';
-import { createSelector } from '@reduxjs/toolkit';
 
 export const getPromotionTypes = (state: RootStore): PromotionType[] =>
   state.promotionType.promotionTypes;

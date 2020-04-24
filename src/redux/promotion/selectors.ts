@@ -1,8 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RootStore } from 'redux/store';
 import { find } from 'lodash';
-import { Promotion } from 'types/promotion';
+
+import { RootStore } from 'redux/store';
 import { getPromotionTypes } from 'redux/promotionType/selectors';
+import { Promotion } from 'types/promotion';
 
 export const getPromotions = (state: RootStore): Promotion[] =>
   state.promotion.promotions;
@@ -23,10 +24,10 @@ export const getPromotionDetailed = createSelector(
 
 export const getActivePromotions = createSelector(
   getPromotionDetailed,
-  promotins => promotins.filter(promotion => !promotion.closedAt),
+  promotions => promotions.filter(promotion => !promotion.closedAt),
 );
 
 export const getClosedPromotions = createSelector(
   getPromotionDetailed,
-  promotins => promotins.filter(promotion => promotion.closedAt),
+  promotions => promotions.filter(promotion => promotion.closedAt),
 );

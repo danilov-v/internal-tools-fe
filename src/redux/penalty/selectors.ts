@@ -1,5 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { find } from 'lodash';
+
 import { RootStore } from 'redux/store';
 import { getPenaltyTypes } from 'redux/penaltyType/selectors';
 import { Penalty } from 'types/penalty';
