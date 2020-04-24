@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { requestPromotionTypes } from 'redux/promotionType/thunks';
 import { requestPenaltyTypes } from 'redux/penaltyType/thunks';
+import { requestPromotionTypes } from 'redux/promotionType/thunks';
 import { requestRank } from 'redux/rank/thunks';
 import { requestUnits } from 'redux/unit/thunks';
 

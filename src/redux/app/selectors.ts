@@ -1,4 +1,5 @@
 import { SerializedError } from '@reduxjs/toolkit';
+
 import { RootStore } from 'redux/store';
 
 export const isAppLoading = (state: RootStore): boolean => state.app.loading;
