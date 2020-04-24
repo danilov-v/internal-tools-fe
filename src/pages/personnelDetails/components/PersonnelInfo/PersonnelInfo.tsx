@@ -1,6 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { requestPersonnelDetails } from 'redux/personnel-details/thunks';
 import { getPersonnelDetailsInfo } from 'redux/personnel-details/selectors';
 
 import { Column, Divider, Row, Text } from 'components/layout';
@@ -10,12 +11,22 @@ import * as S from './PersonnelInfo.style';
 
 type ComponentProps = {
   onToggleDialog: () => void;
+  personnelId: number;
 };
 
-const PersonnelInfo: React.FC<ComponentProps> = ({ onToggleDialog }) => {
+const PersonnelInfo: React.FC<ComponentProps> = ({
+  personnelId,
+  onToggleDialog,
+}) => {
+  const dispatch = useDispatch();
   const personnelInfo = useSelector(getPersonnelDetailsInfo);
 
+  useEffect(() => {
+    dispatch(requestPersonnelDetails(personnelId));
+  }, [dispatch, personnelId]);
+
   if (!personnelInfo) {
+    // TODO: loading here
     return null;
   }
 

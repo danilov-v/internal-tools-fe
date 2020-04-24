@@ -6,10 +6,6 @@ import { useDispatch } from 'react-redux';
 import { useDialog } from 'helpers/hooks/uiHooks';
 // actions
 import { purge } from 'redux/personnel-details/slice';
-// thunks
-import { requestPersonnelDetails } from 'redux/personnel-details/thunks';
-import { requestPromotionsById } from 'redux/promotion/thunks';
-import { requestPenaltiesById } from 'redux/penalty/thunks';
 // components
 import { Dialog } from 'components/dialogs/Dialog';
 import { PersonnelForm } from 'components/PersonnelForm';
@@ -25,13 +21,10 @@ import * as S from './personnelDetails.style';
 const PersonnelDetails: React.FC<RouteComponentProps> = () => {
   const dispatch = useDispatch();
   const params = useParams();
+  const personnelId = params.id;
   const [isOpen, toggleDialog] = useDialog();
 
   useEffect(() => {
-    dispatch(requestPersonnelDetails(params.id));
-    dispatch(requestPromotionsById(params.id));
-    dispatch(requestPenaltiesById(params.id));
-
     return () => {
       dispatch(purge());
     };
@@ -40,11 +33,14 @@ const PersonnelDetails: React.FC<RouteComponentProps> = () => {
   return (
     <S.Container>
       <>
-        <PersonnelInfo onToggleDialog={toggleDialog} />
+        <PersonnelInfo
+          personnelId={personnelId}
+          onToggleDialog={toggleDialog}
+        />
 
-        <PromotionList />
+        <PromotionList personnelId={personnelId} />
 
-        <PenaltyList />
+        <PenaltyList personnelId={personnelId} />
 
         <ArchiveList />
 

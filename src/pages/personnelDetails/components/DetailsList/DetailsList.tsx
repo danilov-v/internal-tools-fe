@@ -13,35 +13,33 @@ import * as S from './DetailsList.style';
 
 type DetailsListProps = {
   items: Promotion[] | Penalty[];
-  type?: 'promotion' | 'penalty';
+  type: 'promotion' | 'penalty';
   isDisabled?: boolean;
+  onClose?: (item: Promotion | Penalty) => void;
+  onRemove?: (item: Promotion | Penalty) => void;
 };
 
 export const DetailsList: React.FC<DetailsListProps> = ({
   items,
   type = 'promotion',
   isDisabled = false,
+  onClose,
+  onRemove,
 }) => {
   return (
     <>
       {items.map(item => (
-        <S.Block key={item.id}>
+        <S.Block key={item.id + type}>
           <Column>
             <S.NoteName type={type} isDisabled={isDisabled}>
               {item.type}
             </S.NoteName>
             <S.NoteComment>{item.comment}</S.NoteComment>
           </Column>
-          {!isDisabled && (
+          {!isDisabled && onClose && onRemove && (
             <Row>
-              <IconButton
-                icon={<TickIcon />}
-                onClick={() => console.log('Закрыть')}
-              />
-              <IconButton
-                icon={<CloseIcon />}
-                onClick={() => console.log('Удалить')}
-              />
+              <IconButton icon={<TickIcon />} onClick={() => onClose(item)} />
+              <IconButton icon={<CloseIcon />} onClick={() => onRemove(item)} />
             </Row>
           )}
         </S.Block>
