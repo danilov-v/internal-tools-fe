@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
 export const DialogBackground = styled.div`
+  align-items: center;
   background-color: ${({ theme }) => theme.overlayBackground};
   bottom: 0;
+  display: flex;
+  justify-content: center;
   left: 0;
   position: fixed;
   right: 0;
@@ -13,11 +16,6 @@ export const DialogBackground = styled.div`
 export const DialogWrapper = styled.div`
   background-color: ${({ theme }) => theme.white};
   border-radius: 15px;
-  left: calc(50% - 200px);
-  margin: 0 auto;
-  min-height: 500px;
   padding: 15px;
-  position: absolute;
-  top: calc(50% - 360px);
   width: 450px;
 `;

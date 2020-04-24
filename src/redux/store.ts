@@ -1,5 +1,6 @@
 import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
 
+import { appSlice, AppState } from './app/slice';
 import { penaltySlice, PenaltyState } from './penalty/slice';
 import { penaltyTypeSlice, PenaltyTypeState } from './penaltyType/slice';
 import { personnelSlice, PersonnelState } from './personnel/slice';
@@ -17,6 +18,7 @@ import { unitSlice, UnitState } from './unit/slice';
 export const getStore = (initialState?: OptionalRootStore): EnhancedStore =>
   configureStore({
     reducer: {
+      app: appSlice.reducer,
       penalty: penaltySlice.reducer,
       penaltyType: penaltyTypeSlice.reducer,
       personnel: personnelSlice.reducer,
@@ -32,6 +34,7 @@ export const getStore = (initialState?: OptionalRootStore): EnhancedStore =>
   });
 
 export type RootStore = {
+  app: AppState;
   penalty: PenaltyState;
   penaltyType: PenaltyTypeState;
   personnel: PersonnelState;

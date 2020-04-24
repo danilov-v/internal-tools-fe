@@ -1,27 +1,36 @@
 import React, { useEffect } from 'react';
 import { Redirect, RouteComponentProps, Router } from '@reach/router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { PERSONNEL, PERSONNEL_DETAILS } from 'configs/paths';
-import { requestPromotionTypes } from 'redux/promotionType/thunks';
-import { requestPenaltyTypes } from 'redux/penaltyType/thunks';
-import { requestRank } from 'redux/rank/thunks';
-import { requestUnits } from 'redux/unit/thunks';
+import { requestInitialData } from 'redux/app/thunks';
+import { isAppLoading, getAppError, isAppLoaded } from 'redux/app/selectors';
+
 import { Soldiers } from 'pages/soldiers/soldiers';
 import { PersonnelDetails } from 'pages/personnelDetails/personnelDetails';
 
+import { LoadingScreen } from 'components/LoadingScreen';
 import { Header } from './components/Header';
 import { NotFound } from './components/NotFound';
 
 const Main: React.FC<RouteComponentProps> = () => {
   const dispatch = useDispatch();
+  const isLoaded = useSelector(isAppLoaded);
+  const isLoading = useSelector(isAppLoading);
+  const appError = useSelector(getAppError);
 
   useEffect(() => {
-    dispatch(requestRank());
-    dispatch(requestUnits());
-    dispatch(requestPromotionTypes());
-    dispatch(requestPenaltyTypes());
+    dispatch(requestInitialData());
   }, [dispatch]);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (appError || !isLoaded) {
+    // TODO: add error component
+    return <div>Error</div>;
+  }
 
   return (
     <>
