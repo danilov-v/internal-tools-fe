@@ -21,7 +21,7 @@ exports[`Accordion component matches snapshot with additional props 1`] = `
       </svg>
     </button>
     <div
-      class="sc-AxiKw fxFXnp"
+      class="sc-AxiKw iZKlvk"
     />
   </div>
 </body>
@@ -46,7 +46,7 @@ exports[`Accordion component matches snapshots with required props only 1`] = `
       </svg>
     </button>
     <div
-      class="sc-AxiKw fxFXnp"
+      class="sc-AxiKw iZKlvk"
     />
   </div>
 </body>
