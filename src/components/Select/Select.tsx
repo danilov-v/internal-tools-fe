@@ -28,7 +28,7 @@ const Select: React.FC<SelectProps> = ({
   </Container>
 );
 
-type OptionType = {
+export type OptionType = {
   name: string;
   value: string | number;
 };

@@ -3,6 +3,8 @@ import { Redirect, RouteComponentProps, Router } from '@reach/router';
 import { useDispatch } from 'react-redux';
 
 import { PERSONNEL, PERSONNEL_DETAILS } from 'configs/paths';
+import { requestPromotionTypes } from 'redux/promotionType/thunks';
+import { requestPenaltyTypes } from 'redux/penaltyType/thunks';
 import { requestRank } from 'redux/rank/thunks';
 import { requestUnits } from 'redux/unit/thunks';
 import { Soldiers } from 'pages/soldiers/soldiers';
@@ -17,6 +19,8 @@ const Main: React.FC<RouteComponentProps> = () => {
   useEffect(() => {
     dispatch(requestRank());
     dispatch(requestUnits());
+    dispatch(requestPromotionTypes());
+    dispatch(requestPenaltyTypes());
   }, [dispatch]);
 
   return (
