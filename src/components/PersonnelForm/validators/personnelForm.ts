@@ -1,7 +1,7 @@
 import { trim, isEmpty, flow, each, parseInt, omit } from 'lodash';
 import { isExists } from 'date-fns';
 import { PersonnelDetails } from 'types/personnel';
-import { Validator, ValidationErrors } from 'types/validator';
+import { ValidationErrors } from 'types/validator';
 
 interface PersonnelFValidationErrors extends ValidationErrors {
   firstName?: string;
@@ -14,7 +14,7 @@ interface PersonnelFValidationErrors extends ValidationErrors {
   position?: string;
 }
 
-const VALIDATION_ERRORS: ValidationErrors = {
+const VALIDATION_ERRORS: PersonnelFValidationErrors = {
   firstName: 'Введите имя военнослужащего',
   lastName: 'Введите фамилию военнослужащего',
   middleName: 'Введите отчество военнослужащего',
@@ -35,31 +35,25 @@ const isDateStringValidDate = (localDateString: string): boolean => {
   return isExists(year, month - 1, day);
 };
 
-export class PersonnelFormValidator implements Validator<PersonnelDetails> {
-  errors: PersonnelFValidationErrors = {};
+export const validatePersonnelForm = (
+  values: PersonnelDetails,
+): PersonnelFValidationErrors => {
+  const errors: ValidationErrors = {};
 
-  getErrors = (): PersonnelFValidationErrors => this.errors;
+  each(omit(values, 'comment'), (value, key) => {
+    if (isStringEmpty(value)) {
+      errors[key] = VALIDATION_ERRORS[key];
+    }
+  });
 
-  validate = (values: PersonnelDetails): ValidationErrors => {
-    const errors: ValidationErrors = {};
+  if (!isDateStringValidDate(values.calledAt))
+    errors.calledAt = VALIDATION_ERRORS.calledAt;
 
-    each(omit(values, 'comment'), (value, key) => {
-      if (isStringEmpty(value)) {
-        errors[key] = VALIDATION_ERRORS[key];
-      }
-    });
+  if (!isDateStringValidDate(values.demobilizationAt))
+    errors.demobilizationAt = VALIDATION_ERRORS.demobilizationAt;
 
-    if (!isDateStringValidDate(values.calledAt))
-      errors.calledAt = VALIDATION_ERRORS.calledAt;
+  if (!isDateStringValidDate(values.birthday))
+    errors.birthday = VALIDATION_ERRORS.birthday;
 
-    if (!isDateStringValidDate(values.demobilizationAt))
-      errors.demobilizationAt = VALIDATION_ERRORS.demobilizationAt;
-
-    if (!isDateStringValidDate(values.birthday))
-      errors.birthday = VALIDATION_ERRORS.birthday;
-
-    this.errors = errors;
-
-    return this.errors;
-  };
-}
+  return errors;
+};
