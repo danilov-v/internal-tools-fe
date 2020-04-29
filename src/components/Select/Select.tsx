@@ -24,6 +24,9 @@ const Select: React.FC<SelectProps> = ({
           {option.name}
         </Option>
       ))}
+      <Option disabled value="">
+        Не выбрано
+      </Option>
     </StyledSelect>
   </Container>
 );

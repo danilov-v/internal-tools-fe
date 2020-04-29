@@ -1,6 +1,11 @@
 import { PERSONNEL } from 'configs/urls';
 import { http } from 'services/http';
-import { Personnel, PersonnelDetails, PersonnelFilter } from 'types/personnel';
+import {
+  Personnel,
+  PersonnelDetails,
+  PersonnelFilter,
+  PersonnelRemoval,
+} from 'types/personnel';
 
 export const fetchPersonnel = async (
   filter: PersonnelFilter,
@@ -19,3 +24,8 @@ export const updatePersonnel = async (
   personnelDetails: PersonnelDetails,
 ): Promise<PersonnelDetails> =>
   http.put(`${PERSONNEL}/${personnelId}`, personnelDetails);
+
+export const removePersonnel = async (
+  removalDetails: PersonnelRemoval,
+): Promise<PersonnelRemoval> =>
+  http.delete(`${PERSONNEL}`, { data: removalDetails });

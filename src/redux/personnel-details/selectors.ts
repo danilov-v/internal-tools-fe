@@ -13,6 +13,9 @@ export const getPersonnelDetails = (
 export const isLoadingPersonnelDetails = (state: RootStore): boolean =>
   state.personnelDetails.loading;
 
+export const isPersonnelRemoved = (state: RootStore): boolean =>
+  state.personnelDetails.removed;
+
 export const getPersonnelDetailsError = (
   state: RootStore,
 ): SerializedError | null => state.personnelDetails.error;

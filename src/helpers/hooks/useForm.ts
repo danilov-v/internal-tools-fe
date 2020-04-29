@@ -16,7 +16,7 @@ interface UseFormOutput<formValues> {
 
 export const useForm = <formValues>(
   initialState: formValues,
-  validator: Validator<formValues>,
+  validate: Validator<formValues>,
 ): UseFormOutput<formValues> => {
   const isFirstRun = useRef(true);
   const [values, setValues] = useState(initialState);
@@ -30,7 +30,7 @@ export const useForm = <formValues>(
   }, [initialState]);
 
   useEffect(() => {
-    // remove double rerender in init form
+    // remove double re-render in init form
     if (isFirstRun.current) {
       isFirstRun.current = false;
       return;
@@ -46,8 +46,8 @@ export const useForm = <formValues>(
     setValues(prevValues => {
       const newValues = { ...prevValues, [fieldName]: fieldValue };
 
-      if (errorsShown && !isEqual(validator.validate(newValues), errors)) {
-        setErrors(validator.validate(newValues));
+      if (errorsShown && !isEqual(validate(newValues), errors)) {
+        setErrors(validate(newValues));
       }
 
       return newValues;
@@ -56,7 +56,7 @@ export const useForm = <formValues>(
 
   const validateForm = (): boolean => {
     setErrorsShown(true);
-    const validationErrors = validator.validate(values);
+    const validationErrors = validate(values);
     setErrors(validationErrors);
 
     return isEmpty(validationErrors);

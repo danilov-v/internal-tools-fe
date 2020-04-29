@@ -26,3 +26,14 @@ export type PersonnelDetails = {
 export type PersonnelFilter = {
   unitId: number;
 };
+
+export type PersonnelRemoval = {
+  comment?: string;
+  personnelId: number;
+  typeId: number;
+};
+
+export type PersonnelRemovalType = {
+  id: number;
+  name: string;
+};

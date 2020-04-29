@@ -33,7 +33,7 @@ import { usePrevious } from 'helpers/hooks/usePrevious';
 import { useForm } from 'helpers/hooks/useForm';
 
 import { convertToFormData, formatPersonnelDetails } from './utils';
-import { PersonnelFormValidator } from './validators/personnelForm';
+import { validatePersonnelForm } from './validators/personnelForm';
 
 import * as S from './PersonnelForm.style';
 
@@ -54,8 +54,6 @@ export const DEFAULT_PERSONNEL: PersonnelDetails = {
   rankId: 18,
   unitId: 0,
 };
-
-const validator = new PersonnelFormValidator();
 
 const PersonnelForm: React.FC<PersonnelFormType> = ({
   onFormClose,
@@ -87,7 +85,7 @@ const PersonnelForm: React.FC<PersonnelFormType> = ({
 
   const { errors, onChange, errorsShown, validateForm, values } = useForm<
     PersonnelDetails
-  >(personnelDetailsFormData, validator);
+  >(personnelDetailsFormData, validatePersonnelForm);
 
   const handleInput = (field: keyof PersonnelDetails) => (
     e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,

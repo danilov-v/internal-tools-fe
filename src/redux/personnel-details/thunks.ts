@@ -6,6 +6,7 @@ import {
   createPersonnel,
   fetchPersonnelDetails,
   updatePersonnel,
+  removePersonnel,
 } from 'services/http/personnel';
 import { PersonnelDetails } from 'types/personnel';
 
@@ -49,4 +50,9 @@ export const editPersonnelDetails = createAsyncThunk(
       return thunkAPI.rejectWithValue(null);
     }
   },
+);
+
+export const removePersonnelDetails = createAsyncThunk(
+  'personnelDetails/remove',
+  removePersonnel,
 );
