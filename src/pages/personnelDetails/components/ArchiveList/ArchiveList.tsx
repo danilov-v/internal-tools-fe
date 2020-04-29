@@ -32,7 +32,7 @@ export const ArchiveList: React.FC = () => {
         </Button>
       )}
     >
-      {isEmpty(promotions) || isEmpty(penalties) ? (
+      {isEmpty(promotions) && isEmpty(penalties) ? (
         <S.NoteComment mb={10} mt={10}>
           Здесь будут отображаться реализованные поощрения и взыскания
           военнослужащего
