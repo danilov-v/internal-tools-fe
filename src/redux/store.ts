@@ -12,6 +12,11 @@ import { positionSlice, PositionState } from './position/slice';
 import { profileSlice, ProfileState } from './profile/slice';
 import { promotionSlice, PromotionState } from './promotion/slice';
 import { promotionTypeSlice, PromotionTypeState } from './promotionType/slice';
+import {
+  personnelRemovalTypeSlice,
+  PersonnelRemovalTypeState,
+} from './personnelRemovalType/slice';
+
 import { rankSlice, RankState } from './rank/slice';
 import { unitSlice, UnitState } from './unit/slice';
 
@@ -23,6 +28,7 @@ export const getStore = (initialState?: OptionalRootStore): EnhancedStore =>
       penaltyType: penaltyTypeSlice.reducer,
       personnel: personnelSlice.reducer,
       personnelDetails: personnelDetailsSlice.reducer,
+      personnelRemovalType: personnelRemovalTypeSlice.reducer,
       position: positionSlice.reducer,
       profile: profileSlice.reducer,
       promotion: promotionSlice.reducer,
@@ -39,6 +45,7 @@ export type RootStore = {
   penaltyType: PenaltyTypeState;
   personnel: PersonnelState;
   personnelDetails: PersonnelDetailsState;
+  personnelRemovalType: PersonnelRemovalTypeState;
   position: PositionState;
   profile: ProfileState;
   promotion: PromotionState;

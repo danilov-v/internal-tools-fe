@@ -34,7 +34,7 @@ const VARIANTS = {
     border: 'solid 1px',
     color: {
       default: 'primaryGray',
-      primary: 'primaryGreen',
+      primary: 'secondaryGreen',
       secondary: 'primaryRed',
       yellow: 'primaryYellow',
     },

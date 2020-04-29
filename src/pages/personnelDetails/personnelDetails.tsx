@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { RouteComponentProps, useParams } from '@reach/router';
-import { useDispatch } from 'react-redux';
+import { RouteComponentProps, useParams, navigate } from '@reach/router';
+import { useDispatch, useSelector } from 'react-redux';
 
 // helpers
 import { useDialog } from 'helpers/hooks/uiHooks';
 // actions
 import { purge } from 'redux/personnel-details/slice';
+// selectors
+import { isPersonnelRemoved } from 'redux/personnel-details/selectors';
 // components
 import { Dialog } from 'components/dialogs/Dialog';
 import { PersonnelForm } from 'components/PersonnelForm';
@@ -15,6 +17,7 @@ import { PromotionList } from './components/PromotionList';
 import { PenaltyList } from './components/PenaltyList';
 import { ArchiveList } from './components/ArchiveList';
 import { PersonnelDelete } from './components/PersonnelDelete';
+import { PersonnelRemovalForm } from './components/PersonnelRemovalForm';
 
 import * as S from './personnelDetails.style';
 
@@ -22,7 +25,9 @@ const PersonnelDetails: React.FC<RouteComponentProps> = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const personnelId = params.id;
-  const [isOpen, toggleDialog] = useDialog();
+  const [isEditOpen, toggleEditDialog] = useDialog();
+  const [isRemoveOpen, toggleRemoveDialog] = useDialog();
+  const isRemoved = useSelector(isPersonnelRemoved);
 
   useEffect(() => {
     return () => {
@@ -30,12 +35,18 @@ const PersonnelDetails: React.FC<RouteComponentProps> = () => {
     };
   }, [params.id, dispatch]);
 
+  useEffect(() => {
+    if (isRemoved) {
+      navigate('/');
+    }
+  }, [isRemoved]);
+
   return (
     <S.Container>
       <>
         <PersonnelInfo
           personnelId={personnelId}
-          onToggleDialog={toggleDialog}
+          onToggleDialog={toggleEditDialog}
         />
 
         <PromotionList personnelId={personnelId} />
@@ -44,10 +55,17 @@ const PersonnelDetails: React.FC<RouteComponentProps> = () => {
 
         <ArchiveList />
 
-        <PersonnelDelete />
+        <PersonnelDelete onClick={toggleRemoveDialog} />
 
-        <Dialog isOpened={isOpen}>
-          <PersonnelForm onFormClose={toggleDialog} isEdit />
+        <Dialog isOpened={isEditOpen}>
+          <PersonnelForm onFormClose={toggleEditDialog} isEdit />
+        </Dialog>
+
+        <Dialog isOpened={isRemoveOpen}>
+          <PersonnelRemovalForm
+            personnelId={params.id}
+            onFormClose={toggleRemoveDialog}
+          />
         </Dialog>
       </>
     </S.Container>

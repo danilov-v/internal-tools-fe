@@ -10,6 +10,7 @@ export const PENALTY_TYPES = '/penalty/types';
 
 // personnel
 export const PERSONNEL = '/personnel';
+export const PERSONNEL_REMOVAL_TYPES = '/personnel/removal-types';
 
 // profile
 export const PROFILE = '/profile';
