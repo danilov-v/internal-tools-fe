@@ -37,6 +37,13 @@ exports[`Select component matches snapshot with additional props 1`] = `
         >
           option 2
         </option>
+        <option
+          class=""
+          disabled=""
+          value=""
+        >
+          Не выбрано
+        </option>
       </select>
     </div>
   </div>
@@ -62,7 +69,15 @@ exports[`Select component matches snapshot with only required props 1`] = `
     >
       <select
         class="c1"
-      />
+      >
+        <option
+          class=""
+          disabled=""
+          value=""
+        >
+          Не выбрано
+        </option>
+      </select>
     </div>
   </div>
 </body>
