@@ -19,16 +19,14 @@ const Select: React.FC<SelectProps> = ({
       placeholder={placeholder}
       value={value}
     >
-      {[
-        ...options.map(option => (
-          <Option key={option.value} value={option.value}>
-            {option.name}
-          </Option>
-        )),
-        <Option disabled value="" key="default">
-          Не выбранно
-        </Option>,
-      ]}
+      {options.map(option => (
+        <Option key={option.value} value={option.value}>
+          {option.name}
+        </Option>
+      ))}
+      <Option disabled value="">
+        Не выбрано
+      </Option>
     </StyledSelect>
   </Container>
 );

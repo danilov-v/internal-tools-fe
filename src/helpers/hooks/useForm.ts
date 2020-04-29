@@ -30,7 +30,7 @@ export const useForm = <formValues>(
   }, [initialState]);
 
   useEffect(() => {
-    // remove double rerender in init form
+    // remove double re-render in init form
     if (isFirstRun.current) {
       isFirstRun.current = false;
       return;

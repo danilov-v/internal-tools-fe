@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // helpers
 import { useDialog } from 'helpers/hooks/uiHooks';
+// components
+import { Dialog } from 'components/dialogs/Dialog';
+import { PersonnelForm } from 'components/PersonnelForm';
 // actions
 import { purge } from 'redux/personnel-details/slice';
 // selectors
 import { isPersonnelRemoved } from 'redux/personnel-details/selectors';
-// components
-import { Dialog } from 'components/dialogs/Dialog';
-import { PersonnelForm } from 'components/PersonnelForm';
 
 import { PersonnelInfo } from './components/PersonnelInfo';
 import { PromotionList } from './components/PromotionList';
@@ -45,8 +45,8 @@ const PersonnelDetails: React.FC<RouteComponentProps> = () => {
     <S.Container>
       <>
         <PersonnelInfo
-          personnelId={personnelId}
           onToggleDialog={toggleEditDialog}
+          personnelId={personnelId}
         />
 
         <PromotionList personnelId={personnelId} />
@@ -63,8 +63,8 @@ const PersonnelDetails: React.FC<RouteComponentProps> = () => {
 
         <Dialog isOpened={isRemoveOpen}>
           <PersonnelRemovalForm
-            personnelId={params.id}
             onFormClose={toggleRemoveDialog}
+            personnelId={params.id}
           />
         </Dialog>
       </>

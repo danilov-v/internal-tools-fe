@@ -28,9 +28,9 @@ export type PersonnelFilter = {
 };
 
 export type PersonnelRemoval = {
+  comment?: string;
   personnelId: number;
   typeId: number;
-  comment?: string;
 };
 
 export type PersonnelRemovalType = {

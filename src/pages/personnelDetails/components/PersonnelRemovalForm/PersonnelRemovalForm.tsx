@@ -1,44 +1,46 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPersonnelRemovelTypeOptions } from 'redux/personnelRemovalType/selectors';
-import { requestPersonalRemovalTypes } from 'redux/personnelRemovalType/thunks';
+
 import { Button } from 'components/buttons/Button';
-import { Row, Column } from 'components/layout';
 import { Input } from 'components/inputs/Input';
+import { Column, Row, Text } from 'components/layout';
 import { Select } from 'components/Select';
 import { useForm } from 'helpers/hooks/useForm';
-import { Text } from 'components/layout/Text';
-import { removePersonnelDetails } from 'redux/personnel-details/thunks';
+import { getPersonnelRemovalTypeOptions } from 'redux/personnelRemovalType/selectors';
+import { requestPersonalRemovalTypes } from 'redux/personnelRemovalType/thunks';
 import {
+  getPersonnelDetailsError,
   isLoadingPersonnelDetails,
   isPersonnelRemoved,
-  getPersonnelDetailsError,
 } from 'redux/personnel-details/selectors';
+import { removePersonnelDetails } from 'redux/personnel-details/thunks';
 
-import { Form, FormHeader, Label } from './PersonnelRemovalForm.style';
+import { Label, Form, FormHeader } from './PersonnelRemovalForm.style';
 
 type PersonnelRemovalValues = {
-  typeId: string;
   comment?: string;
+  typeId: string;
 };
 
-interface ValidationErros extends Record<string, string | undefined> {
+interface ValidationErrors extends Record<string, string | undefined> {
   typeId?: string;
 }
 
 const INITIAL_DATA: PersonnelRemovalValues = {
-  typeId: '',
   comment: '',
+  typeId: '',
 };
 
 const VALIDATION_ERRORS = {
-  typeId: 'Выбирите причину удаления',
+  typeId: 'Выберите причину удаления',
 };
 
-const validate = ({ typeId }: PersonnelRemovalValues): ValidationErros => {
-  const errors: ValidationErros = {};
+const validate = ({ typeId }: PersonnelRemovalValues): ValidationErrors => {
+  const errors: ValidationErrors = {};
 
-  if (!typeId) errors.typeId = VALIDATION_ERRORS.typeId;
+  if (!typeId) {
+    errors.typeId = VALIDATION_ERRORS.typeId;
+  }
 
   return errors;
 };
@@ -62,7 +64,7 @@ export const PersonnelRemovalForm: React.FC<PersonnelRemovalFormPropsType> = ({
     validate,
   );
 
-  const typesOptions = useSelector(getPersonnelRemovelTypeOptions);
+  const typesOptions = useSelector(getPersonnelRemovalTypeOptions);
 
   const handleSelect = (e: React.FormEvent<HTMLSelectElement>): void => {
     onChange('typeId', e.currentTarget.value);
@@ -79,9 +81,9 @@ export const PersonnelRemovalForm: React.FC<PersonnelRemovalFormPropsType> = ({
     if (validateForm()) {
       dispatch(
         removePersonnelDetails({
+          comment: values.comment || undefined,
           personnelId: +personnelId,
           typeId: +values.typeId,
-          comment: values.comment || undefined,
         }),
       );
     }
@@ -102,51 +104,51 @@ export const PersonnelRemovalForm: React.FC<PersonnelRemovalFormPropsType> = ({
   return (
     <Form onSubmit={submitForm}>
       <FormHeader
-        component="h3"
-        variant="secondary"
         align="center"
-        mt={15}
+        component="h3"
         mb={50}
+        mt={15}
+        variant="secondary"
       >
         Удалить военнослужащего
       </FormHeader>
 
       <Column>
-        <Row justify="space-between" mt={0} mb={10}>
+        <Row justify="space-between" mb={10} mt={0}>
           <Label>Причина удаления</Label>
           <Select
-            value={typeId}
             onChange={handleSelect}
             options={typesOptions}
+            value={typeId}
           />
         </Row>
-        <Row justify="space-between" mt={0} mb={10}>
+        <Row justify="space-between" mb={10} mt={0}>
           <Label>Комментарий:</Label>
           <Input
-            variant="primary"
             id="comment"
+            align="right"
             name="comment"
             onChange={handleInput}
-            value={comment}
-            align="right"
             placeholder="Специалист"
+            value={comment}
+            variant="primary"
           />
         </Row>
 
-        <Row justify="space-around" mt={24} mr={100} ml={100}>
+        <Row justify="space-around" ml={100} mr={100} mt={24}>
           <Button
-            variant="contained"
             color="secondary"
-            type="submit"
             disabled={isLoading}
+            type="submit"
+            variant="contained"
           >
             Удалить
           </Button>
           <Button
             color="primary"
+            disabled={isLoading}
             onClick={onFormClose}
             type="reset"
-            disabled={isLoading}
           >
             Отмена
           </Button>

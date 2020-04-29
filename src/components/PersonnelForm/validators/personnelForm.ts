@@ -1,28 +1,29 @@
 import { trim, isEmpty, flow, each, parseInt, omit } from 'lodash';
 import { isExists } from 'date-fns';
+
 import { PersonnelDetails } from 'types/personnel';
 import { ValidationErrors } from 'types/validator';
 
 interface PersonnelFValidationErrors extends ValidationErrors {
+  birthday?: string;
+  calledAt?: string;
+  demobilizationAt?: string;
   firstName?: string;
   lastName?: string;
   middleName?: string;
-  calledAt?: string;
-  demobilizationAt?: string;
-  birthday?: string;
   phone?: string;
   position?: string;
 }
 
 const VALIDATION_ERRORS: PersonnelFValidationErrors = {
+  birthday: 'Введенная  дата не корректна',
+  calledAt: 'Введенная  дата не корректна',
+  demobilizationAt: 'Введенная  дата не корректна',
   firstName: 'Введите имя военнослужащего',
   lastName: 'Введите фамилию военнослужащего',
   middleName: 'Введите отчество военнослужащего',
-  calledAt: 'Введенная  дата не корректна',
-  demobilizationAt: 'Введенная  дата не корректна',
-  birthday: 'Введенная  дата не корректна',
-  position: 'Введите звание',
   phone: 'Введите номер телефона',
+  position: 'Введите звание',
 };
 
 const isStringEmpty = flow([trim, isEmpty]);
