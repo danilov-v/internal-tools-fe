@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { Container, Option, StyledSelect } from './Select.style';
+import {
+  Container,
+  Option,
+  StyledSelect,
+  ValidationError,
+} from './Select.style';
 
 const Select: React.FC<SelectProps> = ({
   id,
@@ -10,6 +15,8 @@ const Select: React.FC<SelectProps> = ({
   options = [],
   placeholder,
   value = '',
+  invalid = false,
+  errorMessage = '',
 }) => (
   <Container>
     {label && <label htmlFor={id}>{label}</label>}
@@ -28,6 +35,9 @@ const Select: React.FC<SelectProps> = ({
         Не выбрано
       </Option>
     </StyledSelect>
+    {invalid && errorMessage && (
+      <ValidationError align="right">{errorMessage}</ValidationError>
+    )}
   </Container>
 );
 
@@ -44,6 +54,8 @@ type SelectProps = {
   options?: Array<OptionType>;
   placeholder?: string;
   value?: string | number;
+  invalid?: boolean;
+  errorMessage?: string;
 };
 
 export { Select };
