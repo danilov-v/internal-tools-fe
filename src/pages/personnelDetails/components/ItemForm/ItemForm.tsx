@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useForm } from 'helpers/hooks/useForm';
 
 import { Button } from 'components/buttons/Button';
-import { Select, OptionType } from 'components/Select';
+import { Select } from 'components/Select';
 import { Input } from 'components/inputs/Input';
 import { Column, Row } from 'components/layout';
 
+import { ItemFormProps, ItemFormState } from './ItemForm.types';
+import { validate } from './ItemForm.validation';
 import * as S from './ItemForm.style';
 
-type ItemFormProps = {
-  onFormClose: () => void;
-  onSubmit: (comment: string, typeId: number) => void;
-  type: 'promotion' | 'penalty';
-  types: OptionType[];
+const INITIAL_DATA = {
+  comment: '',
+  typeId: '',
 };
 
 export const ItemForm: React.FC<ItemFormProps> = ({
@@ -20,32 +22,24 @@ export const ItemForm: React.FC<ItemFormProps> = ({
   type,
   types,
 }) => {
-  const [formData, setFormData] = useState({
-    comment: '',
-    typeId: types[0].value,
-  });
+  const { values, onChange, validateForm, errorsShown, errors } = useForm<
+    ItemFormState
+  >(INITIAL_DATA, validate);
+
   const isPromotion = type === 'promotion';
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    if (formData.typeId && formData.comment) {
-      onSubmit(formData.comment, +formData.typeId);
+    if (validateForm()) {
+      onSubmit(values.comment, +values.typeId);
     }
   };
 
-  const handleInput = (e: React.FormEvent<HTMLInputElement>): void => {
-    setFormData({
-      ...formData,
-      comment: e.currentTarget.value,
-    });
-  };
-
-  const handleSelect = (e: React.FormEvent<HTMLSelectElement>): void => {
-    setFormData({
-      ...formData,
-      typeId: +e.currentTarget.value,
-    });
+  const handleChange = (fieldName: keyof ItemFormState) => (
+    e: React.FormEvent<HTMLInputElement | HTMLSelectElement>,
+  ): void => {
+    onChange(fieldName, e.currentTarget.value);
   };
 
   return (
@@ -63,9 +57,11 @@ export const ItemForm: React.FC<ItemFormProps> = ({
         <Row justify="space-between" mb={10} mt={0}>
           <S.Label>Тип {isPromotion ? 'поощерения:' : 'взыскания:'}</S.Label>
           <Select
-            onChange={handleSelect}
+            onChange={handleChange('typeId')}
             options={types}
-            value={formData.typeId}
+            value={values.typeId}
+            invalid={errorsShown}
+            errorMessage={errors.typeId}
           />
         </Row>
         <Row justify="space-between" mb={10} mt={0}>
@@ -74,12 +70,14 @@ export const ItemForm: React.FC<ItemFormProps> = ({
             align="right"
             id="comment"
             name="comment"
-            onChange={handleInput}
+            onChange={handleChange('comment')}
             placeholder={
               isPromotion ? 'За успешный наряд' : 'За опоздание в строй'
             }
-            value={formData.comment}
+            value={values.comment}
             variant="primary"
+            invalid={errorsShown}
+            errorMessage={errors.comment}
           />
         </Row>
 
