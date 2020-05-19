@@ -7,7 +7,6 @@ import { Column, Row, Text } from 'components/layout';
 import { Select } from 'components/Select';
 import { useForm } from 'helpers/hooks/useForm';
 import { getPersonnelRemovalTypeOptions } from 'redux/personnelRemovalType/selectors';
-import { requestPersonalRemovalTypes } from 'redux/personnelRemovalType/thunks';
 import {
   getPersonnelDetailsError,
   isLoadingPersonnelDetails,
@@ -88,10 +87,6 @@ export const PersonnelRemovalForm: React.FC<PersonnelRemovalFormPropsType> = ({
       );
     }
   };
-
-  useEffect(() => {
-    dispatch(requestPersonalRemovalTypes());
-  }, [dispatch]);
 
   useEffect(() => {
     if (isRemoved) {
