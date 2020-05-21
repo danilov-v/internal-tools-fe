@@ -19,6 +19,7 @@ import {
 
 import { rankSlice, RankState } from './rank/slice';
 import { unitSlice, UnitState } from './unit/slice';
+import { maritalStatusSlice, MaritalStatusState } from './maritalStatus/slice';
 
 export const getStore = (initialState?: OptionalRootStore): EnhancedStore =>
   configureStore({
@@ -35,6 +36,7 @@ export const getStore = (initialState?: OptionalRootStore): EnhancedStore =>
       promotionType: promotionTypeSlice.reducer,
       rank: rankSlice.reducer,
       unit: unitSlice.reducer,
+      maritalStatus: maritalStatusSlice.reducer,
     },
     preloadedState: initialState,
   });
@@ -52,6 +54,7 @@ export type RootStore = {
   promotionType: PromotionTypeState;
   rank: RankState;
   unit: UnitState;
+  maritalStatus: MaritalStatusState;
 };
 
 export type OptionalRootStore = Partial<RootStore>;

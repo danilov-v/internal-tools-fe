@@ -90,6 +90,7 @@ export const SUCCESSFUL_PERSONNEL_DETAILS = {
   position: 'Оператор ПВМ',
   unitId: 5,
   rankId: 18,
+  maritalStatusId: 1,
 };
 
 export const FAILED_PERSONNEL_DETAILS = {
@@ -109,6 +110,7 @@ export const SUCCESSFUL_CREATE_PERSONNEL = {
   position: 'Оператор ПВМ',
   unitId: 11,
   rankId: 18,
+  maritalStatusId: 1,
 };
 
 export const FAILED_CREATE_PERSONNEL = `Expected \`firstName\` to be of type \`string\` but received type \`undefined\``;

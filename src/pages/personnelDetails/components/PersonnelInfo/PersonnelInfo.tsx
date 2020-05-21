@@ -72,7 +72,7 @@ const PersonnelInfo: React.FC<ComponentProps> = ({
         </Row>
         <Row justify="space-between" mt={0}>
           <Text>Семейное положение</Text>
-          <Text>холост</Text>
+          <Text>{personnelInfo.maritalStatus}</Text>
         </Row>
         <Row justify="space-between" mt={0}>
           <Text>Взвод</Text>
