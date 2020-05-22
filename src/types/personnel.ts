@@ -21,6 +21,7 @@ export type PersonnelDetails = {
   position: string;
   rankId: number;
   unitId: number;
+  maritalStatusId: number;
 };
 
 export type PersonnelFilter = {

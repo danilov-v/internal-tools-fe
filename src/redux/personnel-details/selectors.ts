@@ -5,6 +5,7 @@ import { getRanks } from 'redux/rank/selectors';
 import { getSquadUnits, getPlatUnits, getUnits } from 'redux/unit/selectors';
 import { RootStore } from 'redux/store';
 import { PersonnelDetails } from 'types/personnel';
+import { getMaritalStatuses } from 'redux/maritalStatus/selectors';
 
 export const getPersonnelDetails = (
   state: RootStore,
@@ -41,12 +42,16 @@ export const getPersonnelDetailsInfo = createSelector(
   getPersonnelPlatId,
   getUnits,
   getRanks,
-  (personnelDetails, platId, units, ranks) => {
+  getMaritalStatuses,
+  (personnelDetails, platId, units, ranks, maritalStatuses) => {
     if (!personnelDetails) return null;
 
     const plat = units.find(unit => unit.id === platId);
     const squad = units.find(unit => unit.id === personnelDetails.unitId);
     const rankInfo = ranks.find(rank => rank.id === personnelDetails.rankId);
+    const maritalStatus = maritalStatuses.find(
+      status => status.id === personnelDetails.maritalStatusId,
+    );
 
     return {
       ...personnelDetails,
@@ -56,6 +61,7 @@ export const getPersonnelDetailsInfo = createSelector(
       rankName: rankInfo?.name,
       unitName: squad?.name,
       platName: plat?.name,
+      maritalStatus: maritalStatus?.name,
     };
   },
 );

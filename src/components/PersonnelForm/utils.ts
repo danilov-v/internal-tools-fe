@@ -38,4 +38,5 @@ export const formatPersonnelDetails = (
   demobilizationAt: formatLocaleDateStringToISO(
     personnelDetails.demobilizationAt,
   ),
+  maritalStatusId: +personnelDetails.maritalStatusId,
 });

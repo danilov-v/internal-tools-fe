@@ -15,6 +15,7 @@ import {
   isLoadingPersonnelDetails,
   getPersonnelDetailsError,
 } from 'redux/personnel-details/selectors';
+import { getMaritalStatusOptions } from 'redux/maritalStatus/selectors';
 // thunks
 import {
   createPersonnelDetails,
@@ -53,6 +54,7 @@ export const DEFAULT_PERSONNEL: PersonnelDetails = {
   position: 'Оператор ПЭВМ',
   rankId: 18,
   unitId: 0,
+  maritalStatusId: 1,
 };
 
 const PersonnelForm: React.FC<PersonnelFormType> = ({
@@ -71,6 +73,8 @@ const PersonnelForm: React.FC<PersonnelFormType> = ({
   const httpError = useSelector(getPersonnelDetailsError);
 
   const positionOptions = useSelector(getPositionOptions);
+  const maritalStatusOptions = useSelector(getMaritalStatusOptions);
+
   const ranksOptions = useSelector(getRanksOptions);
   const platOptions = useSelector(getPlatOptions);
 
@@ -269,6 +273,14 @@ const PersonnelForm: React.FC<PersonnelFormType> = ({
             align="right"
             invalid={errorsShown}
             errorMessage={errors.birthday}
+          />
+        </Row>
+        <Row justify="space-between" mt={0} mb={10}>
+          <S.Label>Семейное положение</S.Label>
+          <Select
+            value={values.maritalStatusId}
+            onChange={handleInput('maritalStatusId')}
+            options={maritalStatusOptions}
           />
         </Row>
         <Row justify="space-between" mt={0} mb={10}>

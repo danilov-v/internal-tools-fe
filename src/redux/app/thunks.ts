@@ -5,6 +5,7 @@ import { requestPromotionTypes } from 'redux/promotionType/thunks';
 import { requestRank } from 'redux/rank/thunks';
 import { requestUnits } from 'redux/unit/thunks';
 import { requestPersonalRemovalTypes } from 'redux/personnelRemovalType/thunks';
+import { requestMaritalStatuses } from 'redux/maritalStatus/thunks';
 
 export const requestInitialData = createAsyncThunk(
   'app/getInitialData',
@@ -15,6 +16,7 @@ export const requestInitialData = createAsyncThunk(
       thunkAPI.dispatch(requestPromotionTypes()),
       thunkAPI.dispatch(requestPenaltyTypes()),
       thunkAPI.dispatch(requestPersonalRemovalTypes()),
+      thunkAPI.dispatch(requestMaritalStatuses()),
     ]);
   },
 );
