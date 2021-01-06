@@ -29,7 +29,7 @@
     "@types/lodash": "^4.14.149",
     "@types/react-datepicker": "^2.11.0",
     "@viewstools/use-masked-input": "^2.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "date-fns": "^2.11.1",
     "jest-styled-components": "^7.0.0",
     "lodash": "^4.17.15",
